@@ -1,5 +1,7 @@
 # ecommerce-app-cogito-fe
 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/atlp-rwanda/ecommerce-app-cogito-fe/tree/develop.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/atlp-rwanda/ecommerce-app-cogito-fe/tree/develop) [![Maintainability](https://api.codeclimate.com/v1/badges/89360736b8a40d066f27/maintainability)](https://codeclimate.com/github/atlp-rwanda/ecommerce-app-cogito-fe/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/89360736b8a40d066f27/test_coverage)](https://codeclimate.com/github/atlp-rwanda/ecommerce-app-cogito-fe/test_coverage)
+
 ## INTRODUCTION
 
 We invite you to explore the Cogito E-Commerce frontend repository. Within this repository, you will find the complete codebase for our dynamic and intuitive E-commerce web application. Crafted with ReactJS, TailwindCSS, and Redux, our application delivers an engaging online marketplace where users can seamlessly browse and purchase products. Furthermore, it empowers sellers with efficient tools to effectively manage their product listings.

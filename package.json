@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "test": "jest",
+    "test": "jest --watchAll",
     "build": "tsc && vite build",
     "lint": "tslint --project . & prettier --check .",
     "lint:fix": "tslint --project . --fix",
@@ -14,7 +14,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prettier": "prettier --write .",
-    "format": "eslint --fix src & npm run prettier"
+    "format": "eslint --fix src & npm run prettier",
+    "coverage": "yarn test --coverage --watchAll"
   },
   "lint-staged": {
     "*.ts": [
