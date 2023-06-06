@@ -3,8 +3,9 @@ import HomePage from '@/views/Home';
 import Login from '@/pages/Login';
 import ResetPasswordPage from '@/pages/resetPassword/resetPassword';
 import UpdatePasswordPage from '@/pages/resetPassword/updatePassword';
+import SignupPage from "./components/register";
 
-function App() {
+const App: React.FC=() => {
   return (
     <div>
       <Router>
@@ -13,6 +14,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/auth/reset/:token" element={<UpdatePasswordPage />} />
+          <Route path="/buyer/signup" element={<SignupPage />} />  
         </Routes>
       </Router>
     </div>
