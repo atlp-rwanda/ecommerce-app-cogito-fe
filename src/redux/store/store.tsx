@@ -19,6 +19,7 @@ import changeUserRole from '../reducers/ChangeRoleSlice';
 import fetchPermissions from '../reducers/FetchPermissionsSlice';
 import fetchRolePermissions from '../reducers/RolePermissionsSlice';
 import chatReducer from '../reducers/chatSlice';
+import cartItemsReducer from '../reducers/Product/cartViewSlice';
 import allProductsReducer from '../reducers/products';
 import wishlistReducer from '../reducers/wishlistSlice';
 import updateProductReducer from '../reducers/updateProductSlice';
@@ -26,6 +27,7 @@ import notificationReducer from '../reducers/notificationSlice';
 import searchReducer from '../reducers/searchSlice';
 import fetchSlice from '../reducers/Product/fetchSlice';
 import recommendedReducer from '../reducers/recommendedProductsSlice';
+import getOrderStatusReducer from '../reducers/Product/orderStatusSlice'
 
 const store = configureStore({
   reducer: {
@@ -52,10 +54,12 @@ const store = configureStore({
     permissions: fetchPermissions,
     rolesPermissions: fetchRolePermissions,
     chat: chatReducer,
+    cartItems: cartItemsReducer,
     allProducts: allProductsReducer,
     wishlist: wishlistReducer,
     search: searchReducer,
     recommended: recommendedReducer,
+    orderStatus: getOrderStatusReducer,
   },
   middleware: getDefaultMiddleware({
     immutableCheck: false,
