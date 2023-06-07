@@ -1,5 +1,6 @@
 import './styles.scss';
 import InitialMessage from './components/index';
+import Greet from "./components/Greet";
 
 function App() {
   return (
@@ -9,7 +10,14 @@ function App() {
         <InitialMessage />
       </div>
       <div className="container">E-commerce App</div>
-    </>
+      <Greet />
+
+
+
+
+  
+
+</>
   );
 }
 export default App;
