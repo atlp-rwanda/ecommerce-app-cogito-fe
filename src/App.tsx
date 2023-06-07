@@ -1,6 +1,8 @@
-import './styles.scss';
-import InitialMessage from './components/index';
-import Greet from "./components/Greet";
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import InitialMessage from "./components/index";
+import Login from "../src/views/Login";
+import HomePage from "../src/views/Home";
 
 function App() {
   return (
@@ -9,15 +11,15 @@ function App() {
       <div className="bg-primary text-warningColor p-6 text-center">
         <InitialMessage />
       </div>
-      <div className="container">E-commerce App</div>
-      <Greet />
-
-
-
-
-  
-
-</>
+      <div>
+        <Router>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </Router>
+      </div>
+    </>
   );
 }
 export default App;
