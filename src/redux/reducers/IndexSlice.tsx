@@ -1,29 +1,29 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchIndexMessage } from "../action/IndexAction";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { fetchIndexMessage } from '../action/IndexAction';
 
 interface IndexState {
-    data: string; // Define your product state here
-    status: string;
-    loading: boolean;
-    error: string | null;
-  }
-  
-  const initialState: IndexState = {
-    data: '',
-    status: '',
-    loading: false,
-    error: null,
-  };
+  data: string; // Define your product state here
+  status: string;
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: IndexState = {
+  data: '',
+  status: '',
+  loading: false,
+  error: null,
+};
 
 const indexSlice = createSlice({
-  name: "index",
+  name: 'index',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchIndexMessage.pending, (state) => {
         state.loading = true;
-        state.status = "pending";
+        state.status = 'pending';
         state.error = null;
       })
       .addCase(fetchIndexMessage.fulfilled, (state, action: PayloadAction<any>) => {
