@@ -1,0 +1,41 @@
+name: Testing
+on:
+  push:
+    branches: ["develop"]
+  pull_request:
+    branches: ["deveop"]
+jobs:
+  test:
+    strategy:
+      matrix:
+        platform: ubuntu-latest
+        node: "18.x"
+    name: test/node ${{ matrix.node }}/${{ matrix.platform }}
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm install -g yarn
+      - run: yarn install
+      - run: yarn build
+      - run: yarn test
+  coverage:
+    needs: [test]
+    name: coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+        with:
+          node-version: "18.x"
+      - run: npm install -g yarn
+      - run: yarn install
+      - run: yarn build
+      - uses: paambaati/codeclimate-action@v2.2.4
+        env:
+          CC_TEST_REPORTER_ID: ${{ CC_TEST_REPORTER_ID }}
+        with:
+          coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
+          coverageCommand: yarn coverage
