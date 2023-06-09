@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*":["./src/*"]
+      "@/*": ["./src/*"]
     },
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -16,7 +16,6 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "esModuleInterop": true,
-    
 
     /* Linting */
     "strict": true,
@@ -24,7 +23,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": [ "src", "src/setupTests.ts"],
+  "include": ["src", "src/setupTests.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
-

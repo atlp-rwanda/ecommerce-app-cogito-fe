@@ -1,11 +1,7 @@
-
-
-type Props = {}
+type Props = {};
 
 const route = ({}: Props) => {
-  return (
-    <div>route</div>
-  )
-}
+  return <div>route</div>;
+};
 
-export default route
+export default route;

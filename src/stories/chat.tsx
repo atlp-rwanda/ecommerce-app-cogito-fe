@@ -1,11 +1,7 @@
-
-
-type Props = {}
+type Props = {};
 
 const chat = ({}: Props) => {
-  return (
-    <div>chat</div>
-  )
-}
+  return <div>chat</div>;
+};
 
-export default chat
+export default chat;

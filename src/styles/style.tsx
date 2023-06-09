@@ -1,10 +1,7 @@
-
-type Props = {}
+type Props = {};
 
 const style = ({}: Props) => {
-  return (
-    <div>style</div>
-  )
-}
+  return <div>style</div>;
+};
 
-export default style
+export default style;
