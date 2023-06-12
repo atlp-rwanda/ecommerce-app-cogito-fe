@@ -1,15 +1,15 @@
 name: Testing
 on:
   push:
-    branches: ["develop"]
+    branches: ['develop']
   pull_request:
-    branches: ["deveop"]
+    branches: ['develop']
 jobs:
   test:
     strategy:
       matrix:
-        platform: ubuntu-latest
-        node: "18.x"
+        platform: [ubuntu-latest]
+        node: [18.x]
     name: test/node ${{ matrix.node }}/${{ matrix.platform }}
     runs-on: ${{ matrix.platform }}
     steps:
@@ -29,13 +29,13 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
         with:
-          node-version: "18.x"
+          node-version: 18.x
       - run: npm install -g yarn
       - run: yarn install
       - run: yarn build
-      - uses: paambaati/codeclimate-action@v2.2.4
+      - uses: paambaati/codeclimate-action@v3.1.1
         env:
-          CC_TEST_REPORTER_ID: ${{ CC_TEST_REPORTER_ID }}
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
           coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
           coverageCommand: yarn coverage
