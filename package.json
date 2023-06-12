@@ -15,7 +15,7 @@
     "build-storybook": "storybook build",
     "prettier": "prettier --write .",
     "format": "eslint --fix src & npm run prettier",
-    "coverage": "yarn test --coverage --watchAll"
+    "coverage": "yarn test --coverage"
   },
   "lint-staged": {
     "*.ts": [
