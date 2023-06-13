@@ -1,14 +1,13 @@
 import Footer from './../components/Footer/footer';
 import NavBar from './../components/Nav/navBar';
-import Categories from './../components/categories';
-
-const home = () => {
+import { LoginPage } from "../components/Login";
+const Login: React.FC = () => {
   return (
-    <>
+    <div>
       <NavBar />
-      <Categories />
+      <LoginPage />
       <Footer />
-    </>
+    </div>
   );
 };
-export default home;
+export default Login;

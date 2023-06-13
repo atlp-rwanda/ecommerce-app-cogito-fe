@@ -1,10 +1,14 @@
-import React from "react";
-import HomePage from "../pages/home";
-const HomeView: React.FC = () => {
+import Footer from './../components/Footer/footer';
+import NavBar from './../components/Nav/navBar';
+import Categories from './../components/categories';
+
+const HomeView = () => {
   return (
-    <div>
-      <HomePage />
-    </div>
+    <>
+      <NavBar />
+      <Categories />
+      <Footer />
+    </>
   );
 };
 export default HomeView;
