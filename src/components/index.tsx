@@ -1,14 +1,15 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../redux/hooks/hooks';
 import { fetchIndexMessage } from '../redux/action/IndexAction';
-import { IndexState } from '../redux/store';
+import { IndexState } from '../redux/store/index';
 
 function InitialMessage() {
   const indexData = useSelector((state: IndexState) => state.index.data);
   const indexStatus = useSelector((state: IndexState) => state.index.status);
   const indexLoading = useSelector((state: IndexState) => state.index.loading);
   const indexError = useSelector((state: IndexState) => state.index.error);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchIndexMessage() as any);
