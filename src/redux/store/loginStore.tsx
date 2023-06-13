@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import LoginReducer from '../reducers/loginSlice';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f668d53 (feat(login with email): worked on login using email and password)
 const LoginStore = configureStore({
   reducer: {
     login: LoginReducer,
