@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from './../../assets/images/Logo.png';
 import payment1 from './../../assets/images/payment11.png';
 import payment2 from './../../assets/images/payment22.jpg';
@@ -24,6 +24,7 @@ type Category = {
 
 const Footer = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
@@ -43,10 +44,9 @@ const Footer = () => {
   };
 
   const { value } = useSelector((state: RootState) => state.category) || [];
-  const categories = value.map((obj: Category) => obj.name);
   return (
     <>
-      <hr className="border-t border-[#003D29] mb-8 mt-16 mx-8"></hr>
+      <hr className="border-t border-[#003D29] mb-8 mt-10 md:mt-16 mx-8"></hr>
       <div className="lg:flex lg:mx-16 lg:justify-between lg:w-[90%]">
         <div className='lg:w-[33.3%]'>
           <div className='lg:w-fit lg:w-full'>
@@ -97,9 +97,9 @@ const Footer = () => {
               <FontAwesomeIcon icon={faPlus} onClick={expandCategories} className='lg:hidden '/>
             </div>
             <div className={`${!showCategories && 'hidden'} mb-10 lg:block`}>
-              {categories.map((category) => (
-                <p key={category} className="category_link ml-2 mb-2 lg:ml-0">
-                  {category}
+              {value.map((category: Category) => (
+                <p key={category.id} className="category_link ml-2 mb-2 lg:ml-0 cursor-pointer" onClick={()=>{navigate(`/products/${category.id}`)}}>
+                  {category.name}
                 </p>
               ))}
             </div>

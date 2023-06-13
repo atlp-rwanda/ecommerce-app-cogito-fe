@@ -132,7 +132,7 @@ const NotificationPane: React.FC = () => {
           </span>
           <div className="dropdown-content overflow-y-auto">
             <div className="flex flex-col mb-2">
-              <span className="border-2 w-full" />
+              <span className="w-full" />
             </div>
             <div className="flex flex-col mb-2">
               <div className="">
