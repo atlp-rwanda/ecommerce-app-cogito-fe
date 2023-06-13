@@ -14,7 +14,7 @@ import { LoginSuccess } from './utils/LoginSuccess';
 
 const App: React.FC = () => {
   return (
-    <>
+    <>      
       <div>
         <Router>
           <NavBar />
