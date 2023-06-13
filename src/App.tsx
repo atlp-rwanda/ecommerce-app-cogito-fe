@@ -8,6 +8,7 @@ import HomePages from './views/Home';
 import TwoFactorAuth from './pages/TwoFactorAuth';
 import UpdatePassword from './pages/UpdatePassword';
 import UpdateProduct from "./pages/UpdateProduct";
+import NavBar from "../src/components/navBar";
 
 const App: React.FC = () => {
   return (
