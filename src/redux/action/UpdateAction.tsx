@@ -1,25 +1,70 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import URL from '../../utils/api';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-interface UpdateProductData {
+interface UpdateData {
+  id: number;
   name: string;
   description: string;
   price: number;
-  image: string;
+  image: string[];
   quantity: number;
-  stocks: string;
+  stock: number;
   category_id: number;
 }
 
-export const updateProduct = createAsyncThunk(
-  'cogito/UpdateProduct',
-  async (data: UpdateProductData) => {
+// Get product data by ID from the API_URL
+export const getProductById = createAsyncThunk(
+  'product/getProductById',
+  async (id: number, thunkAPI) => {
     try {
-      const response = await URL.put('/product/${id}', data); // Assuming the API endpoint for updating a product is '/product'
-      return response.data;
+      const token = localStorage.getItem('token');
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const response = await URL.get(`/product/${id}`, config);
+      console.log(response);
+      if (response && response.data) {
+        return response.data;
+      } else {
+        throw new Error('Unable to fetch product data');
+      }
     } catch (error) {
-      throw new Error('Update failed');
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
-export default updateProduct;
+
+// Update product data by ID using the API_URL
+export const updateProduct = createAsyncThunk(
+  'product/updateProduct',
+  async ({ id, name, description, price, image, quantity, stock, category_id }: UpdateData, thunkAPI) => {
+    try {
+      const token = localStorage.getItem('token');
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const response = await URL.put(`/product/${id}`, {
+        id,
+        name,
+        description,
+        price,
+        image,
+        quantity,
+        stock,
+        category_id,
+      }, config);
+      if (response && response.data) {
+        return response.data;
+      } else {
+        throw new Error('Unable to update product');
+      }
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
