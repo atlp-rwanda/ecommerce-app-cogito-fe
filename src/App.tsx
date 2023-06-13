@@ -1,20 +1,23 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from '@/pages/Login';
 import ResetPasswordPage from '@/pages/resetPassword/resetPassword';
 import UpdatePasswordPage from '@/pages/resetPassword/updatePassword';
 import SignupPage from './components/register';
-import HomePages from './views/Home';
+import HomePages from '../src/views/Home';
 import TwoFactorAuth from './pages/TwoFactorAuth';
 import UpdatePassword from './pages/UpdatePassword';
-import UpdateProduct from "./pages/UpdateProduct";
-import NavBar from "../src/components/navBar";
+import ProfileView from "./views/Profile";
+import EditProfileView from "./views/editProfile";
+import NavBar from './components/Nav/navBar';
+import Footer from './components/Footer/footer';
+import { LoginSuccess } from './utils/LoginSuccess';
 
 const App: React.FC = () => {
   return (
     <>
       <div>
         <Router>
+          <NavBar />
           <Routes>
             <Route path="/" element={<HomePages />} />
             <Route path="/login" element={<Login />} />
@@ -23,8 +26,11 @@ const App: React.FC = () => {
             <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route path="/auth/reset/:token" element={<UpdatePasswordPage />} />
             <Route path="/UpdatePassword" element={<UpdatePassword />} />;
-            <Route path="/UpdateProduct" element={<UpdateProduct />} />
+            <Route path="/profile" element={<ProfileView />} />
+            <Route path="/editProfile" element={<EditProfileView />} />
+            <Route path= "/login/success" element={<LoginSuccess />} />;
           </Routes>
+          <Footer />
         </Router>
       </div>
     </>

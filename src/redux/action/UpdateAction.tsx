@@ -10,15 +10,46 @@ interface UpdateProductData {
   stocks: string;
   category_id: number;
 }
+export const getProductById = createAsyncThunk ('product/getProductById',
+async (id: number, thunkAPI) => {
 
+  try {
+    // Get the token from localStorage
+    const token = localStorage.getItem('token');
+
+    // Set the headers
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    // Make the API request to fetch the product by ID
+    const response = await URL.get(
+      `/product/2`,
+      config
+    );
+
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+}
+);
 export const updateProduct = createAsyncThunk(
   'cogito/UpdateProduct',
-  async (data: UpdateProductData) => {
+  async (data: any) => {
     try {
-      const response = await URL.put('/product/${id}', data); // Assuming the API endpoint for updating a product is '/product'
+      const token = localStorage.getItem('token')
+      console.log("received",data)
+      const response = await URL.put('/product/2', data, {
+       headers:{
+         Authorization: `Bearer ${token}`
+       }
+      }); 
       return response.data;
     } catch (error) {
-      throw new Error('Update failed');
+     throw new Error("error");
     }
   }
 );

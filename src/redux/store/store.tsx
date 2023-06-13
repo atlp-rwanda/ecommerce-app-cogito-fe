@@ -6,7 +6,8 @@ import userReducer from '../reducers/userSlice';
 import tfaReducer from '../reducers/TfaSlice';
 import getOtpReducer from '../reducers/GetOtpSlice';
 import UpdatePasswordReducer from '../reducers/UpdatePasswordSlice';
-
+import updateProductReducer from '../reducers/UpdateProductSlice';
+import getCollectionSlice from '../reducers/sellerItemRed'
 
 const store = configureStore({
   reducer: {
@@ -17,10 +18,10 @@ const store = configureStore({
     tfa: tfaReducer,
     getOtp: getOtpReducer,
     updatePassword: UpdatePasswordReducer,
-
+     updateProduct: updateProductReducer,
+    collection:getCollectionSlice
   },
 });
-export type UpdateState = ReturnType<typeof store.getState>;
-export type IndexState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch;
 export default store;
