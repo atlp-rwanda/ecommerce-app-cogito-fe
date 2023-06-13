@@ -1,9 +1,8 @@
 import React from "react";
-import HomePage from "../components/HomePage";
+import HomePage from "../pages/home";
 const HomeView: React.FC = () => {
   return (
     <div>
-      <h1>Home View</h1>
       <HomePage />
     </div>
   );

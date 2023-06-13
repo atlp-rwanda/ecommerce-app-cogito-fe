@@ -1,4 +1,4 @@
-type Props = {};
+type Props = object;
 
 const index = ({}: Props) => {
   return <div>index</div>;
