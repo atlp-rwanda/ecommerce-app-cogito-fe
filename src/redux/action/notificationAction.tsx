@@ -2,10 +2,12 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import URL from '../../utils/api';
 import DecodeToken from '../../utils/token';
 
-export const handleNotifications = createAsyncThunk('/vendor/getAllNotifications', async (userDetails: any, thunkAPI) => {
+export const handleNotifications = createAsyncThunk('/vendor/getAllNotifications', async (userDetails: {id:number}, thunkAPI) => {
   try {
     const token = 'Bearer ' + localStorage.getItem('token');
-    userDetails = DecodeToken();
+    if(userDetails&&!userDetails.id){
+      userDetails = DecodeToken();
+    }
     const response = await URL.get(`/notification/${userDetails.id}`, { headers: { 'Accept-language': 'en', Authorization: token } });
     return response.data;
   } catch (error: any) {
