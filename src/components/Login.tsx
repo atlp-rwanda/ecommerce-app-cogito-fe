@@ -30,6 +30,11 @@ export const LoginPage = () => {
               navigate('/tfa');
             }
           });
+        } else if (loginState.status == 307) {
+          setEmail('');
+          setPassword('');
+
+          navigate('/Updatepassword');
         } else {
           console.log('Login successful!!');
           console.log(loginState.data);
@@ -66,10 +71,10 @@ export const LoginPage = () => {
   };
   return (
     <>
-      <div className="flex flex-col bg-white-90 justify-center border rounded mx-64 mt-12">
+      <div className="flex flex-col bg-white-90 justify-center border rounded mx-auto mt-12 max-w-md p-6">
         <h2 className="text-center text-green-700 text-xl">Login Page</h2>
         <p className="text-center bg-black-10">Please enter your login details to login</p>
-        <form className="mx-auto p-4 w-5/6 justify-center" onSubmit={HandleLoginEvent}>
+        <form className="mx-auto mt-6 space-y-4 w-full" onSubmit={HandleLoginEvent}>
           <div className="relative">
             <input
               type="email"
@@ -117,35 +122,35 @@ export const LoginPage = () => {
             {loginState.loading || isLoading ? 'Loading...' : 'Login'}
           </button>
         </form>
-        <div className="grid grid-cols-2 w-5/6 justify-around mx-auto p-4">
-          <p>
-            Don't have an acount?
+        <div className="grid grid-cols-1 sm:grid-cols-2 mt-6 gap-4">
+          <p className="text-center sm:text-left">
+            Don't have an account?
             <a href="/buyer/signup" className="bg-black-500 hover:bg-green-700 font-bold py-2 px-4">
               Signup
             </a>
           </p>
-          <p>
-            <a href="/reset-password" className="bg-black-500 hover:bg-green-700 font-bold py-2 px-4 italic ">
+          <p className="text-center sm:text-right">
+            <a href="/reset-password" className="bg-black-500 hover:bg-green-700 font-bold py-2 px-4 italic">
               Forgot Password?
             </a>
           </p>
         </div>
-        <div className="flex items-center mb-4 gap-9">
-          <hr className="flex-grow border-t border-gray-300 ml-28" />
-          <span className="mx-4 text-gray-700">or continue with</span>
-          <hr className="flex-grow border-t border-gray-300 mr-28" />
+        <div className="flex items-center mt-6 space-x-4">
+          <hr className="flex-grow border-t border-gray-300" />
+          <span className="text-gray-700">or continue with</span>
+          <hr className="flex-grow border-t border-gray-300" />
         </div>
-        <div className="flex items-center place-content-center mb-4 gap-20">
+        <div className="flex items-center justify-center mt-4 space-x-4">
           <div className="border rounded p-1">
             <FontAwesomeIcon icon={faGoogle} size="lg" className="text-green-900" />
           </div>
-          <div className="border rounded p-1 ml-4">
+          <div className="border rounded p-1">
             <FontAwesomeIcon icon={faTwitter} size="lg" className="text-green-900" />
           </div>
-          <div className="border rounded p-1 ml-4">
+          <div className="border rounded p-1">
             <FontAwesomeIcon icon={faFacebook} size="lg" className="text-green-900" />
           </div>
-          <div className="border rounded p-1 ml-4">
+          <div className="border rounded p-1">
             <FontAwesomeIcon icon={faInstagram} size="lg" className="text-green-900" />
           </div>
         </div>

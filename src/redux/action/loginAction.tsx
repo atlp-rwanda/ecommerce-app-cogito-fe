@@ -7,9 +7,9 @@ interface userCredentials {
 }
 interface LoginResponseData {
   data: object;
-  error: null | string;
+  error: boolean;
   loading: boolean;
-  status: string;
+  status: null | string;
 }
 
 export const handleLogin = createAsyncThunk<LoginResponseData, userCredentials>('login', async (userCredentials, { rejectWithValue }) => {
@@ -19,6 +19,14 @@ export const handleLogin = createAsyncThunk<LoginResponseData, userCredentials>(
     const token = loginDataResponse.token;
     localStorage.setItem('token', token);
     localStorage.setItem('roleId', loginDataResponse.data.roleId);
+    console.log(loginDataResponse);
+    if (loginDataResponse.status != 307) {
+      const ID = loginDataResponse.data.id;
+      localStorage.setItem('User ID', JSON.stringify(ID));
+    } else {
+      const ID = loginDataResponse.data.id;
+      localStorage.setItem('User ID', JSON.stringify(ID));
+    }
     return loginDataResponse;
   } catch (error) {
     return rejectWithValue(error);

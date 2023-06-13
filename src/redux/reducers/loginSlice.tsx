@@ -4,7 +4,7 @@ import { handleLogin } from '../action/loginAction';
 interface LoginData {
   state: string;
   data: string | null;
-  status: string;
+  status: number | null;
   loading: boolean;
   error: boolean;
 }
@@ -12,7 +12,7 @@ interface LoginData {
 const initialState: LoginData = {
   state: 'INITIAL',
   data: null,
-  status: '',
+  status: null,
   loading: false,
   error: false,
 };
@@ -26,7 +26,7 @@ const loginSlice = createSlice({
       .addCase(handleLogin.pending, (state) => {
         state.state = 'PENDING';
         state.loading = true;
-        state.status = 'Pending';
+        state.status = null;
         state.error = false;
         state.data = null;
       })
@@ -39,10 +39,17 @@ const loginSlice = createSlice({
       })
       .addCase(handleLogin.rejected, (state, action: PayloadAction<any>) => {
         state.state = 'REJECTED';
-        state.loading = false;
-        state.status = action.payload.response.data.status;
-        state.error = true;
-        state.data = action.payload.response.data.message;
+        if (!action.payload.response.data) {
+          state.loading = false;
+          state.status = action.payload.response.data.status;
+          state.error = true;
+          state.data = action.payload.message;
+        } else {
+          state.loading = false;
+          state.status = action.payload.response.data.status;
+          state.error = true;
+          state.data = action.payload.response.data.message;
+        }
       });
   },
 });

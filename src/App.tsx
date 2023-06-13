@@ -5,6 +5,7 @@ import UpdatePasswordPage from '@/pages/resetPassword/updatePassword';
 import SignupPage from './components/register';
 import HomePages from '../src/views/Home';
 import TwoFactorAuth from './pages/TwoFactorAuth';
+import UpdatePassword from './pages/UpdatePassword';
 
 const App: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const App: React.FC = () => {
             <Route path="/tfa" element={<TwoFactorAuth />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route path="/auth/reset/:token" element={<UpdatePasswordPage />} />
+            <Route path="/UpdatePassword" element={<UpdatePassword />} />;
           </Routes>
         </Router>
       </div>
