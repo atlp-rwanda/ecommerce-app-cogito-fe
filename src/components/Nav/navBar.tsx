@@ -81,11 +81,11 @@ const NavBar = () => {
             </div>
             {categoryDropdownOpen && (
               <div className="dropdown-content flex flex-col mt-2">
-             {categories.map((category) => (
-              <p key={category} className="category_link mb-1 cursor-pointer" onClick={() => handleCategoryChange(category)}>
-                {category}
-              </p>
-            ))}
+                {categories.map((category) => (
+                  <p key={category} className="category_link mb-1 cursor-pointer" onClick={() => handleCategoryChange(category)}>
+                    {category}
+                  </p>
+                ))}
               </div>
             )}
           </div>
@@ -94,7 +94,7 @@ const NavBar = () => {
         </div>
         <div className="border-[1px] border-[#9C9EBA] text-[#9C9EBA] xl:w-[40%] md:w-[30%] py-1.5 px-3 lg:px-4 md:mr-2 rounded-3xl flex items-center justify-between custom-md:w-[30%] h-fit">
           <input type="text" className="custom-md:text-sm md:text-base custom-md:mr-2 focus:outline-none w-full" placeholder="Search product" value={searchTerm} onChange={handleInputChange} onKeyDown={handleKeyDown} />
-          <FontAwesomeIcon className="text-sm cursor-pointer" icon={faMagnifyingGlass} onClick={handleSearch} data-testid="search-button"  />
+          <FontAwesomeIcon className="text-sm cursor-pointer" icon={faMagnifyingGlass} onClick={handleSearch} data-testid="search-button" />
         </div>
         <div className="flex h-fit items-center">
           {localStorage.getItem('token') ? (
@@ -111,7 +111,7 @@ const NavBar = () => {
             <Button label="Login" style="lg:mr-8 md:mr-4 custom-md:mr-4 font-bold bg-[#003D29] text-white px-6 py-1 rounded-md" onClick={handleClick} />
           )}
 
-          <FontAwesomeIcon icon={faCartShopping} className="text-2xl md:text-xl custom-md: text-base " />
+          <FontAwesomeIcon icon={faCartShopping} className="md:text-xl custom-md: text-base " />
         </div>
       </div>
     </>

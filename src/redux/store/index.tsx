@@ -1,11 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import IndexReducer from '../reducers/IndexSlice';
-import ResetPasswordSlice from '../reducers/resetPasswordSlice';
+import IndexReducer from '@/redux/reducers/IndexSlice';
 
 const store = configureStore({
   reducer: {
     index: IndexReducer,
-    User: ResetPasswordSlice,
   },
 });
 

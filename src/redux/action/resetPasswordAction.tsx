@@ -1,18 +1,33 @@
-import axios from 'axios';
+import URL from '../../utils/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const API_URL = 'http://localhost:3000/api/';
-
-export const resetPassword = createAsyncThunk('user/resetPassword', async (email: string, thunkAPI) => {
+export const resetPassword = createAsyncThunk('auth/forgot', async (email: string, thunkAPI) => {
   try {
-    const response = await axios.post(`${API_URL}reset/password`, { email });
+    const response = await URL.post(`/auth/forgot`, { email });
 
     // Store the token in a cookie
     document.cookie = `token=${response.data.token}; path=/;`;
 
     return response.data;
   } catch (error) {
-    console.log(error);
+    return thunkAPI.rejectWithValue(error);
+  }
+});
+interface resetData {
+  token: string | undefined;
+  newPassword: string;
+}
+export const updatePassword = createAsyncThunk('/auth/reset', async ({ token, newPassword }: resetData, thunkAPI) => {
+  try {
+    // Make sure the token is available
+    if (!token) {
+      throw new Error('Token not found');
+    }
+
+    const response = await URL.post(`/auth/reset/${token}`, { newPassword: newPassword });
+
+    return response.data;
+  } catch (error) {
     return thunkAPI.rejectWithValue(error);
   }
 });
