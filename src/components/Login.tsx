@@ -3,6 +3,7 @@ import { faLock, faEnvelope, faTriangleExclamation } from '@fortawesome/free-sol
 import { faGoogle, faTwitter, faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { handleLogin } from '../redux/action/loginAction';
+import { getOtp } from '../redux/action/GetOtp';
 import { useAppDispatch } from '../redux/hooks/hooks';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -10,19 +11,33 @@ import { RootState } from '../redux/store/store';
 
 export const LoginPage = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<any>('');
   const loginState = useSelector((state: RootState) => state.login);
+  const { isLoading } = useSelector((state: RootState) => state.getOtp);
   useEffect(() => {
     if (loginState.state === 'FULFILLED') {
-      // Dispatch action succeeded
-      console.log('Login successful!!');
-      console.log(loginState.data);
-      setEmail('');
-      setPassword('');
-      navigate('/');
+      const roleId = localStorage.getItem('roleId');
+      if (roleId) {
+        if (parseInt(roleId) === 2) {
+          dispatch(getOtp()).then(({ payload }) => {
+            const { status } = payload;
+            if (status === 200) {
+              setEmail('');
+              setPassword('');
+              navigate('/tfa');
+            }
+          });
+        } else {
+          console.log('Login successful!!');
+          console.log(loginState.data);
+          setEmail('');
+          setPassword('');
+          navigate('/');
+        }
+      }
     } else if (loginState.state === 'REJECTED') {
       setError(loginState.data);
       console.log('Login failed');
@@ -39,11 +54,11 @@ export const LoginPage = () => {
       setError('Please Fill In All Fields');
       return;
     }
-    if(!email){
+    if (!email) {
       setError('Please Enter Your Email Address');
       return;
     }
-    if(!password){
+    if (!password) {
       setError('Please Enter Your Password');
       return;
     }
@@ -99,7 +114,7 @@ export const LoginPage = () => {
           </div>
 
           <button type="submit" className="bg-green-900 text-white rounded px-4 py-2 text-lg hover:bg-green-700 w-full">
-            {loginState.loading ? 'Loading...' : 'Login'}
+            {loginState.loading || isLoading ? 'Loading...' : 'Login'}
           </button>
         </form>
         <div className="grid grid-cols-2 w-5/6 justify-around mx-auto p-4">
