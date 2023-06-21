@@ -11,10 +11,11 @@ import EditProfileView from "./views/editProfile";
 import NavBar from './components/Nav/navBar';
 import Footer from './components/Footer/footer';
 import { LoginSuccess } from './utils/LoginSuccess';
+import ProductsPage from '../src/pages/products';
 
 const App: React.FC = () => {
   return (
-    <>      
+    <>
       <div>
         <Router>
           <NavBar />
@@ -25,10 +26,11 @@ const App: React.FC = () => {
             <Route path="/tfa" element={<TwoFactorAuth />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route path="/auth/reset/:token" element={<UpdatePasswordPage />} />
-            <Route path="/UpdatePassword" element={<UpdatePassword />} />;
+            <Route path="/UpdatePassword" element={<UpdatePassword />} />
             <Route path="/profile" element={<ProfileView />} />
             <Route path="/editProfile" element={<EditProfileView />} />
-            <Route path= "/login/success" element={<LoginSuccess />} />;
+            <Route path= "/login/success" element={<LoginSuccess />} />
+            <Route path= "/products" element={<ProductsPage />} />
           </Routes>
           <Footer />
         </Router>
