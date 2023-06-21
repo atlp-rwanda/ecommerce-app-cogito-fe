@@ -1,17 +1,13 @@
-import EditProfile from "@/components/editProfile";
-import Footer from "@/components/footer";
-import NavBar from "@/components/navBar";
-import ProfileNav from "@/components/profileNav";
+import EditProfile from '@/components/Profile/editProfile';
+import ProfileNav from '@/components/Profile/profileNav';
 
-const EditProfilePage = ()=>{
-    return (
-        <>
-        <NavBar/>
-        <ProfileNav/>
-        <EditProfile/>
-        <Footer/>
-        </>
-    )
-}
+const EditProfilePage = () => {
+  return (
+    <>
+      <ProfileNav />
+      <EditProfile />
+    </>
+  );
+};
 
 export default EditProfilePage;

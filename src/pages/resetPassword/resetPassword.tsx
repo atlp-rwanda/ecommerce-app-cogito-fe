@@ -4,8 +4,6 @@ import { SetStateAction, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { resetPassword } from '../../redux/action/resetPasswordAction';
 import { useNavigate } from 'react-router-dom';
-import NavBar from '../../components/Nav/navBar';
-import Footer from '../../components/Footer/footer';
 
 const ResetPasswordPage = () => {
   const dispatch = useDispatch();
@@ -33,7 +31,6 @@ const ResetPasswordPage = () => {
 
   return (
     <>
-      <NavBar />
       <div className="w-full justify-center mx-40 my-20 md:w-full h-full bg-white">
         <div className="flex flex-col items-center h-full">
           <ToastContainer />
@@ -75,7 +72,6 @@ const ResetPasswordPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
-import { toast} from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Button } from './Button';
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from '../redux/hooks/hooks';
-import { editProfile } from '@/redux/action/editProfileAction';
-import { getProfile } from '@/redux/action/profileAction';
+import { Button } from '../Button';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../redux/hooks/hooks';
+import { editProfile } from '../../redux/action/editProfileAction';
+import { getProfile } from '../../redux/action/profileAction';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store/store';
+import checkLoggedIn from '../../utils/authorise';
 
 type FormData = {
   name: string;
@@ -29,72 +32,87 @@ const EditProfile = () => {
   useEffect(() => {
     dispatch(getProfile());
   }, [dispatch]);
-  const { value, status, error } = useAppSelector((state) => state.profile);
-  console.log('value', value);
-  console.log('status', status);
-  console.log('error', error);
+  const { value } = useSelector((state: RootState) => state.profile) || {
+    id: 0,
+    name: '',
+    email: '',
+    gender: '',
+    birthdate: '',
+    phone: '',
+    preferred_language: '',
+    preferred_currency: '',
+    billingAddress: [''],
+    password: '',
+    resetToken: '',
+    resetTokenExpiry: '',
+    roleId: 0,
+    lastPasswordUpdate: '',
+    confirmationCode: '',
+    confirmed: false,
+    status: '',
+    createdAt: '',
+    updatedAt: '',
+  };
 
   const userData = value;
-  const date = new Date(userData.birthdate);
-  const formattedDate = date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit"
+  let date;
+  if (userData) {
+    date = new Date(userData.birthdate);
+  } else {
+    date = new Date();
+  }
+  const formattedDate = date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
   });
   const [formData, setFormData] = useState<FormData>({
-    name: userData.name,
-    email: userData.email,
-    gender: userData.gender,
-    phone: userData.phone,
+    name: userData?.name || '',
+    email: userData?.email || '',
+    gender: userData?.gender || '',
+    phone: userData?.phone || '',
     birthDate: formattedDate,
-    preferred_language: userData.preferred_language,
-    preferred_currency: userData.preferred_currency,
-    country: userData.billingAddress[0],
-    province: userData.billingAddress[1],
-    district: userData.billingAddress[2],
-    city: userData.billingAddress[3],
-    street: userData.billingAddress[4],
-    zip: userData.billingAddress[5],
+    preferred_language: userData?.preferred_language || '',
+    preferred_currency: userData?.preferred_currency || '',
+    country: userData?.billingAddress[0] || '',
+    province: userData?.billingAddress[1] || '',
+    district: userData?.billingAddress[2] || '',
+    city: userData?.billingAddress[3] || '',
+    street: userData?.billingAddress[4] || '',
+    zip: userData?.billingAddress[5] || '',
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const [isUpdated, setIsUpdated] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
-    
+
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
-    // }
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(formData);
-    const { name, email, gender, phone, birthDate, preferred_language, preferred_currency, country, province, district, city, street, zip} = formData;
-    
+    const { name, email, gender, phone, birthDate, preferred_language, preferred_currency, country, province, district, city, street, zip } = formData;
+
     if (!name || !email || !gender || !phone || !birthDate || !preferred_language || !preferred_currency || !country || !city) {
       toast.error('Please fill in all fields');
       return;
     }
     
-    setIsLoading(true);
     const profileObj = {
-        name, 
-        email, 
-        gender, 
-        // phone, 
-        birthdate: new Date(birthDate), 
-        preferredLanguage: preferred_language, 
-        preferredCurrency: preferred_currency, 
-        billingAddress: [country, province, district, city, street, zip]
+      name,
+      email,
+      gender,
+      phone,
+      birthdate: new Date(birthDate),
+      preferredLanguage: preferred_language,
+      preferredCurrency: preferred_currency,
+      billingAddress: [country, province, district, city, street, zip],
     };
-    
+
     try {
-      console.log('sending');
       await dispatch(editProfile(profileObj));
-      setIsUpdated(true);
     } catch (error: any) {
       if (error.response && error.response.data) {
         toast.error(error.response.data.message);
@@ -102,12 +120,18 @@ const EditProfile = () => {
         toast.error('An error occurred while updating');
       }
     } finally {
-      setIsLoading(false);
-      navigate("/profile");
+      toast.success('Updated successfully',{
+        onClose: () => {
+          navigate('/profile');
+        },
+      });
     }
   };
-    if (!value) {
-    return null; 
+
+  const isUserLoggedIn = checkLoggedIn();
+  console.log('isUserLoggedIn', isUserLoggedIn);
+  if(!isUserLoggedIn){
+    navigate('/login');
   }
 
   return (
@@ -123,6 +147,7 @@ const EditProfile = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
+              data-testid="fullName"
             />
           </label>
           <br />
@@ -134,6 +159,7 @@ const EditProfile = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              data-testid="email"
             />
           </label>
           <br />
@@ -164,7 +190,7 @@ const EditProfile = () => {
           </label>
           <br />
           <label className="text-[#A1ACB9] font-medium flex flex-col">
-            Birthdate
+            Birth Date
             <input
               className="border-[1px] border-[#DBE4EE] bg-[#F6F9FD] px-3 py-3 rounded-md focus:outline-none text-[#323E50] font-medium text-sm mt-2 "
               type="date"
@@ -183,8 +209,8 @@ const EditProfile = () => {
               onChange={handleChange}
             >
               <option value="">Select Language</option>
-              <option value="english" selected={formData.preferred_language === "english"}>English</option>
-              <option value="french" selected={formData.preferred_language === "french"}>French</option>
+              <option value="english">English</option>
+              <option value="french">French</option>
             </select>
           </label>
           <br />
@@ -197,8 +223,8 @@ const EditProfile = () => {
               onChange={handleChange}
             >
               <option value="">Select Currency</option>
-              <option value="frw" selected={formData.preferred_currency === "frw"}>FRW</option>
-              <option value="usd" selected={formData.preferred_currency === "usd"}>USD</option>
+              <option value="frw">FRW</option>
+              <option value="usd">USD</option>
             </select>
           </label>
           <br />
@@ -211,6 +237,7 @@ const EditProfile = () => {
               placeholder="Country"
               onChange={handleChange}
               className="border-[1px] border-[#DBE4EE] bg-[#F6F9FD] px-3 py-3 rounded-md focus:outline-none text-[#323E50] font-medium text-sm mt-2 "
+              data-testid="country"
             />
             <input
               type="text"
@@ -219,6 +246,7 @@ const EditProfile = () => {
               placeholder="Province"
               onChange={handleChange}
               className="border-[1px] border-[#DBE4EE] bg-[#F6F9FD] px-3 py-3 rounded-md focus:outline-none text-[#323E50] font-medium text-sm mt-2 "
+              data-testid="province"
             />
             <div className="flex w-full justify-between">
               <input
@@ -228,6 +256,7 @@ const EditProfile = () => {
                 placeholder="District"
                 onChange={handleChange}
                 className="w-[49.7%] border-[1px] border-[#DBE4EE] bg-[#F6F9FD] px-3 py-3 rounded-md focus:outline-none text-[#323E50] font-medium text-sm mt-2 "
+                data-testid="district"
               />
               <input
                 type="text"
@@ -236,6 +265,7 @@ const EditProfile = () => {
                 placeholder="City"
                 onChange={handleChange}
                 className="w-[49.7%] border-[1px] border-[#DBE4EE] bg-[#F6F9FD] px-3 py-3 rounded-md focus:outline-none text-[#323E50] font-medium text-sm mt-2 "
+                data-testid="city"
               />
             </div>
             <div className="flex w-full justify-between">
@@ -246,6 +276,7 @@ const EditProfile = () => {
                 placeholder="Street Number"
                 onChange={handleChange}
                 className="w-[49.7%] border-[1px] border-[#DBE4EE] bg-[#F6F9FD] px-3 py-3 rounded-md focus:outline-none text-[#323E50] font-medium text-sm mt-2 "
+                data-testid="street"
               />
               <input
                 type="text"
@@ -254,11 +285,13 @@ const EditProfile = () => {
                 placeholder="Zip Code"
                 onChange={handleChange}
                 className="w-[49.7%] border-[1px] border-[#DBE4EE] bg-[#F6F9FD] px-3 py-3 rounded-md focus:outline-none text-[#323E50] font-medium text-sm mt-2 "
+                data-testid="zip"
               />
             </div>
           </label>
           <Button buttonType="submit" label="Update Profile" style="mt-10 bg-[#0D99FF] text-white font-semibold px-20 py-2 rounded-md" />
         </form>
+        <ToastContainer />
       </div>
     </>
   );

@@ -8,12 +8,15 @@ import TwoFactorAuth from './pages/TwoFactorAuth';
 import UpdatePassword from './pages/UpdatePassword';
 import ProfileView from "./views/Profile";
 import EditProfileView from "./views/editProfile";
+import NavBar from './components/Nav/navBar';
+import Footer from './components/Footer/footer';
 
 const App: React.FC = () => {
   return (
-    <>      
+    <>
       <div>
         <Router>
+          <NavBar />
           <Routes>
             <Route path="/" element={<HomePages />} />
             <Route path="/login" element={<Login />} />
@@ -25,6 +28,7 @@ const App: React.FC = () => {
             <Route path="/profile" element={<ProfileView />} />
             <Route path="/editProfile" element={<EditProfileView />} />
           </Routes>
+          <Footer />
         </Router>
       </div>
     </>

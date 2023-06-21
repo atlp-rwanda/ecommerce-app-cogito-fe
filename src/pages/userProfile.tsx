@@ -1,17 +1,13 @@
-import Footer from "@/components/footer";
-import NavBar from "@/components/navBar";
-import ProfileNav from "@/components/profileNav";
-import ViewProfile from "@/components/viewProfile";
+import ProfileNav from '@/components/Profile/profileNav';
+import ViewProfile from '@/components/Profile/viewProfile';
 
-const ProfilePage = ()=>{
-    return (
-        <>
-        <NavBar/>
-        <ProfileNav/>
-        <ViewProfile/>
-        <Footer/>
-        </>
-    )
-}
+const ProfilePage = () => {
+  return (
+    <>
+      <ProfileNav />
+      <ViewProfile />
+    </>
+  );
+};
 
 export default ProfilePage;

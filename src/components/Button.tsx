@@ -1,4 +1,3 @@
-import { type } from 'os';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -28,9 +27,10 @@ export const Signup: React.FC<ButtonProp> = ({ label, backgroundColor , to}) => 
     </Link>
   );
 };
-export const Button: React.FC<ButtonProps> = ({ label, style, buttonType, onClick }) => {
+
+export const Button: React.FC<ButtonProps> = ({ label, style, buttonType, onClick, ...restProps }) => {
   return (
-    <button type={buttonType} className={style} onClick= {onClick}>
+    <button type={buttonType} className={style} onClick = {onClick} {...restProps}>
       {label}
     </button>
   );

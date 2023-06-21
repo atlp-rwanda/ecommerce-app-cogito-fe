@@ -15,6 +15,11 @@ jest.mock('react-router-dom', () => ({
   useParams: jest.fn(),
 }));
 
+jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux'),
+  useSelector: jest.fn(),
+}));
+
 describe('UpdatePasswordPage', () => {
   const mockStore = configureStore([thunk]);
   let store;
