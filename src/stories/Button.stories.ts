@@ -13,13 +13,13 @@ type Story = StoryObj<typeof Button>;
 export const Blue: Story = {
   args: {
     label: 'Blue Button',
-    backgroundColor: 'Blue',
+    style: 'px-3 py-1'
   },
 };
 
 export const Green: Story = {
   args: {
     label: 'Green Button',
-    backgroundColor: 'Green',
+    style: 'px-4 py-2'
   },
 };

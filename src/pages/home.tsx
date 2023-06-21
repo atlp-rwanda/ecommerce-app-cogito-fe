@@ -1,7 +1,15 @@
-type Props = {};
+import Footer from './../components/Footer/footer';
+import NavBar from './../components/Nav/navBar';
+import Categories from './../components/categories';
 
-const home = ({}: Props) => {
-  return <div>home</div>;
+const home = () => {
+  return (
+    <>
+      <NavBar />
+      <Categories />
+      <Footer />
+    </>
+  );
 };
 
 export default home;
