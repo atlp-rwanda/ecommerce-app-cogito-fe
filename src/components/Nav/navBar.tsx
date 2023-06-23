@@ -1,7 +1,7 @@
 import { faPhone, faChevronDown, faMagnifyingGlass, faUser, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Logo from './../../assets/images/Logo.png';
 import DecodeToken from '../../utils/token';
+import Logo from '../../assets/images/Logo.png';
 import { Button } from '../Button';
 import { useNavigate } from 'react-router-dom';
 import { ChangeEvent, useState, KeyboardEvent } from 'react';
@@ -100,8 +100,6 @@ const NavBar = () => {
           {localStorage.getItem('token') ? (
             (() => {
               const userDetails = DecodeToken();
-              console.log(userDetails);
-
               return (
                 <div className="flex items-center lg:mr-8 md:mr-4 custom-md:mr-4">
                   <FontAwesomeIcon icon={faUser} className="pr-2 lg text-2xl md:text-xl custom-md:text-base" />

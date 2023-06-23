@@ -7,6 +7,6 @@ const DecodeToken=()=>{
         return payload;
     }
     return;
-}
+};
 
 export default DecodeToken;
