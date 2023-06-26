@@ -1,7 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
+import IndexReducer from '@/redux/reducers/IndexSlice';
 
 const store = configureStore({
   reducer: {
+    index: IndexReducer,
   },
 });
 
