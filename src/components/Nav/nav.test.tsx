@@ -73,27 +73,27 @@ describe('NavBar', () => {
   });
   test('handles language change', () => {
     const { getByText, getByTestId } = render(<NavBar />, { wrapper: MemoryRouter });
-  
+
     const languageDropdownButton = getByTestId('language-dropdown-button');
     fireEvent.click(languageDropdownButton);
-  
+
     const frenchOption = getByText('French');
     fireEvent.click(frenchOption);
-  
+
     const languageText = getByText('Fr');
     expect(languageText).toBeInTheDocument();
   });
-  
+
   test('handles category change', () => {
     const { getByText, getByTestId } = render(<NavBar />, { wrapper: MemoryRouter });
-  
+
     const categoryDropdownButton = getByTestId('category-dropdown-button');
     fireEvent.click(categoryDropdownButton);
-  
+
     const selectedCategory = 'Fashion';
     const categoryOption = getByText(selectedCategory);
     fireEvent.click(categoryOption);
-  
+
     const selectedCategoryText = getByText(selectedCategory);
     expect(selectedCategoryText).toBeInTheDocument();
   });
