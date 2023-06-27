@@ -1,15 +1,15 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import IndexReducer from '../reducers/IndexSlice';
 import LoginReducer from '../reducers/loginSlice';
 import ResetPasswordSlice from '../reducers/resetPassword/resetPasswordSlice';
 import UpdatePasswordSlice from '../reducers/resetPassword/updatePassword';
+import userReducer from '../reducers/userSlice';
 
 const store = configureStore({
   reducer: {
-    index: IndexReducer,
     login: LoginReducer,
     User: ResetPasswordSlice,
     Update: UpdatePasswordSlice,
+    user: userReducer,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,
