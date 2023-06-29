@@ -1,15 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import URL from '../../utils/api';
 
-// interface ProductData {
-//   name: string;
-//   description: string;
-//   price: number;
-//   image: string;
-//   quantity: number;
-//   stock: string;
-//   category_id: string;
-// }
 
 export const addProduct = createAsyncThunk('product/addProduct', async ({ productData, setLoading }: any, thunkAPI) => {
   try {

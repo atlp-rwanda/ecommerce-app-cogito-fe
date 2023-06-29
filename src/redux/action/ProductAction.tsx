@@ -16,7 +16,7 @@ export const fetchProducts = createAsyncThunk('products/fetchProduct', async () 
         Authorization: `Bearer ${token}`,
       },
     };
-    const response = await URL.get('/seller/items', config); //URL HERE
+    const response = await URL.get('/seller/items', config);
     console.log(response.data);
     return response.data;
   } catch (error) {
@@ -39,3 +39,35 @@ export const productRemove = createAsyncThunk('products/productRemove', async ({
     return thunkAPI.rejectWithValue(error);
   }
 });
+
+export const ViewProduct = createAsyncThunk('view/product', async({id}: any) => {
+    try{
+       const token = localStorage.getItem('token'
+       )
+       const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+       }
+       const response = await URL.get(`/product/${id}`, config);
+       return response.data;
+    }catch(error: any){
+        throw error.response.data.message;
+    }
+})
+
+export const updateProduct = createAsyncThunk('edit/product', async({id, data}: any)=>{
+  try{
+    const token = localStorage.getItem('token');
+    const config = {
+      headers: {
+          Authorization: `Bearer ${token}`
+      }
+     }
+     const response = await URL.put(`/product/${id}`, data, config);
+     console.log('my token',config)
+     return response.data;
+  }catch(error: any){
+    throw error.response.data.message;
+}
+}) 

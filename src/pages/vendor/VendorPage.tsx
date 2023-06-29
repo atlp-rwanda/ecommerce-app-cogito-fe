@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Sidebar from '../../components/Sidebar/sidebar';
 import { useSelector } from 'react-redux';
@@ -99,7 +100,11 @@ export default function VendorPage() {
                   <td>{item.category_id}</td>
                   <td>{item.quantity}</td>
                   <td>{item.expiredAt}</td>
-                  <td></td>
+                  <td>
+                  <Link to={`/product/${item.id}`} className="p-2 text-sm w-full md:w-64 shadow-lg bg-cyan-700 text-slate-50 hover:bg-cyan-500">
+                  View Product
+                </Link>
+                  </td>
                 </tr>
               ))}
             </tbody>

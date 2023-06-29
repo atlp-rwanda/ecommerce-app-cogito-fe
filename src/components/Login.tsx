@@ -162,7 +162,11 @@ export const LoginPage = () => {
           <p className="sm:text-left">
             Back to
             <a href="/" className="bg-black-500 hover:text-green-700 font-bold py-2 pl-1">
+<<<<<<< HEAD
               Home
+=======
+               Home
+>>>>>>> b35a959 (feat(update-password): updating old password (#20))
             </a>
           </p>
         </div>
