@@ -3,20 +3,19 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from "../src/components/navBar";
 import Login from './pages/Login';
 import HomePages from './pages/home';
+import { LoginSuccess } from './utils/LoginSuccess';
 
 function App() {
   return (
     <>
-      <div></div>
-      <div className="bg-primary text-warningColor p-6 text-center">
-      {/* <InitialMessage /> */}
-      </div>
       <NavBar/>
       <div>
         <Router>
           <Routes>
             <Route path="/" element={<HomePages />} />
             <Route path="/login" element={<Login />} />
+            <Route path= "/login/success" element={<LoginSuccess />}
+          ></Route>
           </Routes>
         </Router>
       </div>
