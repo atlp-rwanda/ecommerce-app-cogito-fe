@@ -1,14 +1,15 @@
 import React from 'react';
 import Footer from './../components/Footer/footer';
 import NavBar from './../components/Nav/navBar';
-import { LoginPage } from '../components/Login';
-const Login: React.FC = () => {
+
+import { UpdatePasswordPage } from '../components/UpdatePassword';
+const updatePassword: React.FC = () => {
   return (
     <div>
       <NavBar />
-      <LoginPage />
+      <UpdatePasswordPage />
       <Footer />
     </div>
   );
 };
-export default Login;
+export default updatePassword;

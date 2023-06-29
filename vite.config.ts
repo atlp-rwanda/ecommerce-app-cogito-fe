@@ -9,10 +9,7 @@ import EnvironmentPlugin from 'vite-plugin-environment';
 dotenv.config();
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(), 
-    reactRefresh(),
-    EnvironmentPlugin('all')],
+  plugins: [react(), reactRefresh(), EnvironmentPlugin('all')],
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
   },

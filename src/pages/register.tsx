@@ -50,11 +50,9 @@ const SignupForm: React.FC = () => {
     }
 
     // Password validation
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\#^])[A-Za-z\d@$!%*?&\#^]{8,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^])[A-Za-z\d@$!%*?&#^]{8,}$/;
     if (!password.match(passwordRegex)) {
-      toast.error(
-        'Password must be at least eight characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.'
-      );
+      toast.error('Password must be at least eight characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.');
       return;
     }
 
@@ -130,15 +128,8 @@ const SignupForm: React.FC = () => {
           <div className="absolute inset-y-0 left-0 flex items-center pl-3">
             <FontAwesomeIcon icon={faLock} className="text-green-900" />
           </div>
-          <div
-            className="absolute inset-y-0 right-0 flex items-center pr-3"
-            onClick={() => setShowPassword(!showPassword)}
-            style={{ cursor: 'pointer' }}
-          >
-            <FontAwesomeIcon
-              icon={showPassword ? faEye : faEyeSlash}
-              className="text-green-900"
-            />
+          <div className="absolute inset-y-0 right-0 flex items-center pr-3" onClick={() => setShowPassword(!showPassword)} style={{ cursor: 'pointer' }}>
+            <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} className="text-green-900" />
           </div>
         </div>
         <div className="relative mb-4">
@@ -154,25 +145,12 @@ const SignupForm: React.FC = () => {
           <div className="absolute inset-y-0 left-0 flex items-center pl-3">
             <FontAwesomeIcon icon={faLock} className="text-green-900" />
           </div>
-          <div
-            className="absolute inset-y-0 right-0 flex items-center pr-3"
-            onClick={() => setShowPassword(!showPassword)}
-            style={{ cursor: 'pointer' }}
-          >
-            <FontAwesomeIcon
-              icon={showPassword ? faEye : faEyeSlash}
-              className="text-green-900"
-            />
+          <div className="absolute inset-y-0 right-0 flex items-center pr-3" onClick={() => setShowPassword(!showPassword)} style={{ cursor: 'pointer' }}>
+            <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} className="text-green-900" />
           </div>
         </div>
         <div className="align-baseline text-center mb-6">
-          <input
-            type="checkbox"
-            className="valid:border-green-500"
-            checked={agreedToTerms}
-            onChange={(e) => setAgreedToTerms(e.target.checked)}
-            data-testid="terms-checkbox"
-          />
+          <input type="checkbox" className="valid:border-green-500" checked={agreedToTerms} onChange={(e) => setAgreedToTerms(e.target.checked)} data-testid="terms-checkbox" />
           <label className="pl-2">
             I agree to the{' '}
             <a href="#" className="text-green-900">
@@ -204,9 +182,7 @@ const SignupForm: React.FC = () => {
         </div>
         <div className="relative flex py-2 items-center">
           <div className="flex-grow border-t border-gray-400"></div>
-          <span className="flex-shrink mx-4 text-gray-800 font-bold">
-            Or Continue With
-          </span>
+          <span className="flex-shrink mx-4 text-gray-800 font-bold">Or Continue With</span>
           <div className="flex-grow border-t border-gray-400"></div>
         </div>
         <div className="social-icons-container px-10 text-green-900 text-2xl mx-20">
