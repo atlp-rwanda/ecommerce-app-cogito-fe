@@ -63,7 +63,7 @@ const ResetPasswordPage = () => {
               <h3 className="my-4 text-gray-500 font-bold text-sm sm:text-base tracking-wide">
                 Have Email & Password?{'   '}
                 <span className="cursor-pointer text-customBlue hover:text-green-900">
-                  <a href="#" className="text-tertiary underline">
+                  <a href="/login" className="text-tertiary underline">
                     Sign in
                   </a>
                 </span>

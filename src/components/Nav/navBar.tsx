@@ -30,8 +30,9 @@ const NavBar = () => {
   }, [dispatch]);
   const { value } = useSelector((state: RootState) => state.category) || [];
   const categories = value.map((obj: Category) => obj.name);
-  const handleClick = () => {
+  const handleLoginClick = () => {
     navigate('/login');
+    setMenuClicked(false);
   };
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -79,6 +80,9 @@ const NavBar = () => {
     setMenuClicked(false);
     setProfileClicked(false);
     localStorage.removeItem('token');
+    localStorage.removeItem('roleId');
+    localStorage.removeItem('User ID');
+    navigate('/login');
   };
 
   const location = useLocation();
@@ -182,7 +186,7 @@ const NavBar = () => {
                         );
                       })()
                     ) : (
-                      <Button label="Login" style=" hidden md:inline font-bold bg-[#003D29] text-white px-6 py-1 rounded-md" onClick={handleClick} />
+                      <Button label="Login" style=" hidden md:inline font-bold bg-[#003D29] text-white px-6 py-1 rounded-md" onClick={handleLoginClick} />
                     )}
                   </div>
                 </div>
@@ -236,10 +240,7 @@ const NavBar = () => {
             ) : (
               <p
                 className="text-2xl font-bold mb-4"
-                onClick={() => {
-                  setMenuClicked(false);
-                  handleClick;
-                }}
+                onClick={handleLoginClick}
               >
                 Login
               </p>

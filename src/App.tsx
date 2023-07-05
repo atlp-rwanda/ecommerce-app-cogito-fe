@@ -10,6 +10,7 @@ import ProfileView from "./views/Profile";
 import EditProfileView from "./views/editProfile";
 import NavBar from './components/Nav/navBar';
 import Footer from './components/Footer/footer';
+import { LoginSuccess } from './utils/LoginSuccess';
 
 const App: React.FC = () => {
   return (
@@ -27,6 +28,7 @@ const App: React.FC = () => {
             <Route path="/UpdatePassword" element={<UpdatePassword />} />;
             <Route path="/profile" element={<ProfileView />} />
             <Route path="/editProfile" element={<EditProfileView />} />
+            <Route path= "/login/success" element={<LoginSuccess />} />;
           </Routes>
           <Footer />
         </Router>
