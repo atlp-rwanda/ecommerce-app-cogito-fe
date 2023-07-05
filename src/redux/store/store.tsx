@@ -6,6 +6,8 @@ import userReducer from '../reducers/userSlice';
 import tfaReducer from '../reducers/TfaSlice';
 import getOtpReducer from '../reducers/GetOtpSlice';
 import UpdatePasswordReducer from '../reducers/UpdatePasswordSlice';
+import ProfileReducer from '../reducers/profileSlice';
+import CategoryReducer from '../reducers/categorySlice';
 
 const store = configureStore({
   reducer: {
@@ -16,6 +18,8 @@ const store = configureStore({
     tfa: tfaReducer,
     getOtp: getOtpReducer,
     updatePassword: UpdatePasswordReducer,
+    profile: ProfileReducer,
+    category: CategoryReducer,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

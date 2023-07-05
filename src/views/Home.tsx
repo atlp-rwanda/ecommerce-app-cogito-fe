@@ -1,12 +1,11 @@
-import Footer from './../components/Footer/footer';
-import NavBar from './../components/Nav/navBar';
 import Categories from './../components/categories';
+import HomePage from "../components/HomePage";
+
 const HomeView = () => {
   return (
     <>
-      <NavBar />
+      <HomePage />
       <Categories />
-      <Footer />
     </>
   );
 };

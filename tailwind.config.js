@@ -15,7 +15,16 @@ export default {
         sans: ['Poppins', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'],
       },
       screens: {
-        'custom-md': '767px',    // Custom medium screen breakpoint
+        'custom-md': '640px',  
+        'custom-sm': '380px',
+        'view-profile-welcome': '410px',
+        'view-profile-card': '1020px',
+        'hero-bg': '800px',
+        'hero-bg-md': '600px',
+        'hero-bg-sm': '515px'
+      },
+      backgroundImage: {
+        'hero-bg': "url('./src/assets/images/heroBackground.jpg')"
       },
     },
   },

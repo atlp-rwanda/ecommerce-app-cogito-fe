@@ -12,6 +12,8 @@ jobs:
         node: [18.x]
     name: test/node ${{ matrix.node }}/${{ matrix.platform }}
     runs-on: ${{ matrix.platform }}
+    env:
+      SAMPLE_TOKEN: ${{ secrets.SAMPLE_TOKEN }}
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
@@ -25,6 +27,8 @@ jobs:
     needs: [test]
     name: coverage
     runs-on: ubuntu-latest
+    env:
+      SAMPLE_TOKEN: ${{ secrets.SAMPLE_TOKEN }}
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
