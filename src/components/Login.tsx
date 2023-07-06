@@ -149,9 +149,9 @@ export const LoginPage = () => {
         </form>
         <div className="grid grid-cols-1 sm:grid-cols-1 mt-6 gap-4">
           <p className="sm:text-left">
-            Don't have an account? 
+            Don't have an account?
             <a href="/buyer/signup" className="bg-black-500 hover:text-green-700 font-bold py-2 pl-1">
-               Signup
+              Signup
             </a>
           </p>
           <p className="sm:text-left">
@@ -162,7 +162,7 @@ export const LoginPage = () => {
           <p className="sm:text-left">
             Back to
             <a href="/" className="bg-black-500 hover:text-green-700 font-bold py-2 pl-1">
-               Home
+              Home
             </a>
           </p>
         </div>

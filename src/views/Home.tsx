@@ -1,5 +1,5 @@
 import Categories from './../components/categories';
-import HomePage from "../components/HomePage";
+import HomePage from '../components/HomePage';
 
 const HomeView = () => {
   return (
