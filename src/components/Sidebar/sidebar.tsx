@@ -152,8 +152,4 @@ export default function Sidebar() {
       </div>
     </>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> b35a959 (feat(update-password): updating old password (#20))

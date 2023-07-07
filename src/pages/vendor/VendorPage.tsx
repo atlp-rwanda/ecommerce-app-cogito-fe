@@ -7,6 +7,7 @@ import Header from '../../components/Header/header';
 import { RootState } from '../../redux/store/store';
 import { fetchProducts } from '../../redux/action/ProductAction';
 import { useAppDispatch } from '../../redux/hooks/hooks';
+import moment from 'moment';
 interface Item {
   id: number;
   name: string;
@@ -92,17 +93,17 @@ export default function VendorPage() {
             <tbody>
               {tableData.map((item) => (
                 <tr key={item.id}>
-                  <td>{item.id}</td>
-                  <td>{item.name}</td>
-                  <td>{item.description}</td>
-                  <td>{item.price}</td>
-                  <td>{item.stock}</td>
-                  <td>{item.category_id}</td>
-                  <td>{item.quantity}</td>
-                  <td>{item.expiredAt}</td>
+                  <td className="w-[10%] sm:w-10 text-start px-6 py-3">{item.id}</td>
+                  <td className="w-[10%] sm:w-10 text-start px-6 py-3">{item.name}</td>
+                  <td className="w-[10%] sm:w-10 text-start px-6 py-3">{item.description}</td>
+                  <td className="w-[10%] sm:w-10 text-start px-6 py-3">{item.price}</td>
+                  <td className="w-[10%] sm:w-10 text-start px-6 py-3">{item.stock}</td>
+                  <td className="w-[10%] sm:w-10 text-start px-6 py-3">{item.category_id}</td>
+                  <td className="w-[10%] sm:w-10 text-start px-6 py-3">{item.quantity}</td>
+                  <td className="w-[10%] sm:w-10 text-start px-6 py-3">{moment(item.expiredAt).format('MMM D,YYYY')}</td>
                   <td>
-                  <Link to={`/product/${item.id}`} className="p-2 text-sm w-full md:w-64 shadow-lg bg-cyan-700 text-slate-50 hover:bg-cyan-500">
-                  View Product
+                  <Link to={`/product/${item.id}`} className="p-2 text-sm w-full md:w-64 shadow-lg bg-green-700 text-slate-50 hover:bg-cyan-500">
+                  View
                 </Link>
                   </td>
                 </tr>
