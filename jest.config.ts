@@ -9,5 +9,6 @@ export default {
   moduleNameMapper: {
     '\\.(gif|ttf|eot|svg|png|jpg)$': '<rootDir>/test/__mocks__/fileMock.tsx',
     '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
-    }
+    },
+    maxWorkers: '50%',
 };
