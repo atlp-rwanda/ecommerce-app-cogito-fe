@@ -8,7 +8,10 @@ import getOtpReducer from '../reducers/GetOtpSlice';
 import UpdatePasswordReducer from '../reducers/UpdatePasswordSlice';
 import ProfileReducer from '../reducers/profileSlice';
 import CategoryReducer from '../reducers/categorySlice';
-
+import addProductReducer from '../reducers/Product/ProductSlice';
+import AllProductReducer from '../reducers/Product/fetchSlice';
+import fetchViewReducer from '../reducers/viewProductSlice';
+import updateProductReducer from '../reducers/updateProductSlice'
 const store = configureStore({
   reducer: {
     login: LoginReducer,
@@ -20,6 +23,10 @@ const store = configureStore({
     updatePassword: UpdatePasswordReducer,
     profile: ProfileReducer,
     category: CategoryReducer,
+    products: addProductReducer,
+    Allproducts: AllProductReducer,
+    viewProduct: fetchViewReducer,
+    updateProduct: updateProductReducer,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;
