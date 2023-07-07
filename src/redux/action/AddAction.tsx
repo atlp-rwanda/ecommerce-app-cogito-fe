@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import URL from '../../utils/api';
 
-
 export const addProduct = createAsyncThunk('product/addProduct', async ({ productData, setLoading }: any, thunkAPI) => {
   try {
     const token = localStorage.getItem('token');

@@ -216,7 +216,7 @@ const NavBar = () => {
                                 navigate('/wishlist');
                               }}
                             />
-                            <FontAwesomeIcon icon={faCartShopping} className="text-xl md:text-xl custom-md:text-[1.2rem] mr-5 custom-md:mr-6 md:mr-0" />
+                            <FontAwesomeIcon icon={faCartShopping} className="text-xl md:text-xl custom-md:text-[1.2rem] mr-5 custom-md:mr-6 md:mr-0"  onClick={()=>{navigate('/cart')}}/>
                           </div>
                         );
                       })()

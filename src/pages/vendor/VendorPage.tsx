@@ -33,7 +33,6 @@ export default function VendorPage() {
 
   const [visible, showForm] = useState(false);
   const handleClose = () => showForm(false);
-
   return (
     <div className="products">
       <Header />
