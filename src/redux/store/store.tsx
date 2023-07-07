@@ -9,7 +9,10 @@ import UpdatePasswordReducer from '../reducers/UpdatePasswordSlice';
 import ProfileReducer from '../reducers/profileSlice';
 import CategoryReducer from '../reducers/categorySlice';
 import googleLoginReducer from '../reducers/googleLoginSlice';
-
+import addProductReducer from '../reducers/Product/ProductSlice';
+import AllProductReducer from '../reducers/Product/fetchSlice';
+import fetchViewReducer from '../reducers/viewProductSlice';
+import updateProductReducer from '../reducers/updateProductSlice'
 const store = configureStore({
   reducer: {
     login: LoginReducer,
@@ -22,6 +25,10 @@ const store = configureStore({
     profile: ProfileReducer,
     category: CategoryReducer,
     googleLogin: googleLoginReducer,
+    products: addProductReducer,
+    Allproducts: AllProductReducer,
+    viewProduct: fetchViewReducer,
+    updateProduct: updateProductReducer,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,

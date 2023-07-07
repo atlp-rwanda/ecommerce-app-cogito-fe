@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getOtp } from '../action/GetOtp';
+
 interface IndexState {
   status: number | null;
   message: string | undefined;
