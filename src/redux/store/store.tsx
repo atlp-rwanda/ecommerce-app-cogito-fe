@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import LoginReducer from '../reducers/loginSlice';
 import ResetPasswordSlice from '../reducers/resetPassword/resetPasswordSlice';
 import UpdatePasswordSlice from '../reducers/resetPassword/updatePassword';
@@ -8,6 +8,7 @@ import getOtpReducer from '../reducers/GetOtpSlice';
 import UpdatePasswordReducer from '../reducers/UpdatePasswordSlice';
 import ProfileReducer from '../reducers/profileSlice';
 import CategoryReducer from '../reducers/categorySlice';
+import googleLoginReducer from '../reducers/googleLoginSlice';
 import addProductReducer from '../reducers/Product/ProductSlice';
 import AllProductReducer from '../reducers/Product/fetchSlice';
 import fetchViewReducer from '../reducers/viewProductSlice';
@@ -23,11 +24,15 @@ const store = configureStore({
     updatePassword: UpdatePasswordReducer,
     profile: ProfileReducer,
     category: CategoryReducer,
+    googleLogin: googleLoginReducer,
     products: addProductReducer,
     Allproducts: AllProductReducer,
     viewProduct: fetchViewReducer,
     updateProduct: updateProductReducer,
   },
+  middleware: getDefaultMiddleware({
+    serializableCheck: false,
+  }),
 });
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

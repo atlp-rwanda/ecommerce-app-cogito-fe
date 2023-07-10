@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -11,16 +11,15 @@ const ProductView = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const item = useSelector((state: RootState) => state.viewProduct);
-  console.log('my data1', item)
+ 
   const fetchDetails = useCallback(() => {
     dispatch(ViewProduct({ id }));
   }, [dispatch, id]);
-  console.log('my data2', item)
+
   useEffect(() => {
     fetchDetails();
   }, [fetchDetails]);
   const product = item.state.data;
-  console.log('my product', product)
 
   return (
     <div>

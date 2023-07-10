@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ViewProduct , updateProduct} from '../action/ProductAction';
+import { ViewProduct } from '../action/ProductAction';
 
 interface fetchstate {
   data: {

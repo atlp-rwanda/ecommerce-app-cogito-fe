@@ -10,6 +10,7 @@ import ProfileView from "./views/Profile";
 import EditProfileView from "./views/editProfile";
 import NavBar from './components/Nav/navBar';
 import Footer from './components/Footer/footer';
+import { LoginSuccess } from './utils/LoginSuccess';
 import VendorPage from './pages/vendor/VendorPage';
 import ProductView from './pages/viewProduct';
 import UpdatePage from './components/UpdateProduct';
@@ -30,6 +31,7 @@ const App: React.FC = () => {
             <Route path="/UpdatePassword" element={<UpdatePassword />} />;
             <Route path="/profile" element={<ProfileView />} />
             <Route path="/editProfile" element={<EditProfileView />} />
+            <Route path= "/login/success" element={<LoginSuccess />} />;
             <Route path="/add-product" element={<VendorPage />} />
             <Route path="/product/:id" element={<ProductView />} />
             <Route path="/update-product/:id" element={<UpdatePage />} />
