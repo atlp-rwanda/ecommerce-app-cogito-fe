@@ -86,7 +86,7 @@ export const AddProductForm = ({ visible, onClose }: { visible: boolean; onClose
       setName('');
       setDescription('');
       setPrice(0);
-      setImage(undefined);
+      setImage([]);
       setQuantity(0);
       setStock('');
       setCategory_id(0);
@@ -168,7 +168,6 @@ export const AddProductForm = ({ visible, onClose }: { visible: boolean; onClose
             className="focus:outline-none bg-blue-50  h-10 border border-black/10 rounded-lg outline-0 placeholder:font-light placeholder:text-gray-600/80 p-2 pl-4"
             type="file"
             multiple
-            onchange="displaySelectedFiles(event)"
             accept="image/*"
             onChange={handleImage}
             placeholder="Product Image"

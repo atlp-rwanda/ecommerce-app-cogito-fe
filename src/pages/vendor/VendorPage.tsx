@@ -7,7 +7,6 @@ import AddProductForm from '../../components/productForm/productForm';
 import Header from '../../components/Header/header';
 import { RootState } from '../../redux/store/store';
 import { fetchProducts } from '../../redux/action/ProductAction';
-import { addProduct } from '../../redux/action/AddAction';
 import { useAppDispatch } from '../../redux/hooks/hooks';
 interface Item {
   id: number;

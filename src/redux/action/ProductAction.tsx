@@ -66,6 +66,7 @@ export const updateProduct = createAsyncThunk('edit/product', async({id, data}: 
       }
      }
      const response = await URL.put(`/product/${id}`, data, config);
+     console.log(response);
      console.log('my token',config)
      return response.data;
   }catch(error: any){

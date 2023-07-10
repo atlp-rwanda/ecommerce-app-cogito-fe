@@ -8,6 +8,7 @@ import { useAppDispatch } from '../redux/hooks/hooks';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store/store';
+import { loginWithGoogle } from '../redux/action/googleLoginAction';
 
 export const LoginPage = () => {
   const dispatch = useAppDispatch();
@@ -17,6 +18,7 @@ export const LoginPage = () => {
   const [error, setError] = useState<any>('');
   const loginState = useSelector((state: RootState) => state.login);
   const { isLoading } = useSelector((state: RootState) => state.getOtp);
+  const googleLoginState = useSelector((state: RootState) => state.googleLogin);
   useEffect(() => {
     if (loginState.state === 'FULFILLED') {
       const roleId = localStorage.getItem('roleId');
@@ -42,13 +44,30 @@ export const LoginPage = () => {
           setPassword('');
           navigate('/');
         }
+        if (googleLoginState.GL_State === 'REJECTED') {
+          console.log('Login failed');
+          console.log('Error: ', googleLoginState.GL_Error);
+        } else if (googleLoginState.GL_State === 'FULFILLED') {
+          console.log('Login successful!!');
+        }
+        if (googleLoginState.GL_State === 'FULFILLED') {
+          console.log('Login successful!!');
+          console.log('Your Token is: ', googleLoginState.GL_Token);
+          setEmail('');
+          setPassword('');
+          navigate('/');
+        } else if (googleLoginState.GL_State === 'REJECTED') {
+          setError('Error In Google Login');
+          console.log('Login failed');
+          console.log('Error:', loginState.data);
+        }
       }
     } else if (loginState.state === 'REJECTED') {
       setError(loginState.data);
       console.log('Login failed');
       console.log('Error:', loginState.data);
     }
-  }, [loginState.state, loginState.status, loginState.data, loginState.error, navigate]);
+  }, [loginState.state, loginState.status, loginState.data, loginState.error, navigate, googleLoginState.GL_State, googleLoginState.GL_Error, googleLoginState.GL_Token, dispatch]);
   const HandleLoginEvent = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const userCredentials = {
@@ -68,6 +87,12 @@ export const LoginPage = () => {
       return;
     }
     dispatch(handleLogin(userCredentials));
+  };
+  const handleGoogleLogin = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    dispatch(loginWithGoogle);
+    const googleLoginURL = `${process.env.VITE_BN_APP_API_BASE_URL}/auth/google`;
+    window.open(googleLoginURL, '_self', 'width=500,height=600');
   };
   return (
     <>
@@ -122,16 +147,22 @@ export const LoginPage = () => {
             {loginState.loading || isLoading ? 'Loading...' : 'Login'}
           </button>
         </form>
-        <div className="grid grid-cols-1 sm:grid-cols-2 mt-6 gap-4">
-          <p className="text-center sm:text-left">
-            Don't have an account?
-            <a href="/buyer/signup" className="bg-black-500 hover:bg-green-700 font-bold py-2 px-4">
-              Signup
+        <div className="grid grid-cols-1 sm:grid-cols-1 mt-6 gap-4">
+          <p className="sm:text-left">
+            Don't have an account? 
+            <a href="/buyer/signup" className="bg-black-500 hover:text-green-700 font-bold py-2 pl-1">
+               Signup
             </a>
           </p>
-          <p className="text-center sm:text-right">
-            <a href="/reset-password" className="bg-black-500 hover:bg-green-700 font-bold py-2 px-4 italic">
+          <p className="sm:text-left">
+            <a href="/reset-password" className="bg-black-500 hover:text-green-700 font-bold py-2">
               Forgot Password?
+            </a>
+          </p>
+          <p className="sm:text-left">
+            Back to
+            <a href="/" className="bg-black-500 hover:text-green-700 font-bold py-2 pl-1">
+               Home
             </a>
           </p>
         </div>
@@ -142,13 +173,15 @@ export const LoginPage = () => {
         </div>
         <div className="flex items-center justify-center mt-4 space-x-4">
           <div className="border rounded p-1">
-            <FontAwesomeIcon icon={faGoogle} size="lg" className="text-green-900" />
-          </div>
-          <div className="border rounded p-1">
-            <FontAwesomeIcon icon={faTwitter} size="lg" className="text-green-900" />
+            <button onClick={handleGoogleLogin}>
+              <FontAwesomeIcon icon={faGoogle} size="lg" className="text-green-900" />
+            </button>
           </div>
           <div className="border rounded p-1">
             <FontAwesomeIcon icon={faFacebook} size="lg" className="text-green-900" />
+          </div>
+          <div className="border rounded p-1">
+            <FontAwesomeIcon icon={faTwitter} size="lg" className="text-green-900" />
           </div>
           <div className="border rounded p-1">
             <FontAwesomeIcon icon={faInstagram} size="lg" className="text-green-900" />
