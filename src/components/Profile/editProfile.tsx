@@ -99,7 +99,7 @@ const EditProfile = () => {
       toast.error('Please fill in all fields');
       return;
     }
-    
+
     const profileObj = {
       name,
       email,
@@ -120,7 +120,7 @@ const EditProfile = () => {
         toast.error('An error occurred while updating');
       }
     } finally {
-      toast.success('Updated successfully',{
+      toast.success('Updated successfully', {
         onClose: () => {
           navigate('/profile');
         },
@@ -129,8 +129,7 @@ const EditProfile = () => {
   };
 
   const isUserLoggedIn = checkLoggedIn();
-  console.log('isUserLoggedIn', isUserLoggedIn);
-  if(!isUserLoggedIn){
+  if (!isUserLoggedIn) {
     navigate('/login');
   }
 

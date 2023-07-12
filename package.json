@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "test": "jest --config=jest.config.ts",
+    "test": "jest --config=jest.config.ts --detectOpenHandles",
     "build": "tsc && vite build",
     "lint": "tslint --project . & prettier --check .",
     "lint:fix": "tslint --project . --fix",
@@ -54,6 +54,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.0",
     "react-icons": "^4.10.1",
+    "react-paginate": "^8.2.0",
     "react-redux": "^8.0.7",
     "react-router-dom": "^6.13.0",
     "react-toastify": "^9.1.3",

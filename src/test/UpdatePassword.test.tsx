@@ -27,7 +27,7 @@ describe('Update Password Page', () => {
     expect(state.loading).toEqual(false);
     expect(state.error).toEqual(false);
   });
-  test('should render the update password form with some element on the form', async () => {
+  test('should render the update password form with some element on the form', () => {
     expect(screen.getByText('Update Password Page')).toBeInTheDocument();
     expect(screen.getByText('Please enter credential details to update your password')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Enter Your Old Password')).toBeInTheDocument();

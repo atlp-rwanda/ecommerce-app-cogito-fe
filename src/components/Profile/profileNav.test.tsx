@@ -6,7 +6,7 @@ import '@testing-library/jest-dom';
 describe('ProfileNav component', () => {
   test('renders profile, purchases, wishlist, and chat links', async () => {
     const { getByText, getByTestId } = render(<ProfileNav />, { wrapper: MemoryRouter });
-    await act(async () => {
+    await act(() => {
       const profileLink = getByText('Profile');
       const purchasesLink = getByText('Purchases');
       const wishlistLink = getByText('Wishlist');

@@ -161,8 +161,19 @@ const NavBar = () => {
                               <p className="custom-md:text-sm cursor-pointer">{userDetails.name.split(' ')[0]}</p>
                             </div>
                             {profileClicked && (
-                              <div className="dropdown-content flex flex-col absolute top-[14%] z-10 bg-[#fff] py-1 w-40">
-                                <div className="flex flex-row align-middle"></div>
+                              <div className="dropdown-content flex flex-col absolute top-[14%] z-10 bg-[#f6f9fd] py-1 w-28">
+                                {localStorage.getItem('roleId') === '1' ? (
+                                  <Button
+                                    onClick={() => {
+                                      setProfileClicked(false);
+                                      navigate('/admin/manage/users');
+                                    }}
+                                    label="Dashboard"
+                                    style="dropdown-item mb-1"
+                                  />
+                                ) : (
+                                  ''
+                                )}
                                 <Button
                                   onClick={() => {
                                     setProfileClicked(false);
@@ -220,6 +231,18 @@ const NavBar = () => {
                 </div>
                 {profileClicked && (
                   <div className="dropdown-content flex flex-col mt-2">
+                    {localStorage.getItem('roleId') === '1' ? (
+                      <Button
+                        onClick={() => {
+                          setProfileClicked(false);
+                          navigate('/admin/manage/users');
+                        }}
+                        label="Dashboard"
+                        style="dropdown-item mb-1"
+                      />
+                    ) : (
+                      ''
+                    )}
                     <p
                       onClick={() => {
                         setProfileClicked(false);

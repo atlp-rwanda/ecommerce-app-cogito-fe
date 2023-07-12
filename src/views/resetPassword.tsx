@@ -1,14 +1,14 @@
-import TwoFactorAuthComponent from '../components/TwoFactorAuth';
+import ResetPassword from '../pages/resetPassword/resetPassword';
 import NavBar from '../components/Nav/navBar';
 import Footer from '../components/Footer/footer';
-function TwoFactorAuth() {
+const updatePassword = () => {
   return (
     <>
       <NavBar />
-      <TwoFactorAuthComponent />
+      <ResetPassword />
       <Footer />
     </>
   );
-}
+};
 
-export default TwoFactorAuth;
+export default updatePassword;

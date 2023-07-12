@@ -4,7 +4,6 @@ import { SetStateAction, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { resetPassword } from '../../redux/action/resetPasswordAction';
 import { useNavigate } from 'react-router-dom';
-
 const ResetPasswordPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
