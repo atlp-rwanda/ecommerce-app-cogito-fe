@@ -1,9 +1,9 @@
 import checkLoggedIn from '@/utils/authorise';
-import Products from '../components/products';
+import Wishlist from '../components/wishlist';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-const ProductsPage = () => {
+const WishlistPage = () => {
     const isUserLoggedIn = checkLoggedIn();
     const navigate = useNavigate();
 
@@ -18,9 +18,9 @@ const ProductsPage = () => {
     }
     return(
         <>
-            <Products/>
+            <Wishlist/>
         </>
     );
 }
 
-export default ProductsPage;
+export default WishlistPage;

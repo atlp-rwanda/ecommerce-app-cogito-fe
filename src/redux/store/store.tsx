@@ -9,6 +9,7 @@ import UpdatePasswordReducer from '../reducers/UpdatePasswordSlice';
 import ProfileReducer from '../reducers/profileSlice';
 import CategoryReducer from '../reducers/categorySlice';
 import googleLoginReducer from '../reducers/googleLoginSlice';
+import allProductsReducer from '../reducers/products';
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     profile: ProfileReducer,
     category: CategoryReducer,
     googleLogin: googleLoginReducer,
+    allProducts: allProductsReducer,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,

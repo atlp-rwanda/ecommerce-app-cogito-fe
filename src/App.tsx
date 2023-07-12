@@ -12,10 +12,18 @@ import NavBar from './components/Nav/navBar';
 import Footer from './components/Footer/footer';
 import { LoginSuccess } from './utils/LoginSuccess';
 import ProductsPage from '../src/pages/products';
+import WishlistPage from '../src/pages/wishlist';
+import { Helmet } from 'react-helmet';
+
 
 const App: React.FC = () => {
   return (
     <>
+      <Helmet>
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com"/>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+      </Helmet>
       <div>
         <Router>
           <NavBar />
@@ -31,6 +39,7 @@ const App: React.FC = () => {
             <Route path="/editProfile" element={<EditProfileView />} />
             <Route path= "/login/success" element={<LoginSuccess />} />
             <Route path= "/products" element={<ProductsPage />} />
+            <Route path= "/wishlist" element={<WishlistPage />} />
           </Routes>
           <Footer />
         </Router>
