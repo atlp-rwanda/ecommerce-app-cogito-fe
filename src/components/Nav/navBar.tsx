@@ -112,21 +112,21 @@ const NavBar = () => {
                 )}
               </div>
             </div>
-            <div className={`px-6 py-3 ${!isCertainPage && 'border-b-[1px] border-[#003D29]'} flex justify-between items-center md:items-start`}>
+            <div className={`px-6 py-3 ${!isCertainPage && 'border-b-[1px] border-[#003D29]'} flex justify-between items-center`}>
               <img
                 src={Logo}
                 alt="logo"
-                className="lg:h-9 lg:w-36 md:w-20 md:h-6 custom-md: w-[6rem] custom-md: h-[1.5rem] md: mr-6 lg:mr-10 xl:mr-20 md:mt-3 lg:mt-2 cursor-pointer"
+                className="lg:h-9 lg:w-36 md:w-20 md:h-6 custom-md: w-[6rem] custom-md: h-[1.5rem] md: mr-6 lg:mr-10 xl:mr-20 cursor-pointer"
                 onClick={() => {
                   navigate('/');
                 }}
               ></img>
               <div className="flex items-center md:justify-between md:items-start md:flex-grow">
-                <div className={`flex hidden md:flex md:mt-2 lg:mt-2 md:flex-grow md:justify-between md:w-[43%] md:mr-0 md:max-w-[47%] lg:max-w-[40%] xl:lg:max-w-[35%]`}>
+                <div className={`flex hidden md:flex md:mt-2 lg:mt-2 md:justify-between md:w-[43%] md:mr-0 md:max-w-[43%] lg:w-[40%] lg:max-w-[40%] ll:w-[35%] xl:lg:max-w-[35%]`}>
                   <div className="dropdown md:max-w-[1/3] relative">
                     <div className="flex items-center mr-4 xl:mr-10 md:mr-2">
                       <div className="flex items-center">
-                        <p className="pr-1 custom-md: text-sm md:text-base">Category</p>
+                        <p className="pr-1 custom-md: text-sm md:text-sm lg:text-base">Category</p>
                         <FontAwesomeIcon className="text-sm" icon={faChevronDown} data-testid="category-dropdown-button" onClick={toggleCategoryDropdown} />
                       </div>
                       {categoryDropdownOpen && (
@@ -143,14 +143,14 @@ const NavBar = () => {
                       )}
                     </div>
                   </div>
-                  <p className="mr-4 xl:mr-10 md:mr-2 custom-md: text-sm md:text-base">What’s New</p>
-                  <p className="custom-md: text-sm md:text-base custom-md:mr-0">Contact Us</p>
+                  <p className="mr-4 xl:mr-10 md:mr-2 custom-md: text-sm md:text-sm lg:text-base">What’s New</p>
+                  <p className="custom-md: text-sm md:text-sm custom-md:mr-0 lg:text-base">Contact Us</p>
                 </div>
-                <div className={`md:mr-0 flex items-center md:items-center md:mr-0 md:w-[48%] ${!categoryDropdownOpen && 'md:w-[50%] lg:w-[58%]'}`}>
-                  <div className="md:border-[1px] md:border-[#9C9EBA] text-[#9C9EBA] md:w-[100%] py-1.5 px-3 lg:px-4 md:mr-4 rounded-3xl flex items-center justify-between custom-md:w-[30%] h-fit mr-2 custom-md:mr-6 xl:mr-8">
+                <div className={`md:mr-0 flex items-center md:items-center md:mr-0 md:w-[48%] md:flex-grow ${!categoryDropdownOpen && 'md:w-[50%]'}`}>
+                  <div className="md:border-[1px] md:border-[#9C9EBA] text-[#9C9EBA] md:w-[100%] py-1.5 px-3 lg:px-4 md:mx-4 md:ml-10 rounded-3xl flex items-center justify-between custom-md:w-[30%] h-fit mr-2 custom-md:mr-6 xl:mr-8">
                     <input
                       type="text"
-                      className=" hidden md:inline custom-md:text-sm md:text-base custom-md:mr-2 focus:outline-none w-full"
+                      className=" hidden md:inline custom-md:text-sm md:text-base custom-md:mr-2 focus:outline-none w-full md:text-sm lg:text-base"
                       placeholder="Search product"
                       value={searchTerm}
                       onChange={handleInputChange}
@@ -165,8 +165,8 @@ const NavBar = () => {
                         return (
                           <>
                             <div className="hidden md:flex items-center lg:mr-8 md:mr-4 custom-md:mr-4 w-20 justify-end" onClick={handleProfileMenu}>
-                              <FontAwesomeIcon icon={faUser} className="pr-2 lg text-2xl md:text-xl custom-md:text-base" />
-                              <p className="custom-md:text-sm cursor-pointer">{userDetails.name.split(' ')[0]}</p>
+                              <FontAwesomeIcon icon={faUser} className="pr-2 lg text-2xl md:text-xl custom-md:text-bas " />
+                              <p className="custom-md:text-sm cursor-pointer lg:text-base">{userDetails.name.split(' ')[0]}</p>
                             </div>
                             {profileClicked && (
                               <div className="dropdown-content flex flex-col absolute top-[14%] z-10 bg-[#f6f9fd] py-1 w-28">

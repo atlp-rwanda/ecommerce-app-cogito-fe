@@ -129,7 +129,6 @@ const EditProfile = () => {
   };
 
   const isUserLoggedIn = checkLoggedIn();
-  console.log('isUserLoggedIn', isUserLoggedIn);
   if(!isUserLoggedIn){
     navigate('/login');
   }

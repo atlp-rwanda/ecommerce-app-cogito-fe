@@ -46,7 +46,7 @@ const Footer = () => {
   const categories = value.map((obj: Category) => obj.name);
   return (
     <>
-      <hr className="border-t border-[#003D29] mb-8 mt-16 mx-8"></hr>
+      <hr className="border-t border-[#003D29] mb-8 mt-10 md:mt-16 mx-8"></hr>
       <div className="lg:flex lg:mx-16 lg:justify-between lg:w-[90%]">
         <div className='lg:w-[33.3%]'>
           <div className='lg:w-fit lg:w-full'>
