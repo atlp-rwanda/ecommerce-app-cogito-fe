@@ -116,7 +116,7 @@ const NavBar = () => {
                 }}
               />
               <div className="flex items-center md:justify-between md:items-start md:flex-grow">
-                <div className={`flex hidden md:flex md:mt-2 lg:mt-2 md:justify-between md:w-[43%] md:mr-0 md:max-w-[43%] lg:w-[40%] lg:max-w-[40%] ll:w-[35%] xl:lg:max-w-[35%]`}>
+                <div className={`hidden md:flex md:mt-2 lg:mt-2 md:flex-grow md:justify-between md:w-[43%] md:mr-0 md:max-w-[47%] lg:max-w-[40%] xl:lg:max-w-[35%]`}>
                   <div className="dropdown md:max-w-[1/3] relative">
                     <div className="flex items-center mr-4 xl:mr-10 md:mr-2">
                       <div className="flex items-center">
@@ -124,7 +124,7 @@ const NavBar = () => {
                         <FontAwesomeIcon className="text-sm cursor-pointer" icon={faChevronDown} data-testid="category-dropdown-button" onClick={toggleCategoryDropdown} />
                       </div>
                       {categoryDropdownOpen && (
-                        <div className="hidden md:block absolute left-0 top-[100%] flex flex-col max-h-[60vh] flex-wrap w-[60vw]">
+                        <div className="md:block absolute left-0 top-[100%] flex flex-col max-h-[60vh] flex-wrap w-[60vw]">
                           <p className="text-2xl font-bold mt-8 mb-4 text-[#b2b2b2]">Explore Our Categories</p>
                           <div className="flex flex-col max-h-[70vh] flex-wrap">
                             <p
@@ -156,8 +156,8 @@ const NavBar = () => {
                   <p className="mr-4 xl:mr-10 md:mr-2 custom-md: text-sm md:text-sm lg:text-base">What’s New</p>
                   <p className="custom-md: text-sm md:text-sm custom-md:mr-0 lg:text-base">Contact Us</p>
                 </div>
-                <div className={`md:mr-0 flex items-center md:items-center md:mr-0 md:w-[48%] md:flex-grow ${!categoryDropdownOpen && 'md:w-[50%]'}`}>
-                  <div className="md:border-[1px] md:border-[#9C9EBA] text-[#9C9EBA] md:w-[100%] py-1.5 px-3 lg:px-4 md:mx-4 md:ml-10 rounded-3xl flex items-center justify-between h-fit mr-1.5 custom-md:mr-3 xl:mr-8">
+                <div className={`flex items-center md:items-center md:mr-0 md:w-[48%] ${!categoryDropdownOpen && 'md:w-[50%] lg:w-[58%]'}`}>
+                  <div className="md:border-[1px] md:border-[#9C9EBA] text-[#9C9EBA] md:w-[100%] py-1.5 px-3 lg:px-4 md:mr-4 rounded-3xl flex items-center justify-between custom-md:w-[30%] h-fit mr-2 custom-md:mr-6 xl:mr-8">
                     <input
                       type="text"
                       className=" hidden md:inline custom-md:text-sm md:text-base custom-md:mr-2 focus:outline-none w-full md:text-sm lg:text-base"
@@ -166,7 +166,7 @@ const NavBar = () => {
                       onChange={handleInputChange}
                       onKeyDown={handleKeyDown}
                     />
-                    <FontAwesomeIcon className="md:text-[#9C9EBA] text-xl text-black sm:text-sm cursor-pointer custom-md:text-xl md:text-xl" icon={faMagnifyingGlass} onClick={handleSearch} data-testid="search-button" />
+                    <FontAwesomeIcon className="md:text-[#9C9EBA] text-xl text-black cursor-pointer custom-md:text-2xl md:text-xl" icon={faMagnifyingGlass} onClick={handleSearch} data-testid="search-button" />
                   </div>
                   <div className="flex h-fit custom-md:flex custom-md:justify: evenly">
                     {localStorage.getItem('token') ? (
@@ -181,11 +181,16 @@ const NavBar = () => {
                             </div>
                             {profileClicked && (
                               <div className="dropdown-content flex flex-col absolute top-[14%] z-10 bg-[#f6f9fd] py-1 w-28">
-                                {localStorage.getItem('roleId') === '1' ? (
+                                {localStorage.getItem('roleId') === '1' || '2' ? (
                                   <Button
                                     onClick={() => {
+                                      const roleId = localStorage.getItem('roleId');
                                       setProfileClicked(false);
-                                      navigate('/admin/manage/users');
+                                      if (roleId === '2') {
+                                        navigate('/viewItems');
+                                      } else {
+                                        navigate('/admin/manage/users');
+                                      }
                                     }}
                                     label="Dashboard"
                                     style="dropdown-item mb-1"

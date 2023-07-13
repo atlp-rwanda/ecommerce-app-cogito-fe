@@ -41,6 +41,7 @@ const UpdatePasswordPage = () => {
 
   return (
     <>
+      {/* <NavBar /> */}
       <div className="w-full justify-center mx-40 my-20 md:w-full h-full bg-white">
         <div className="flex flex-col items-center h-full">
           <ToastContainer />

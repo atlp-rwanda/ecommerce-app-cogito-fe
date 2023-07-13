@@ -14,7 +14,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import VendorPage from './pages/vendor/VendorPage';
 import UpdatePage from './components/UpdateProduct';
 import Users from '@/pages/Admin/Users';
-import { LoginSuccess } from './utils/LoginSuccess';
 import RolePerms from './pages/Admin/RolePerms';
 import { useEffect } from 'react';
 import { useAppDispatch } from './redux/hooks/hooks';
@@ -27,6 +26,8 @@ import ProductView from './pages/viewProduct';
 import ProductsPage from '../src/pages/products';
 import WishlistPage from '../src/pages/wishlist';
 import { Helmet } from 'react-helmet';
+import { LoginSuccess } from './utils/LoginSuccess';
+import ViewItems from './pages/SellerDashboard/viewItems';
 
 const App: React.FC = () => {
   const { roles } = useSelector((state: RootState) => state.roles);
@@ -71,6 +72,7 @@ const App: React.FC = () => {
               <Route path="/login/success" element={<LoginSuccess />} />
               <Route path="/search/products" element={<Navigate to="/products" />} />
               <Route path="/search/products/:product" element={<ProductsPage />} />
+              <Route path="/viewItems" element={<ViewItems />} />
             </Routes>
           </Router>
           <ToastContainer />

@@ -10,7 +10,6 @@ import ProfileReducer from '../reducers/profileSlice';
 import CategoryReducer from '../reducers/categorySlice';
 import googleLoginReducer from '../reducers/googleLoginSlice';
 import addProductReducer from '../reducers/Product/ProductSlice';
-import AllProductReducer from '../reducers/Product/fetchSlice';
 import fetchViewReducer from '../reducers/viewProductSlice';
 import fetchUsersReducer from '../reducers/FetchUsersSlice';
 import changeStatus from '../reducers/AccountStatusSlice';
@@ -24,6 +23,7 @@ import wishlistReducer from '../reducers/wishlistSlice';
 import updateProductReducer from '../reducers/updateProductSlice';
 import notificationReducer from '../reducers/notificationSlice';
 import searchReducer from '../reducers/searchSlice';
+import fetchSlice from '../reducers/Product/fetchSlice';
 
 const store = configureStore({
   reducer: {
@@ -38,7 +38,7 @@ const store = configureStore({
     category: CategoryReducer,
     googleLogin: googleLoginReducer,
     products: addProductReducer,
-    Allproducts: AllProductReducer,
+    Allproducts: fetchSlice,
     viewProduct: fetchViewReducer,
     updateProduct: updateProductReducer,
     notification: notificationReducer,

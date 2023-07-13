@@ -15,15 +15,15 @@ export default {
         poppins: ['Poppins', 'sans-serif'],
       },
       screens: {
-        'lm': '425px',
-        'custom-md': '640px',  
+        lm: '425px',
+        'custom-md': '640px',
         'custom-sm': '380px',
         'view-profile-welcome': '410px',
         'view-profile-card': '1020px',
         'hero-bg': '800px',
         'hero-bg-md': '600px',
         'hero-bg-sm': '515px',
-        'll': '1360px',
+        ll: '1360px',
       },
       backgroundImage: {
         'hero-bg': "url('./src/assets/images/heroBackground.jpg')",
