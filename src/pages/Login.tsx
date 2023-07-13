@@ -1,4 +1,4 @@
-import { LoginPage } from "../components/Login";
+import { LoginPage } from '../components/Login';
 const Login: React.FC = () => {
   return (
     <div>
