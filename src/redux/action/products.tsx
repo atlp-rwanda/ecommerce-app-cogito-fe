@@ -11,7 +11,7 @@ export const getAllProducts = createAsyncThunk('products/all', async () => {
   }
 });
 
-export const getCategoryProducts = createAsyncThunk('products/all', async (categoryId:number) => {
+export const getCategoryProducts = createAsyncThunk('products/all', async (categoryId: number) => {
   try {
     const response = await URL.get(`category/${categoryId}`);
     return response.data;
