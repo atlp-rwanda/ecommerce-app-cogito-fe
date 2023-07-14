@@ -6,12 +6,11 @@ import { useAppDispatch } from '../redux/hooks/hooks';
 import { ViewProduct } from '../redux/action/ProductAction';
 import { RootState } from '../redux/store/store';
 
-
 const ProductView = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const item = useSelector((state: RootState) => state.viewProduct);
- 
+
   const fetchDetails = useCallback(() => {
     dispatch(ViewProduct({ id }));
   }, [dispatch, id]);
@@ -23,9 +22,6 @@ const ProductView = () => {
 
   return (
     <div>
-      <Link to={`/sellerPage`} type="button" className="my-5 h-fit px-6 py-2 font-semibold uppercase rounded-xl bg-green-900 hover:bg-white-500 text-white">
-                  Back
-                </Link>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
         <h1 className="text-2xl tracking-tight text-slate-900 font-bold my-8">Product Details</h1>
         <div className="flex flex-col md:flex-row -mx-4 w-[100%] ">
@@ -39,9 +35,11 @@ const ProductView = () => {
                   <div x-show="image === 2" className="focus:outline-none w-full rounded-lg h-24 md:h-32 rounded-lg bg-gray-100 mb-4 flex items-center justify-center">
                     <img src={product.image[1]} alt="Product Image 2" className="max-h-full max-w-full" />
                   </div>
+
                   <div x-show="image === 3" className=" focus:outline-none w-full rounded-lg h-24 md:h-32 rounded-lg bg-gray-100 mb-4 flex items-center justify-center">
                     <img src={product.image[2]} alt="Product Image 3" className="max-h-full max-w-full" />
                   </div>
+
                   <div x-show="image === 4" className="focus:outline-none w-full rounded-lg h-24 md:h-32 rounded-lg bg-gray-100 mb-4 flex items-center justify-center">
                     <img src={product.image[3]} alt="Product Image 4" className="max-h-full max-w-full" />
                   </div>
@@ -58,6 +56,7 @@ const ProductView = () => {
                   E-Cogito
                 </a>
               </p>
+
               <div className="flex items-center space-x-4 my-4">
                 <div>
                   <div className="rounded-lg bg-gray-100 flex py-2 px-3">
@@ -76,7 +75,7 @@ const ProductView = () => {
                 </div>
                 <Link to={`/update-product/${product.id}`} type="button" className="h-fit px-6 py-2 font-semibold uppercase rounded-xl bg-green-900 hover:bg-white-500 text-white">
                   update
-                </Link> 
+                </Link>
               </div>
             </div>
           </div>

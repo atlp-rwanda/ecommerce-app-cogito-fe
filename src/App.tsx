@@ -22,6 +22,8 @@ import { useAppDispatch } from './redux/hooks/hooks';
 import { fetchRoles } from './redux/action/FetchRolesAction';
 import { useSelector } from 'react-redux';
 import { RootState } from './redux/store/store';
+import ChatContainer from './pages/chat';
+import ChatIcon from './components/chatCards/ChatIcon';
 
 const App: React.FC = () => {
   const { roles } = useSelector((state: RootState) => state.roles);
@@ -36,6 +38,7 @@ const App: React.FC = () => {
     <>
       <div className="h-screen">
         <Router>
+          <ChatIcon />
           <Routes>
             <Route path="/" element={<HomePages />} />
             <Route path="/login" element={<Login />} />
@@ -52,6 +55,7 @@ const App: React.FC = () => {
             <Route path="/update-product/:id" element={<UpdatePage />} />
             <Route path="/admin/manage/users" element={<ProtectedRoute userRole={roleId ? roleId : 3} allowedRoles={['1']} element={<Users />} />} />
             <Route path="/admin/role/permissions" element={<ProtectedRoute userRole={roleId ? roleId : 3} allowedRoles={['1']} element={<RolePerms />} />} />
+            <Route path="/chat" element={<ChatContainer />} />
           </Routes>
         </Router>
         <ToastContainer />

@@ -9,7 +9,6 @@ export const handleNotifications = createAsyncThunk('/vendor/getAllNotifications
     const response = await URL.get(`/notification/${userDetails.id}`, { headers: { 'Accept-language': 'en', Authorization: token } });
     return response.data;
   } catch (error: any) {
-    console.log(error);
     return thunkAPI.rejectWithValue(error.response.data);
   }
 });
