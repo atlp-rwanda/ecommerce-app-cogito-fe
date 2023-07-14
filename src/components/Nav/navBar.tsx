@@ -158,6 +158,18 @@ const NavBar = () => {
                             </div>
                             {profileClicked && (
                               <div className="dropdown-content flex flex-col absolute top-[14%] z-10 bg-[#f6f9fd] py-1 w-28">
+                                {localStorage.getItem('roleId') === '1' ? (
+                                  <Button
+                                    onClick={() => {
+                                      setProfileClicked(false);
+                                      navigate('/admin/manage/users');
+                                    }}
+                                    label="Dashboard"
+                                    style="dropdown-item mb-1"
+                                  />
+                                ) : (
+                                  ''
+                                )}
                                 <Button
                                   onClick={() => {
                                     setProfileClicked(false);
@@ -192,7 +204,7 @@ const NavBar = () => {
             <div className="dropdown">
               <div className="flex items-center mr-4 mb-4">
                 <p className="pr-2 text-2xl font-bold">Category</p>
-                <FontAwesomeIcon className="text-2xl cursor-pointer" icon={faChevronDown} data-testid="category-dropdown-button" onClick={toggleCategoryDropdown}/>
+                <FontAwesomeIcon className="text-2xl cursor-pointer" icon={faChevronDown} data-testid="category-dropdown-button" onClick={toggleCategoryDropdown} />
               </div>
               {categoryDropdownOpen && (
                 <div className="dropdown-content flex flex-col mt-2">
@@ -208,28 +220,30 @@ const NavBar = () => {
             <p className="text-2xl font-bold mb-4">Contact Us</p>
             {localStorage.getItem('token') ? (
               <div className="dropdown">
-              <div className="flex items-center mr-4 mb-4">
-                <p className="pr-2 text-2xl font-bold">Account</p>
-                <FontAwesomeIcon className="text-2xl cursor-pointer" icon={faChevronDown} onClick={handleProfileMenu}/>
-              </div>
-              {profileClicked && (
-                <div className="dropdown-content flex flex-col mt-2">
-                    <p
-                    onClick={() => {
-                      setProfileClicked(false);
-                      setMenuClicked(false);
-                      navigate('/profile');
-                    }}
-                    className="dropdown-item text-md font-semibold mb-2 cursor-pointer">Profile</p>
-                  <p onClick={logout} className="dropdown-item text-md font-semibold mb-2 cursor-pointer">Logout</p>
+                <div className="flex items-center mr-4 mb-4">
+                  <p className="pr-2 text-2xl font-bold">Account</p>
+                  <FontAwesomeIcon className="text-2xl cursor-pointer" icon={faChevronDown} onClick={handleProfileMenu} />
                 </div>
-              )}
-            </div>
+                {profileClicked && (
+                  <div className="dropdown-content flex flex-col mt-2">
+                    <p
+                      onClick={() => {
+                        setProfileClicked(false);
+                        setMenuClicked(false);
+                        navigate('/profile');
+                      }}
+                      className="dropdown-item text-md font-semibold mb-2 cursor-pointer"
+                    >
+                      Profile
+                    </p>
+                    <p onClick={logout} className="dropdown-item text-md font-semibold mb-2 cursor-pointer">
+                      Logout
+                    </p>
+                  </div>
+                )}
+              </div>
             ) : (
-              <p
-                className="text-2xl font-bold mb-4"
-                onClick={handleLoginClick}
-              >
+              <p className="text-2xl font-bold mb-4" onClick={handleLoginClick}>
                 Login
               </p>
             )}

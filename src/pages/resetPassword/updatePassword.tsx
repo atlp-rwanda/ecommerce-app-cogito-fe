@@ -6,7 +6,8 @@ import { updatePassword } from '../../redux/action/resetPasswordAction';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons';
-
+import NavBar from '../../components/Nav/navBar';
+import Footer from '../../components/Footer/footer';
 const UpdatePasswordPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ const UpdatePasswordPage = () => {
 
   return (
     <>
+      <NavBar />
       <div className="w-full justify-center mx-40 my-20 md:w-full h-full bg-white">
         <div className="flex flex-col items-center h-full">
           <ToastContainer />
@@ -84,6 +86,7 @@ const UpdatePasswordPage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
