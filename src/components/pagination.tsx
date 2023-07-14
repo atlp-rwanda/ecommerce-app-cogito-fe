@@ -6,7 +6,7 @@ import { useAppDispatch } from '../redux/hooks/hooks';
 import { Params, useParams } from 'react-router-dom';
 
 const Pagination = () => {
-  const { categoryId }: Readonly<Params<string>> = useParams();
+  const { categoryId, product }: Readonly<Params<string>> = useParams();
   const itemsPerPage = 21;
   const dispatch = useAppDispatch();
   const [currentPage, setCurrentPage] = useState(1);
@@ -15,12 +15,16 @@ const Pagination = () => {
 
   useEffect(() => {
     const getData = async () => {
-      if(categoryId){
+      if (categoryId) {
         const res = await dispatch(getCategoryProducts(Number(categoryId)));
         if (res.payload.status === 200) {
           setProducts(res.payload.data);
         }
-      }else{
+      } else if (product) {
+        const res = await dispatch(getAllProducts());
+        console.log(res);
+        setProducts(res.payload.item.filter((result: any) => result.name.toLowerCase().includes(product.toLowerCase())));
+      } else {
         const res = await dispatch(getAllProducts());
         if (res.payload.status === '200') {
           setProducts(res.payload.response);
@@ -55,17 +59,18 @@ const Pagination = () => {
 
   return (
     <div>
-      <Products data={slicedData}/>
-      {totalPages > 1&&(
-      <div className="w-[95%] m-auto flex justify-end mt-4">
-        <button disabled={currentPage === 1} onClick={() => goToPage(currentPage - 1)} className="text-sm font-semibold mr-3 text-[#003D29]">
-          Previous
-        </button>
-        {renderNumberButtons()}
-        <button disabled={currentPage === totalPages} onClick={() => goToPage(currentPage + 1)} className="text-sm font-semibold ml-1 text-[#003D29]">
-          Next
-        </button>
-      </div>)}
+      <Products data={slicedData} />
+      {totalPages > 1 && (
+        <div className="w-[95%] m-auto flex justify-end mt-4">
+          <button disabled={currentPage === 1} onClick={() => goToPage(currentPage - 1)} className="text-sm font-semibold mr-3 text-[#003D29]">
+            Previous
+          </button>
+          {renderNumberButtons()}
+          <button disabled={currentPage === totalPages} onClick={() => goToPage(currentPage + 1)} className="text-sm font-semibold ml-1 text-[#003D29]">
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 };

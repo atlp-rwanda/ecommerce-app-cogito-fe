@@ -10,7 +10,6 @@ const ProductView = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const item = useSelector((state: RootState) => state.viewProduct);
-
   const fetchDetails = useCallback(() => {
     dispatch(ViewProduct({ id }));
   }, [dispatch, id]);
@@ -56,7 +55,6 @@ const ProductView = () => {
                   E-Cogito
                 </a>
               </p>
-
               <div className="flex items-center space-x-4 my-4">
                 <div>
                   <div className="rounded-lg bg-gray-100 flex py-2 px-3">

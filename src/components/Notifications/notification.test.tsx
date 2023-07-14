@@ -75,7 +75,7 @@ describe('Notification Pane Test', () => {
     const userDetails = {
       id: 2,
     };
-    store.dispatch<any>(handleNotifications({id: userDetails.id}));
+    store.dispatch<any>(handleNotifications({ id: userDetails.id }));
     await act(async () =>
       render(
         <Provider store={store}>

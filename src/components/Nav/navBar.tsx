@@ -22,8 +22,11 @@ const NavBar = () => {
   const [searchClicked, setSearchClicked] = useState(false);
   const [menuClicked, setMenuClicked] = useState(false);
   const [profileClicked, setProfileClicked] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
@@ -33,7 +36,6 @@ const NavBar = () => {
     navigate('/login');
     setMenuClicked(false);
   };
-  const [searchTerm, setSearchTerm] = useState('');
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
@@ -44,12 +46,14 @@ const NavBar = () => {
 
   const handleSearch = () => {
     setSearchClicked(!searchClicked);
+    navigate(`/search/products/${searchTerm}`);
   };
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       handleSearch();
     }
   };
+
   const [selectedLanguage, setSelectedLanguage] = useState('eng');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const handleLanguageChange = (language: string) => {
@@ -83,7 +87,7 @@ const NavBar = () => {
     <>
       {!menuClicked ? (
         <>
-          <div className={`${categoryDropdownOpen && 'md:h-[100vh] z-20 overflow-hidden	'}`}>
+          <div className={`${categoryDropdownOpen && 'md:h-[100vh] z-20 overflow-hidden'}`}>
             <div className="bg-[#003D29] text-white px-6 py-1 flex justify-between">
               <div className="flex items-center">
                 <FontAwesomeIcon icon={faPhone} className="pr-1" />
@@ -110,7 +114,7 @@ const NavBar = () => {
                 onClick={() => {
                   navigate('/');
                 }}
-              ></img>
+              />
               <div className="flex items-center md:justify-between md:items-start md:flex-grow">
                 <div className={`flex hidden md:flex md:mt-2 lg:mt-2 md:justify-between md:w-[43%] md:mr-0 md:max-w-[43%] lg:w-[40%] lg:max-w-[40%] ll:w-[35%] xl:lg:max-w-[35%]`}>
                   <div className="dropdown md:max-w-[1/3] relative">
@@ -123,11 +127,24 @@ const NavBar = () => {
                         <div className="hidden md:block absolute left-0 top-[100%] flex flex-col max-h-[60vh] flex-wrap w-[60vw]">
                           <p className="text-2xl font-bold mt-8 mb-4 text-[#b2b2b2]">Explore Our Categories</p>
                           <div className="flex flex-col max-h-[70vh] flex-wrap">
-                            <p className="category_link mb-2 cursor-pointer text-xl font-bold" onClick={()=>{setCategoryDropdownOpen(false);
-                                navigate(`/products`)}}>All</p>
+                            <p
+                              className="category_link mb-2 cursor-pointer text-xl font-bold"
+                              onClick={() => {
+                                setCategoryDropdownOpen(false);
+                                navigate(`/products`);
+                              }}
+                            >
+                              All
+                            </p>
                             {value.map((category: Category) => (
-                              <p key={category.id} className="category_link mb-2 cursor-pointer text-xl font-bold" onClick={()=>{setCategoryDropdownOpen(false);
-                                navigate(`/products/${category.id}`)}}>
+                              <p
+                                key={category.id}
+                                className="category_link mb-2 cursor-pointer text-xl font-bold"
+                                onClick={() => {
+                                  setCategoryDropdownOpen(false);
+                                  navigate(`/products/${category.id}`);
+                                }}
+                              >
                                 {category.name}
                               </p>
                             ))}
@@ -156,7 +173,7 @@ const NavBar = () => {
                       (() => {
                         const userDetails = DecodeToken();
                         return (
-                          <div className='flex justify-end items-center'>
+                          <div className="flex justify-end items-center">
                             <NotificationPane />
                             <div className="hidden md:flex items-center lg:mr-4 md:mr-10 custom-md:mr-4 w-20 justify-end" onClick={handleProfileMenu}>
                               <FontAwesomeIcon icon={faUser} className="pr-2 lg text-2xl md:text-xl custom-md:text-bas " />
@@ -187,7 +204,13 @@ const NavBar = () => {
                                 <Button onClick={logout} label="Logout" style="dropdown-item mb-1" />
                               </div>
                             )}
-                            <FontAwesomeIcon icon={faHeart} className="text-xl md:text-xl custom-md:text-[1.2rem] mr-5 lg:mr-4 md:mr-4 custom-md:mr-6 cursor-pointer" onClick={()=>{navigate('/wishlist')}}/>
+                            <FontAwesomeIcon
+                              icon={faHeart}
+                              className="text-xl md:text-xl custom-md:text-[1.2rem] mr-5 lg:mr-4 md:mr-4 custom-md:mr-6 cursor-pointer"
+                              onClick={() => {
+                                navigate('/wishlist');
+                              }}
+                            />
                             <FontAwesomeIcon icon={faCartShopping} className="text-xl md:text-xl custom-md:text-[1.2rem] mr-5 custom-md:mr-6 md:mr-0" />
                           </div>
                         );
@@ -201,13 +224,18 @@ const NavBar = () => {
                 </div>
                 <FontAwesomeIcon icon={faBars} onClick={handleMenuClick} className={`text-xl custom-md:text-xl md:hidden`} />
               </div>
+              <FontAwesomeIcon
+                icon={faBars}
+                onClick={() => setMenuClicked(true)} // Update handleMenuClick to setMenuClicked(true)
+                className={`text-xl custom-md:text-2xl md:hidden`}
+              />
             </div>
           </div>
         </>
       ) : (
         <div className="md:hidden fixed top-0 left-0 z-40 w-screen h-screen bg-[#003D29]">
           <div className="flex justify-end mt-6">
-            <FontAwesomeIcon icon={faBars} onClick={handleMenuClick} className="text-white text-2xl mr-4" />
+            <FontAwesomeIcon icon={faBars} onClick={() => setMenuClicked(false)} className="text-white text-2xl mr-4" /> {/* Update handleMenuClick to setMenuClicked(false) */}
           </div>
           <div className="flex text-white flex-col ml-10 mt-10">
             <div className="dropdown">
@@ -218,7 +246,13 @@ const NavBar = () => {
               {categoryDropdownOpen && (
                 <div className="dropdown-content flex flex-col mt-2">
                   {value.map((category: Category, index) => (
-                    <p key={category.id} className={`category_link text-md font-semibold mb-2 cursor-pointer ${index === value.length - 1 ? 'mb-4' : ''}`} onClick={()=>{navigate(`/products/${category.id}`)}}>
+                    <p
+                      key={category.id}
+                      className={`category_link text-md font-semibold mb-2 cursor-pointer ${index === value.length - 1 ? 'mb-4' : ''}`}
+                      onClick={() => {
+                        navigate(`/products/${category.id}`);
+                      }}
+                    >
                       {category.name}
                     </p>
                   ))}

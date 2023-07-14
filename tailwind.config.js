@@ -26,7 +26,7 @@ export default {
         'll': '1360px',
       },
       backgroundImage: {
-        'hero-bg': "url('./src/assets/images/heroBackground.jpg')"
+        'hero-bg': "url('./src/assets/images/heroBackground.jpg')",
       },
     },
   },
