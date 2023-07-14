@@ -20,6 +20,7 @@ import ChatContainer from './pages/chat';
 import ChatIcon from './components/chatCards/ChatIcon';
 import ProductsPage from '../src/pages/products';
 import WishlistPage from '../src/pages/wishlist';
+import RecommendedProducts from '../src/pages/recommended';
 import { Helmet } from 'react-helmet';
 import { LoginSuccess } from './utils/LoginSuccess';
 import ViewItems from './pages/SellerDashboard/viewItems';
@@ -68,13 +69,14 @@ const App: React.FC = () => {
               <Route path="/admin/role/permissions" element={<ProtectedRoute userRole={roleId ? roleId : 3} allowedRoles={['1']} element={<RolePerms />} />} />
               <Route path="/chat" element={<ChatContainer />} />
               <Route path="/products" element={<ProductsPage />} />
-              <Route path="/products/:categoryId" element={<ProductsPage />} />
+              <Route path="/products/category/:categoryId" element={<ProductsPage />} />
               <Route path="/wishlist" element={<WishlistPage />} />
               <Route path="/login/success" element={<LoginSuccess />} />
               <Route path="/search/products" element={<Navigate to="/products" />} />
               <Route path="/search/products/:product" element={<ProductsPage />} />
               <Route path="/viewItems" element={<ViewItems />} />
               <Route path="/cart" element={<CartPage />} />
+              <Route path="/products/recommended" element={<RecommendedProducts />} />
             </Routes>
           </Router>
           <ToastContainer />

@@ -25,6 +25,7 @@ import updateProductReducer from '../reducers/updateProductSlice';
 import notificationReducer from '../reducers/notificationSlice';
 import searchReducer from '../reducers/searchSlice';
 import fetchSlice from '../reducers/Product/fetchSlice';
+import recommendedReducer from '../reducers/recommendedProductsSlice';
 
 const store = configureStore({
   reducer: {
@@ -54,6 +55,7 @@ const store = configureStore({
     allProducts: allProductsReducer,
     wishlist: wishlistReducer,
     search: searchReducer,
+    recommended: recommendedReducer,
   },
   middleware: getDefaultMiddleware({
     immutableCheck: false,

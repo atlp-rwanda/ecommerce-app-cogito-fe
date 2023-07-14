@@ -100,7 +100,13 @@ const Footer = () => {
             </div>
             <div className={`${!showCategories && 'hidden'} mb-10 lg:block`}>
               {value.map((category: Category) => (
-                <p key={category.id} className="category_link ml-2 mb-2 lg:ml-0 cursor-pointer" onClick={()=>{navigate(`/products/${category.id}`)}}>
+                <p
+                  key={category.id}
+                  className="category_link ml-2 mb-2 lg:ml-0 cursor-pointer"
+                  onClick={() => {
+                    navigate(`/products/category/${category.id}`);
+                  }}
+                >
                   {category.name}
                 </p>
               ))}

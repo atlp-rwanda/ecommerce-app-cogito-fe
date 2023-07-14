@@ -1,10 +1,10 @@
 import { addToWishlist, deleteOne, getWishlist } from '../../redux/action/wishlistAction';
 import { useAppDispatch } from '../../redux/hooks/hooks';
 import checkLoggedIn from '../../utils/authorise';
-import { faFilter, faHeartCirclePlus, faArrowsUpDown, faImage, faHeartCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faFilter, faHeartCirclePlus, faArrowsUpDown, faImage, faHeartCircleXmark, faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { WishlistItem, initialState } from '../wishlist/wishlist';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -104,37 +104,50 @@ const Products = ({ data }: Props) => {
     toast.success(`${productName} has been added to the cart!`, { toastId: 'cartAdded' });
   }
   return (
-    <div className="text-center flex flex-col items-center w-[80%] m-auto lm:w-[70%] custom-md:w-[90%] md:w-[80%] lg:w-[90%]">
+    <div className="text-center flex flex-col items-center w-[80%] m-auto lm:w-[70%] md:w-[80%] lg:w-[90%]">
       <p className="m-auto text-2xl font-bold mt-6">Explore Products</p>
-      <div className="flex justify-between mt-8 w-full md:justify-end">
-        <div className="flex items-center justify-center border-[1px] border-[#9C9EBA] py-1 w-[49%] rounded-md md:w-fit md:px-6 md:mr-2">
-          <p className="pr-2">Filter</p>
-          <FontAwesomeIcon icon={faFilter} className="" data-testid="faFilter" />
-          <select onChange={(e) => handleFilterByPrice(e.target.value)} className="ml-1 focus:outline-none">
-            <option value="">All</option>
-            <option value="1-1000">1 - 1000</option>
-            <option value="1001-10000">1001 - 10000</option>
-            <option value="10001-100000">10001 - 100000</option>
-            <option value="100000-above">100000 and above</option>
-          </select>
-        </div>
-        {/* Sort */}
-        <div className="flex items-center justify-center border-[1px] border-[#9C9EBA] py-1 w-[49%] rounded-md md:w-fit md:px-6">
-          <p className="pr-2">Sort</p>
-          <FontAwesomeIcon icon={faArrowsUpDown} className="" data-testid="faArrowsUpDown" />
-          <select value={sortBy} onChange={handleSortByChange} className="ml-1 focus:outline-none">
-            <option value="">None</option>
-            <option value="price">Sort by Price</option>
-          </select>
+      <div className="flex flex-row md:relative md:left-48 md:pr-8">
+        <div className="flex flex-col justify-start md:flex lg:flex lg:flex-row lg:justify-end mt-8 w-full md:justify-end custom-md:flex-col">
+          {localStorage.getItem('token') ? (
+            <Link to="/products/recommended">
+              <div className="flex items-start justify-start border-[1px] mb-2 border-[#9C9EBA] py-1 px-4  rounded-md md:w-[24] md:mr-2 md:mb-2 hover:bg-green-700">
+                <p className="pr-2 text-start">Recommended Products</p>
+                <FontAwesomeIcon icon={faUpRightFromSquare} className="hover:text-green-900 mt-1" />
+              </div>
+            </Link>
+          ) : (
+            <div></div>
+          )}
+          {/* Filter */}
+          <div className="flex items-start justify-start mb-2 border-[1px] border-[#9C9EBA] py-1 px-4 rounded-md md:w-[24] md:mb-2 md:px-6 md:mr-2">
+            <p className="pr-2">Filter</p>
+            <FontAwesomeIcon icon={faFilter} className="mt-1" data-testid="faFilter" />
+            <select onChange={(e) => handleFilterByPrice(e.target.value)} className="ml-1 focus:outline-none">
+              <option value="">All</option>
+              <option value="1-1000">1 - 1000</option>
+              <option value="1001-10000">1001 - 10000</option>
+              <option value="10001-100000">10001 - 100000</option>
+              <option value="100000-above">100000 and above</option>
+            </select>
+          </div>
+          {/* Sort */}
+          <div className="flex items-start justify-start mb-2 pl-4 border-[1px] border-[#9C9EBA] py-1 rounded-md md:w-[24] w-[96] md:px-6 md:mb-2">
+            <p className="pr-2">Sort</p>
+            <FontAwesomeIcon icon={faArrowsUpDown} className="mt-1" data-testid="faArrowsUpDown" />
+            <select value={sortBy} onChange={handleSortByChange} className="ml-1 focus:outline-none">
+              <option value="">None</option>
+              <option value="price">Sort by Price</option>
+            </select>
+          </div>
         </div>
       </div>
       <div className="flex flex-col custom-md:grid custom-md:grid-cols-2 custom-md:gap-5 md:gap-7 lg:grid-cols-3">
         {searchResult.length > 0 || isFiltering
           ? searchResult.map((product) => {
               return (
-                <div className="h-[70vh] lg:h-[50vh] ll:h-[60vh] w-full mt-6" key={product.id}>
-                  <div className="bg-[#F5F6F6] h-[60%] w-full rounded-lg flex items-center justify-center overflow-hidden ">
-                    {product.image[0] ? <img src={product.image[0]} alt="" className="w-[100%] mt-6 object-cover object-top" /> : <FontAwesomeIcon icon={faImage} />}
+                <div className="h-[50vh] lg:h-[50vh] ll:h-[60vh] w-full mt-6" key={product.id}>
+                  <div className="bg-[#F5F6F6] h-[60%] w-full rounded-lg flex items-center justify-center overflow-hidden hover:bg-green-700">
+                    {product.image[0] ? <img src={product.image[0]} alt="" className="w-full h-full mt-6 object-cover object-top hover:w-screen" /> : <FontAwesomeIcon icon={faImage} />}
                   </div>
                   <div className="h-[50%] mt-4">
                     <div className="flex w-full justify-between font-medium">
@@ -152,9 +165,6 @@ const Products = ({ data }: Props) => {
                             {
                               !wishlistProducts.includes(product.id) ? handleAddToWishlist(product.id) : handleRemoveWishlist(product.id);
                             }
-                            // dispatch(deleteOne(product.id));
-                            // const newProducts = wishlistProducts.filter((item:WishlistItem) => item.wishlistItem.id !== product.id);
-                            // setWishlistProducts(newProducts);
                           }}
                           data-testid="add_to_wishlist"
                         />
@@ -166,9 +176,9 @@ const Products = ({ data }: Props) => {
             })
           : data.map((product) => {
               return (
-                <div className="h-[70vh] lg:h-[50vh] ll:h-[60vh] w-full mt-6" key={product.id}>
-                  <div className="bg-[#F5F6F6] h-[60%] w-full rounded-lg flex items-center justify-center overflow-hidden ">
-                    {product.image[0] ? <img src={product.image[0]} alt="" className="w-[100%] mt-6 object-cover object-top" /> : <FontAwesomeIcon icon={faImage} />}
+                <div className="h-[50vh] lg:h-[50vh] ll:h-[60vh] w-full mt-6" key={product.id}>
+                  <div className="bg-[#F5F6F6] h-[60%] w-full rounded-lg flex items-center justify-center overflow-hidden hover:bg-green-700 ">
+                    {product.image[0] ? <img src={product.image[0]} alt="" className="w-full h-full mt-6 object-cover object-top hover:w-screen" /> : <FontAwesomeIcon icon={faImage} />}
                   </div>
                   <div className="h-[50%] mt-4">
                     <div className="flex w-full justify-between font-medium">
