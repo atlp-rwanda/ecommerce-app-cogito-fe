@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import LoginReducer from '../reducers/loginSlice';
 import ResetPasswordSlice from '../reducers/resetPassword/resetPasswordSlice';
 import UpdatePasswordSlice from '../reducers/resetPassword/updatePassword';
@@ -11,6 +11,7 @@ import CategoryReducer from '../reducers/categorySlice';
 import googleLoginReducer from '../reducers/googleLoginSlice';
 import addProductReducer from '../reducers/Product/ProductSlice';
 import AllProductReducer from '../reducers/Product/fetchSlice';
+// import chatReducer from '../reducers/chatSlice';
 
 const store = configureStore({
   reducer: {
@@ -26,12 +27,9 @@ const store = configureStore({
     googleLogin: googleLoginReducer,
     products: addProductReducer,
     Allproducts: AllProductReducer,
+    // chat: chatReducer,
   },
-  middleware: getDefaultMiddleware({
-    serializableCheck: false,
-  }),
 });
-
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export default store;

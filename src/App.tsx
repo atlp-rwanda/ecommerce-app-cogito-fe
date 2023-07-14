@@ -14,6 +14,7 @@ import { LoginSuccess } from './utils/LoginSuccess';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import VendorPage from './pages/vendor/VendorPage';
+import ChatContainer from './pages/chat';
 
 const App: React.FC = () => {
   return (
@@ -36,6 +37,7 @@ const App: React.FC = () => {
             <Route path="/login/success" element={<LoginSuccess />} />;
             <Route path="/login/success" element={<LoginSuccess />} />;
             <Route path="/sellerPage" element={<VendorPage />} />
+            <Route path="/chat" element={<ChatContainer />} />
           </Routes>
           <Footer />
         </Router>
