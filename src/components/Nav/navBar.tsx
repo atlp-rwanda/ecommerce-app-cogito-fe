@@ -9,6 +9,8 @@ import { useAppDispatch } from '../../redux/hooks/hooks';
 import { getCategories } from '../../redux/action/categoryAction';
 import { RootState } from '../../redux/store/store';
 import { useSelector } from 'react-redux';
+import NotificationPane from '../Notifications/notification';
+
 type Category = {
   id: number;
   name: string;
@@ -134,7 +136,7 @@ const NavBar = () => {
                   <p className="mr-4 xl:mr-10 md:mr-2 custom-md: text-sm md:text-base">What's New</p>
                   <p className="custom-md: text-sm md:text-base custom-md:mr-0">Contact Us</p>
                 </div>
-                <div className={`md:mr-0 flex items-center md:items-center md:mr-0 md:w-[48%] ${!categoryDropdownOpen && 'md:w-[50%] lg:w-[58%]'}`}>
+                <div className={`md:mr-0 flex items-center md:items-center md:w-[48%] ${!categoryDropdownOpen && 'md:w-[50%] lg:w-[58%]'}`}>
                   <div className="md:border-[1px] md:border-[#9C9EBA] text-[#9C9EBA] md:w-[100%] py-1.5 px-3 lg:px-4 md:mr-4 rounded-3xl flex items-center justify-between custom-md:w-[30%] h-fit mr-2 custom-md:mr-6 xl:mr-8">
                     <input
                       type="text"
@@ -144,20 +146,23 @@ const NavBar = () => {
                       onChange={handleInputChange}
                       onKeyDown={handleKeyDown}
                     />
-                    <FontAwesomeIcon className="md:text-[#9C9EBA] text-xl text-black sm:text-sm cursor-pointer custom-md:text-2xl md:text-xl" icon={faMagnifyingGlass} onClick={handleSearch} data-testid="search-button" />
+                    <FontAwesomeIcon className="md:text-[#9C9EBA] text-xl text-black cursor-pointer custom-md:text-xl md:text-xl" icon={faMagnifyingGlass} onClick={handleSearch} data-testid="search-button" />
                   </div>
-                  <div className="flex h-fit">
+                  <div className="flex h-fit custom-md:flex custom-md:justify: evenly">
                     {localStorage.getItem('token') ? (
                       (() => {
                         const userDetails = DecodeToken();
                         return (
                           <>
+                            <FontAwesomeIcon icon={faCartShopping} className="text-xl md:text-xl custom-md:text-[1.2rem] mr-5 custom-md:mr-0" />
+                            <NotificationPane />
                             <div className="hidden md:flex items-center lg:mr-8 md:mr-4 custom-md:mr-4 w-20 justify-end" onClick={handleProfileMenu}>
                               <FontAwesomeIcon icon={faUser} className="pr-2 lg text-2xl md:text-xl custom-md:text-base" />
                               <p className="custom-md:text-sm cursor-pointer">{userDetails.name.split(' ')[0]}</p>
                             </div>
                             {profileClicked && (
-                              <div className="dropdown-content flex flex-col absolute top-[14%] z-10 bg-[#f6f9fd] py-1 w-28">
+                              <div className="dropdown-content flex flex-col absolute top-[14%] z-10 bg-[#fff] py-1 w-40">
+                                <div className="flex flex-row align-middle"></div>
                                 <Button
                                   onClick={() => {
                                     setProfileClicked(false);
@@ -169,12 +174,13 @@ const NavBar = () => {
                                 <Button onClick={logout} label="Logout" style="dropdown-item mb-1" />
                               </div>
                             )}
-                            <FontAwesomeIcon icon={faCartShopping} className="text-xl md:text-xl custom-md:text-[1.2rem] mr-5 custom-md:mr-0" />
                           </>
                         );
                       })()
                     ) : (
-                      <Button label="Login" style=" hidden md:inline font-bold bg-[#003D29] text-white px-6 py-1 rounded-md" onClick={handleLoginClick} />
+                      <div>
+                        <Button label="Login" style=" hidden md:inline font-bold bg-[#003D29] text-white px-6 py-1 rounded-md" onClick={handleLoginClick} />
+                      </div>
                     )}
                   </div>
                 </div>
@@ -192,7 +198,7 @@ const NavBar = () => {
             <div className="dropdown">
               <div className="flex items-center mr-4 mb-4">
                 <p className="pr-2 text-2xl font-bold">Category</p>
-                <FontAwesomeIcon className="text-2xl cursor-pointer" icon={faChevronDown} data-testid="category-dropdown-button" onClick={toggleCategoryDropdown}/>
+                <FontAwesomeIcon className="text-2xl cursor-pointer" icon={faChevronDown} data-testid="category-dropdown-button" onClick={toggleCategoryDropdown} />
               </div>
               {categoryDropdownOpen && (
                 <div className="dropdown-content flex flex-col mt-2">
@@ -208,28 +214,30 @@ const NavBar = () => {
             <p className="text-2xl font-bold mb-4">Contact Us</p>
             {localStorage.getItem('token') ? (
               <div className="dropdown">
-              <div className="flex items-center mr-4 mb-4">
-                <p className="pr-2 text-2xl font-bold">Account</p>
-                <FontAwesomeIcon className="text-2xl cursor-pointer" icon={faChevronDown} onClick={handleProfileMenu}/>
-              </div>
-              {profileClicked && (
-                <div className="dropdown-content flex flex-col mt-2">
-                    <p
-                    onClick={() => {
-                      setProfileClicked(false);
-                      setMenuClicked(false);
-                      navigate('/profile');
-                    }}
-                    className="dropdown-item text-md font-semibold mb-2 cursor-pointer">Profile</p>
-                  <p onClick={logout} className="dropdown-item text-md font-semibold mb-2 cursor-pointer">Logout</p>
+                <div className="flex items-center mr-4 mb-4">
+                  <p className="pr-2 text-2xl font-bold">Account</p>
+                  <FontAwesomeIcon className="text-2xl cursor-pointer" icon={faChevronDown} onClick={handleProfileMenu} />
                 </div>
-              )}
-            </div>
+                {profileClicked && (
+                  <div className="dropdown-content flex flex-col mt-2">
+                    <p
+                      onClick={() => {
+                        setProfileClicked(false);
+                        setMenuClicked(false);
+                        navigate('/profile');
+                      }}
+                      className="dropdown-item text-md font-semibold mb-2 cursor-pointer"
+                    >
+                      Profile
+                    </p>
+                    <p onClick={logout} className="dropdown-item text-md font-semibold mb-2 cursor-pointer">
+                      Logout
+                    </p>
+                  </div>
+                )}
+              </div>
             ) : (
-              <p
-                className="text-2xl font-bold mb-4"
-                onClick={handleLoginClick}
-              >
+              <p className="text-2xl font-bold mb-4" onClick={handleLoginClick}>
                 Login
               </p>
             )}
