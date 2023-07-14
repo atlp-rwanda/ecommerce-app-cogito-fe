@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchProducts } from '../../action/ProductAction';
-// import { addProduct } from '../../action/AddAction';
 interface fetchstate {
   data: [];
   loading: boolean;

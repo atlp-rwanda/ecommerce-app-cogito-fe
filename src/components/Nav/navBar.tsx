@@ -9,7 +9,6 @@ import { useAppDispatch } from '../../redux/hooks/hooks';
 import { getCategories } from '../../redux/action/categoryAction';
 import { RootState } from '../../redux/store/store';
 import { useSelector } from 'react-redux';
-
 type Category = {
   id: number;
   name: string;
@@ -17,12 +16,10 @@ type Category = {
   createdAt: string;
   updatedAt: string;
 };
-
 const NavBar = () => {
   const [searchClicked, setSearchClicked] = useState(false);
   const [menuClicked, setMenuClicked] = useState(false);
   const [profileClicked, setProfileClicked] = useState(false);
-
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -35,7 +32,6 @@ const NavBar = () => {
     setMenuClicked(false);
   };
   const [searchTerm, setSearchTerm] = useState('');
-
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
@@ -47,7 +43,6 @@ const NavBar = () => {
   const handleSearch = () => {
     setSearchClicked(!searchClicked);
   };
-
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       handleSearch();
@@ -55,11 +50,9 @@ const NavBar = () => {
   };
   const [selectedLanguage, setSelectedLanguage] = useState('eng');
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
   const handleLanguageChange = (language: string) => {
     setSelectedLanguage(language);
   };
-
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -70,12 +63,10 @@ const NavBar = () => {
     setProfileClicked(false);
     setCategoryDropdownOpen(!categoryDropdownOpen);
   };
-
   const handleProfileMenu = () => {
     setCategoryDropdownOpen(false);
     setProfileClicked(!profileClicked);
   };
-
   const logout = () => {
     setMenuClicked(false);
     setProfileClicked(false);
@@ -84,11 +75,8 @@ const NavBar = () => {
     localStorage.removeItem('User ID');
     navigate('/login');
   };
-
   const location = useLocation();
-
   const isCertainPage = location.pathname === '/';
-
   return (
     <>
       {!menuClicked ? (
@@ -143,7 +131,7 @@ const NavBar = () => {
                       )}
                     </div>
                   </div>
-                  <p className="mr-4 xl:mr-10 md:mr-2 custom-md: text-sm md:text-base">What’s New</p>
+                  <p className="mr-4 xl:mr-10 md:mr-2 custom-md: text-sm md:text-base">What's New</p>
                   <p className="custom-md: text-sm md:text-base custom-md:mr-0">Contact Us</p>
                 </div>
                 <div className={`md:mr-0 flex items-center md:items-center md:mr-0 md:w-[48%] ${!categoryDropdownOpen && 'md:w-[50%] lg:w-[58%]'}`}>
@@ -251,5 +239,4 @@ const NavBar = () => {
     </>
   );
 };
-
 export default NavBar;

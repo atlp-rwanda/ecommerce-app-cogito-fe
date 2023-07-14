@@ -14,6 +14,8 @@ import { LoginSuccess } from './utils/LoginSuccess';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import VendorPage from './pages/vendor/VendorPage';
+import UpdatePage from './components/UpdateProduct';
+import ProductView from './pages/viewProduct'
 
 const App: React.FC = () => {
   return (
@@ -33,9 +35,10 @@ const App: React.FC = () => {
             <Route path="/UpdatePassword" element={<UpdatePassword />} />;
             <Route path="/profile" element={<ProfileView />} />
             <Route path="/editProfile" element={<EditProfileView />} />
-            <Route path="/login/success" element={<LoginSuccess />} />;
-            <Route path="/login/success" element={<LoginSuccess />} />;
+            <Route path="/login/success" element={<LoginSuccess />} />
             <Route path="/sellerPage" element={<VendorPage />} />
+            <Route path="/product/:id" element={<ProductView />} />
+            <Route path="/update-product/:id" element={<UpdatePage />} />
           </Routes>
           <Footer />
         </Router>

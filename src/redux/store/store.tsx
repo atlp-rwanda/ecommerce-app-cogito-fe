@@ -11,6 +11,8 @@ import CategoryReducer from '../reducers/categorySlice';
 import googleLoginReducer from '../reducers/googleLoginSlice';
 import addProductReducer from '../reducers/Product/ProductSlice';
 import AllProductReducer from '../reducers/Product/fetchSlice';
+import fetchViewReducer from '../reducers/viewProductSlice';
+import updateProductReducer from '../reducers/updateProductSlice'
 
 const store = configureStore({
   reducer: {
@@ -26,6 +28,8 @@ const store = configureStore({
     googleLogin: googleLoginReducer,
     products: addProductReducer,
     Allproducts: AllProductReducer,
+    viewProduct: fetchViewReducer,
+    updateProduct: updateProductReducer,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,
