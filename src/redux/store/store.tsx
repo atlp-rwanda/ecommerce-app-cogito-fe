@@ -13,6 +13,7 @@ import addProductReducer from '../reducers/Product/ProductSlice';
 import AllProductReducer from '../reducers/Product/fetchSlice';
 import fetchViewReducer from '../reducers/viewProductSlice';
 import updateProductReducer from '../reducers/updateProductSlice'
+import notificationReducer from '../reducers/notificationSlice';
 
 const store = configureStore({
   reducer: {
@@ -30,6 +31,7 @@ const store = configureStore({
     Allproducts: AllProductReducer,
     viewProduct: fetchViewReducer,
     updateProduct: updateProductReducer,
+    notification: notificationReducer,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,
