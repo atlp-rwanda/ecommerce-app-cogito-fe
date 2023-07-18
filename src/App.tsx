@@ -10,6 +10,8 @@ import UpdatePassword from './pages/UpdatePassword';
 import ProfileView from './views/Profile';
 import EditProfileView from './views/editProfile';
 import Users from '@/pages/Admin/Users';
+import 'react-toastify/dist/ReactToastify.css';
+
 import RolePerms from './pages/Admin/RolePerms';
 import { useEffect } from 'react';
 import { useAppDispatch } from './redux/hooks/hooks';

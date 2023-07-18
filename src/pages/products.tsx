@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from '../../src/components/Footer/footer';
-import NavBar from '../components/Nav/navBar';
+import NavBar from '../../src/components/Nav/navBar';
 import { ReviewData } from '../components/productForm/reviewForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
