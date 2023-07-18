@@ -20,14 +20,15 @@ import fetchPermissions from '../reducers/FetchPermissionsSlice';
 import fetchRolePermissions from '../reducers/RolePermissionsSlice';
 import chatReducer from '../reducers/chatSlice';
 import cartItemsReducer from '../reducers/Product/cartViewSlice';
-import allProductsReducer from '../reducers/products';
-import wishlistReducer from '../reducers/wishlistSlice';
+
 import updateProductReducer from '../reducers/updateProductSlice';
 import notificationReducer from '../reducers/notificationSlice';
 import searchReducer from '../reducers/searchSlice';
 import fetchSlice from '../reducers/Product/fetchSlice';
 import recommendedReducer from '../reducers/recommendedProductsSlice';
-import getOrderStatusReducer from '../reducers/Product/orderStatusSlice'
+import getOrderStatusReducer from '../reducers/Product/orderStatusSlice';
+import allProductsReducer from '../reducers/products';
+import wishlistReducer from '../reducers/wishlistSlice';
 
 const store = configureStore({
   reducer: {

@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from './components/protectedRoute';
-import Login from '@/pages/Login';
-import ResetPasswordPage from '@/views/resetPassword';
-import UpdatePasswordPage from '@/views/updatePassword';
+import Login from '../src/pages/Login';
+import ResetPasswordPage from '../src/views/resetPassword';
+import UpdatePasswordPage from '../src/views/updatePassword';
 import SignupPage from './components/register';
 import HomePages from '../src/views/Home';
 import TwoFactorAuth from './pages/TwoFactorAuth';
@@ -31,7 +31,7 @@ import VendorPage from './pages/vendor/VendorPage';
 import UpdatePage from './components/UpdateProduct';
 import ProductView from './pages/viewProduct';
 import Payment from './pages/checkout/payment';
-import CheckoutComponent from './pages/checkout/checkoutPay'
+import CheckoutComponent from './pages/checkout/checkoutPay';
 import OrderDetails from './pages/checkout/orderDetails';
 
 const App: React.FC = () => {
@@ -80,9 +80,11 @@ const App: React.FC = () => {
               <Route path="/viewItems" element={<ViewItems />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/products/recommended" element={<RecommendedProducts />} />
-              <Route path="/checkoutPay" element={< CheckoutComponent />} />
-            <Route path="/checkout" element={< Payment />} />
-            <Route path="/orderStatus/:id" element={<OrderDetails />} />
+              <Route path="/checkoutPay" element={<CheckoutComponent />} />
+              <Route path="/checkout" element={<Payment />} />
+              <Route path="/orderStatus/:id" element={<OrderDetails />} />
+              <Route path="/products/:categoryId" element={<ProductsPage />} />
+              <Route path="/wishlist" element={<WishlistPage />} />
             </Routes>
           </Router>
           <ToastContainer />

@@ -47,6 +47,7 @@ const Products = ({ data }: Props) => {
     };
     getData();
   }, [dispatch, isLoggedIn, wishlist, wishlistProducts]);
+
   const handleAddToWishlist = async (productId: number) => {
     if (isLoggedIn) {
       const res = await dispatch(addToWishlist(productId));
@@ -98,11 +99,11 @@ const Products = ({ data }: Props) => {
       setWishlistProducts(newWishlist);
     }
   };
-  
-  const handleAddCart = (id: number,productName:string)=>{
+
+  const handleAddCart = (id: number, productName: string) => {
     dispatch(addCart(id));
     toast.success(`${productName} has been added to the cart!`, { toastId: 'cartAdded' });
-  }
+  };
   return (
     <div className="text-center flex flex-col items-center w-[80%] m-auto lm:w-[70%] md:w-[80%] lg:w-[90%]">
       <p className="m-auto text-2xl font-bold mt-6">Explore Products</p>
@@ -156,7 +157,9 @@ const Products = ({ data }: Props) => {
                     </div>
                     <p className="text-sm text-left mt-2 text-[#C6C4C4]">{product.description}</p>
                     <div className="flex mt-4 justify-between items-center">
-                    <button onClick={() => handleAddCart(product.id,product.name)}  className="border-[1px] border-[#003D29] px-4 py-1 shadow-md rounded-3xl">Add to cart</button>
+                      <button onClick={() => handleAddCart(product.id, product.name)} className="border-[1px] border-[#003D29] px-4 py-1 shadow-md rounded-3xl">
+                        Add to cart
+                      </button>
                       <div className={`border-[1px] border-[#003D29] rounded-3xl shadow-md ${wishlistProducts.includes(product.id) && 'border-[#EA3A5B]'}`}>
                         <FontAwesomeIcon
                           icon={!wishlistProducts.includes(product.id) ? faHeartCirclePlus : faHeartCircleXmark}
@@ -187,7 +190,9 @@ const Products = ({ data }: Props) => {
                     </div>
                     <p className="text-sm text-left mt-2 text-[#C6C4C4]">{product.description}</p>
                     <div className="flex mt-4 justify-between items-center">
-                    <button onClick={() => handleAddCart(product.id,product.name)}  className="border-[1px] border-[#003D29] px-4 py-1 shadow-md rounded-3xl">Add to cart</button>
+                      <button onClick={() => handleAddCart(product.id, product.name)} className="border-[1px] border-[#003D29] px-4 py-1 shadow-md rounded-3xl">
+                        Add to cart
+                      </button>
                       <div className={`border-[1px] border-[#003D29] rounded-3xl shadow-md ${wishlistProducts.includes(product.id) && 'border-[#EA3A5B]'}`}>
                         <FontAwesomeIcon
                           icon={!wishlistProducts.includes(product.id) ? faHeartCirclePlus : faHeartCircleXmark}

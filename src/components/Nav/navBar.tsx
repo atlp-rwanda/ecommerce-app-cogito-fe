@@ -216,7 +216,13 @@ const NavBar = () => {
                                 navigate('/wishlist');
                               }}
                             />
-                            <FontAwesomeIcon icon={faCartShopping} className="text-xl md:text-xl custom-md:text-[1.2rem] mr-5 custom-md:mr-6 md:mr-0 cursor-pointer"  onClick={()=>{navigate('/cart')}}/>
+                            <FontAwesomeIcon
+                              icon={faCartShopping}
+                              className="text-xl md:text-xl custom-md:text-[1.2rem] mr-5 custom-md:mr-6 md:mr-0 cursor-pointer"
+                              onClick={() => {
+                                navigate('/cart');
+                              }}
+                            />
                           </div>
                         );
                       })()
