@@ -8,6 +8,7 @@ type Item = {
 type ProductData = {
   data: Item;
 };
+
 export const fetchProducts = createAsyncThunk('products/fetchProduct', async () => {
   try {
     const token = localStorage.getItem('token');

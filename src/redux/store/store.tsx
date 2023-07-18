@@ -20,6 +20,7 @@ import fetchRoles from '../reducers/FetchRolesSlice';
 import changeUserRole from '../reducers/ChangeRoleSlice';
 import fetchPermissions from '../reducers/FetchPermissionsSlice';
 import fetchRolePermissions from '../reducers/RolePermissionsSlice';
+import chatReducer from '../reducers/chatSlice';
 
 const store = configureStore({
   reducer: {
@@ -44,13 +45,13 @@ const store = configureStore({
     change_role: changeUserRole,
     permissions: fetchPermissions,
     rolesPermissions: fetchRolePermissions,
+    chat: chatReducer,
   },
   middleware: getDefaultMiddleware({
     immutableCheck: false,
     serializableCheck: false,
   }),
 });
-
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export default store;
