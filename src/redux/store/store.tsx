@@ -21,6 +21,8 @@ import changeUserRole from '../reducers/ChangeRoleSlice';
 import fetchPermissions from '../reducers/FetchPermissionsSlice';
 import fetchRolePermissions from '../reducers/RolePermissionsSlice';
 import chatReducer from '../reducers/chatSlice';
+import allProductsReducer from '../reducers/products';
+import wishlistReducer from '../reducers/wishlistSlice';
 
 const store = configureStore({
   reducer: {
@@ -46,6 +48,8 @@ const store = configureStore({
     permissions: fetchPermissions,
     rolesPermissions: fetchRolePermissions,
     chat: chatReducer,
+    allProducts: allProductsReducer,
+    wishlist: wishlistReducer,
   },
   middleware: getDefaultMiddleware({
     immutableCheck: false,

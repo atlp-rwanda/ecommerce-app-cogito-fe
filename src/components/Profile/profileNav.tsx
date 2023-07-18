@@ -1,6 +1,5 @@
 import { faCircleUser, faBagShopping, faHeart, faMessage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 
 const ProfileNav = () => {
