@@ -21,9 +21,8 @@ const Pagination = () => {
           setProducts(res.payload.data);
         }
       } else if (product) {
-        const res = await dispatch(getAllProducts());
-        console.log(res);
-        setProducts(res.payload.item.filter((result: any) => result.name.toLowerCase().includes(product.toLowerCase())));
+        const { payload } = await dispatch(getAllProducts());
+        setProducts(payload.response.filter((result: any) => result.name.toLowerCase().includes(product.toLowerCase())));
       } else {
         const res = await dispatch(getAllProducts());
         if (res.payload.status === '200') {
@@ -32,7 +31,7 @@ const Pagination = () => {
       }
     };
     getData();
-  }, [categoryId, dispatch, isLoggedIn]);
+  }, [categoryId, dispatch, isLoggedIn, product]);
 
   const totalPages = Math.ceil(products.length / itemsPerPage);
 

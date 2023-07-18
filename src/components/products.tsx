@@ -18,7 +18,7 @@ const Products = ({ searchProductText }: any) => {
   const [products001, setSearchResponse] = useState([]);
   //console.log(products001);
   const [searchResult, setSearchResult] = useState<Product[]>([]);
-  const [searchTextValue, setSearchTextValue] = useState('');
+
   const [sortBy, setSortBy] = useState('');
 
   useEffect(() => {
@@ -27,21 +27,6 @@ const Products = ({ searchProductText }: any) => {
       setSearchResponse(products.items.filter((result: any) => result.name.toLowerCase().includes(searchProductText.toLowerCase())));
     }
   }, [products.items, searchProductText]);
-
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const searchText = event.target.value;
-    setSearchTextValue(searchText);
-
-    if (searchText.trim() === '') {
-      setSearchResult(products.items);
-    } else {
-      const filteredProducts = products.items.filter((product: Product) => {
-        return product.name.toLowerCase().includes(searchText.toLowerCase()) || product.description.toLowerCase().includes(searchText.toLowerCase()) || product.price.toString().includes(searchText);
-      });
-
-      setSearchResult(filteredProducts);
-    }
-  };
 
   const handleSortByChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedSortBy = event.target.value;
