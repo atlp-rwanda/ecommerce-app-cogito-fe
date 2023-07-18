@@ -6,7 +6,6 @@ import { updatePassword } from '../../redux/action/resetPasswordAction';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons';
-
 const UpdatePasswordPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

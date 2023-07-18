@@ -72,8 +72,8 @@ describe('Notification Pane Test', () => {
       },
     };
     const store = mockStore(initialState);
-    const userDetails= {
-        id: 2,
+    const userDetails = {
+      id: 2,
     };
     store.dispatch<any>(handleNotifications(userDetails.id));
     await act(async () =>
@@ -99,10 +99,10 @@ describe('Notification Pane Test', () => {
     expect(screen.queryByTestId('faMultiply')).toBeInTheDocument();
     const tableRows = screen.getAllByRole('row');
     expect(tableRows).toHaveLength(5);
-    expect(tableRows[0]).toHaveTextContent('Test Subject: Test Message 3d ago');
-    expect(tableRows[1]).toHaveTextContent('Hello John Doe your product Avocado was added successfully! 3d ago');
-    expect(tableRows[2]).toHaveTextContent('Hello John Doe your product Avocado was added successfully! 4d ago');
-    expect(tableRows[3]).toHaveTextContent('Hello John Doe your product Dress was added successfully! Hello John Doe your product Dress was added successfully! 4y ago');
-    expect(tableRows[4]).toHaveTextContent('Hello John Doe your product Avocado was added successfully! 4d ago');
+    expect(tableRows[0]).toHaveTextContent('Test Subject: Test Message');
+    expect(tableRows[1]).toHaveTextContent('Hello John Doe your product Avocado was added successfully! ');
+    expect(tableRows[2]).toHaveTextContent('Hello John Doe your product Avocado was added successfully! ');
+    expect(tableRows[3]).toHaveTextContent('Hello John Doe your product Dress was added successfully! Hello John Doe your product Dress was added successfully!');
+    expect(tableRows[4]).toHaveTextContent('Hello John Doe your product Avocado was added successfully! ');
   });
 });

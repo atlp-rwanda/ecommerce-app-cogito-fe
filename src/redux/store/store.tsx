@@ -12,8 +12,14 @@ import googleLoginReducer from '../reducers/googleLoginSlice';
 import addProductReducer from '../reducers/Product/ProductSlice';
 import AllProductReducer from '../reducers/Product/fetchSlice';
 import fetchViewReducer from '../reducers/viewProductSlice';
-import updateProductReducer from '../reducers/updateProductSlice'
+import updateProductReducer from '../reducers/updateProductSlice';
 import notificationReducer from '../reducers/notificationSlice';
+import fetchUsersReducer from '../reducers/FetchUsersSlice';
+import changeStatus from '../reducers/AccountStatusSlice';
+import fetchRoles from '../reducers/FetchRolesSlice';
+import changeUserRole from '../reducers/ChangeRoleSlice';
+import fetchPermissions from '../reducers/FetchPermissionsSlice';
+import fetchRolePermissions from '../reducers/RolePermissionsSlice';
 
 const store = configureStore({
   reducer: {
@@ -32,8 +38,15 @@ const store = configureStore({
     viewProduct: fetchViewReducer,
     updateProduct: updateProductReducer,
     notification: notificationReducer,
+    users: fetchUsersReducer,
+    accountStatus: changeStatus,
+    roles: fetchRoles,
+    change_role: changeUserRole,
+    permissions: fetchPermissions,
+    rolesPermissions: fetchRolePermissions,
   },
   middleware: getDefaultMiddleware({
+    immutableCheck: false,
     serializableCheck: false,
   }),
 });

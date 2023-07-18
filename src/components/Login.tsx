@@ -32,6 +32,10 @@ export const LoginPage = () => {
               navigate('/tfa');
             }
           });
+        } else if (parseInt(roleId) === 1) {
+          setEmail('');
+          setPassword('');
+          navigate('/admin/manage/users');
         } else if (loginState.status == 307) {
           setEmail('');
           setPassword('');
