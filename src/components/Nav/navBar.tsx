@@ -18,15 +18,24 @@ type Category = {
   createdAt: string;
   updatedAt: string;
 };
-const NavBar = () => {
+
+type Props = {
+  socket: any;
+};
+
+const NavBar = ({ socket }: Props) => {
   const [searchClicked, setSearchClicked] = useState(false);
   const [menuClicked, setMenuClicked] = useState(false);
   const [profileClicked, setProfileClicked] = useState(false);
+  // const [notifications, setNotifications] = useState([]);
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
+
   const { value } = useSelector((state: RootState) => state.category) || [];
   // const categories = value.map((obj: Category) => obj.name);
   const handleLoginClick = () => {
@@ -123,11 +132,24 @@ const NavBar = () => {
                         <div className="hidden md:block absolute left-0 top-[100%] flex flex-col max-h-[60vh] flex-wrap w-[60vw]">
                           <p className="text-2xl font-bold mt-8 mb-4 text-[#b2b2b2]">Explore Our Categories</p>
                           <div className="flex flex-col max-h-[70vh] flex-wrap">
-                            <p className="category_link mb-2 cursor-pointer text-xl font-bold" onClick={()=>{setCategoryDropdownOpen(false);
-                                navigate(`/products`)}}>All</p>
+                            <p
+                              className="category_link mb-2 cursor-pointer text-xl font-bold"
+                              onClick={() => {
+                                setCategoryDropdownOpen(false);
+                                navigate(`/products`);
+                              }}
+                            >
+                              All
+                            </p>
                             {value.map((category: Category) => (
-                              <p key={category.id} className="category_link mb-2 cursor-pointer text-xl font-bold" onClick={()=>{setCategoryDropdownOpen(false);
-                                navigate(`/products/${category.id}`)}}>
+                              <p
+                                key={category.id}
+                                className="category_link mb-2 cursor-pointer text-xl font-bold"
+                                onClick={() => {
+                                  setCategoryDropdownOpen(false);
+                                  navigate(`/products/${category.id}`);
+                                }}
+                              >
                                 {category.name}
                               </p>
                             ))}
@@ -156,8 +178,8 @@ const NavBar = () => {
                       (() => {
                         const userDetails = DecodeToken();
                         return (
-                          <div className='flex justify-end items-center'>
-                            <NotificationPane />
+                          <div className="flex justify-end items-center">
+                            <NotificationPane socket={socket}/>
                             <div className="hidden md:flex items-center lg:mr-4 md:mr-10 custom-md:mr-4 w-20 justify-end" onClick={handleProfileMenu}>
                               <FontAwesomeIcon icon={faUser} className="pr-2 lg text-2xl md:text-xl custom-md:text-bas " />
                               <p className="custom-md:text-sm cursor-pointer lg:text-base">{userDetails.name.split(' ')[0]}</p>
@@ -187,7 +209,13 @@ const NavBar = () => {
                                 <Button onClick={logout} label="Logout" style="dropdown-item mb-1" />
                               </div>
                             )}
-                            <FontAwesomeIcon icon={faHeart} className="text-xl md:text-xl custom-md:text-[1.2rem] mr-5 lg:mr-4 md:mr-4 custom-md:mr-6 cursor-pointer" onClick={()=>{navigate('/wishlist')}}/>
+                            <FontAwesomeIcon
+                              icon={faHeart}
+                              className="text-xl md:text-xl custom-md:text-[1.2rem] mr-5 lg:mr-4 md:mr-4 custom-md:mr-6 cursor-pointer"
+                              onClick={() => {
+                                navigate('/wishlist');
+                              }}
+                            />
                             <FontAwesomeIcon icon={faCartShopping} className="text-xl md:text-xl custom-md:text-[1.2rem] mr-5 custom-md:mr-6 md:mr-0" />
                           </div>
                         );
@@ -218,7 +246,13 @@ const NavBar = () => {
               {categoryDropdownOpen && (
                 <div className="dropdown-content flex flex-col mt-2">
                   {value.map((category: Category, index) => (
-                    <p key={category.id} className={`category_link text-md font-semibold mb-2 cursor-pointer ${index === value.length - 1 ? 'mb-4' : ''}`} onClick={()=>{navigate(`/products/${category.id}`)}}>
+                    <p
+                      key={category.id}
+                      className={`category_link text-md font-semibold mb-2 cursor-pointer ${index === value.length - 1 ? 'mb-4' : ''}`}
+                      onClick={() => {
+                        navigate(`/products/${category.id}`);
+                      }}
+                    >
                       {category.name}
                     </p>
                   ))}

@@ -39,16 +39,24 @@ const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const roleId = localStorage.getItem('roleId') ? localStorage.getItem('roleId') : 3;
   const userDetails = DecodeToken();
-  if (userDetails) {
-    setUserId(userDetails.id);
-  }
+  
+  useEffect(() => {
+    if (userDetails) {
+      setUserId(userDetails.id);
+    }
+  }, [userDetails]);
+
   useEffect(() => {
     dispatch(fetchRoles);
     console.log(roles);
   }, [data, dispatch]);
 
   useEffect(() => {
-    setSocket(io('http://localhost:9999/'));
+    const createSocket = () =>{
+      const createdSocket = io('http://localhost:9999/')
+      setSocket(createdSocket);
+    }
+    createSocket();
   }, []);
 
   useEffect(() => {
@@ -69,7 +77,7 @@ const App: React.FC = () => {
           <Router>
             <ChatIcon />
             <Routes>
-              <Route path="/" element={<HomePages />} />
+              <Route path="/" element={<HomePages socket={socket} />} />
               <Route path="/login" element={<Login />} />
               <Route path="/buyer/signup" element={<SignupPage />} />
               <Route path="/tfa" element={<TwoFactorAuth />} />

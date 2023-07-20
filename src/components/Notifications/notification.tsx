@@ -10,7 +10,11 @@ import CogitoIcon from '../../assets/favicon-3.png';
 import extractDateTime from '../../utils/notificationPassedTime';
 import DecodeToken from '../../utils/token';
 
-const NotificationPane: React.FC = () => {
+type Props = {
+  socket: any;
+};
+
+const NotificationPane = ({ socket }: Props) => {
   const userDetails = DecodeToken();
   interface Item {
     id: number;
@@ -26,8 +30,14 @@ const NotificationPane: React.FC = () => {
   const [noticeSettings, setNoticeSettings] = useState(false);
   const [unreadNotificationCounter, setUnreadNotificationCounter] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [notificationData, setNotificationData] = useState<Item[]>([]);
+  const countUnreadNotifications = async () => {
+    const unreadNotifications = notificationData.filter((item) => !item.isRead);
+    const unreadCount = unreadNotifications.length;
+    setUnreadNotificationCounter(unreadCount);
+    return unreadCount;
+  };
   useEffect(() => {
-    dispatch(handleNotifications(userDetails));
     const handleClickOutside = (event: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node) && !containerRef.current.isSameNode(event.target as Node)) {
         setNotificationClicked(false);
@@ -42,13 +52,16 @@ const NotificationPane: React.FC = () => {
       document.removeEventListener('click', handleDocumentClick);
     };
   }, [dispatch]);
-  const notificationData: Item[] = Array.isArray(notice.data) ? notice.data : [];
-  const countUnreadNotifications = () => {
-    const unreadNotifications = notificationData.filter((item) => !item.isRead);
-    const unreadCount = unreadNotifications.length;
-    setUnreadNotificationCounter(unreadCount);
-    return unreadCount;
-  };
+  useEffect(() => {
+    if (socket) {
+      socket.on('getNotification', (data: Item[]) => {
+        console.log('socket', data);
+        setNotificationData((prev: any) => [...prev, data]);
+      });
+      console.log('notifications', notificationData);
+    }
+  }, [notificationData, socket]);
+
   const handleNotificationPane = () => {
     dispatch(handleNotifications(userDetails));
     countUnreadNotifications();
