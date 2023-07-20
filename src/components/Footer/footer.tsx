@@ -48,13 +48,15 @@ const Footer = () => {
     <>
       <hr className="border-t border-[#003D29] mb-8 mt-10 md:mt-16 mx-8"></hr>
       <div className="lg:flex lg:mx-16 lg:justify-between lg:w-[90%]">
-        <div className='lg:w-[33.3%]'>
-          <div className='lg:w-fit lg:w-full'>
+        <div className="lg:w-[33.3%]">
+          <div className="lg:w-fit lg:w-full">
             <div className="flex flex-col mx-10 lg:mx-0 mb-4 custom-md:text-sm md:text-base lg:w-full">
               <div className=" lg:w-full">
-                <div className='custom-md:flex custom-md:items-center lg:flex lg:flex-col lg:items-start'>
+                <div className="custom-md:flex custom-md:items-center lg:flex lg:flex-col lg:items-start">
                   <img src={Logo} alt="logo" className="h-9 w-36 md: mb-6 custom-md:mb-4"></img>
-                  <p className="lg:w-[90%] md:w-[80%] custom-md:w-[100%] custom-md:mx-20 lg:mx-0">Your one-stop destination for all your shopping needs, delivering quality products and exceptional service at your fingertips.</p>
+                  <p className="lg:w-[90%] md:w-[80%] custom-md:w-[100%] custom-md:mx-20 lg:mx-0">
+                    Your one-stop destination for all your shopping needs, delivering quality products and exceptional service at your fingertips.
+                  </p>
                 </div>
               </div>
             </div>
@@ -64,7 +66,7 @@ const Footer = () => {
             <div className="flex flex-col mx-8 lg:mx-0">
               <div className="flex items-center mb-4 justify-between">
                 <p className="font-bold lg:hidden ">Accepted Payments</p>
-                <FontAwesomeIcon icon={faPlus} onClick={expandPayments} className='lg:hidden '/>
+                <FontAwesomeIcon icon={faPlus} onClick={expandPayments} className="lg:hidden " />
               </div>
               <div className={`grid grid-cols-3 gap-2 w-fit mb-10 ${!showPayments && 'hidden'} lg:grid`}>
                 <div className="px-4 py-2  rounded-md border-[1px] w-fit h-fit">
@@ -89,12 +91,12 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className='lg:w-[33.3%] xl:flex xl:flex-col xl:items-center'>
+        <div className="lg:w-[33.3%] xl:flex xl:flex-col xl:items-center">
           <hr className="lg:hidden border-t border-[#003D29] mb-6 mx-8"></hr>
           <div className="flex flex-col mx-8">
             <div className="flex items-center mb-4 justify-between">
               <p className="font-bold ">Categories</p>
-              <FontAwesomeIcon icon={faPlus} onClick={expandCategories} className='lg:hidden '/>
+              <FontAwesomeIcon icon={faPlus} onClick={expandCategories} className="lg:hidden " />
             </div>
             <div className={`${!showCategories && 'hidden'} mb-10 lg:block`}>
               {value.map((category: Category) => (
@@ -105,12 +107,12 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className='lg:w-[33.3%] xl:flex xl:flex-col xl:items-center'>
+        <div className="lg:w-[33.3%] xl:flex xl:flex-col xl:items-center">
           <hr className="lg:hidden border-t border-[#003D29] mb-6 mx-8"></hr>
           <div className="flex flex-col mx-8">
             <div className="flex items-center mb-4 justify-between">
               <p className="font-bold ">Quick Links</p>
-              <FontAwesomeIcon icon={faPlus} onClick={expandLinks} className='lg:hidden '/>
+              <FontAwesomeIcon icon={faPlus} onClick={expandLinks} className="lg:hidden " />
             </div>
             <div className={`${!showQuickLinks && 'hidden'} mb-10 flex flex-col lg:flex`}>
               <Link to="/about" className="quick_link  ml-2 mb-2 lg:ml-0">

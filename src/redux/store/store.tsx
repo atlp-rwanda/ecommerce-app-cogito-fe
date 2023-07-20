@@ -12,8 +12,6 @@ import googleLoginReducer from '../reducers/googleLoginSlice';
 import addProductReducer from '../reducers/Product/ProductSlice';
 import AllProductReducer from '../reducers/Product/fetchSlice';
 import fetchViewReducer from '../reducers/viewProductSlice';
-import updateProductReducer from '../reducers/updateProductSlice';
-import notificationReducer from '../reducers/notificationSlice';
 import fetchUsersReducer from '../reducers/FetchUsersSlice';
 import changeStatus from '../reducers/AccountStatusSlice';
 import fetchRoles from '../reducers/FetchRolesSlice';
@@ -23,6 +21,9 @@ import fetchRolePermissions from '../reducers/RolePermissionsSlice';
 import chatReducer from '../reducers/chatSlice';
 import allProductsReducer from '../reducers/products';
 import wishlistReducer from '../reducers/wishlistSlice';
+import updateProductReducer from '../reducers/updateProductSlice';
+import notificationReducer from '../reducers/notificationSlice';
+import searchReducer from '../reducers/searchSlice';
 
 const store = configureStore({
   reducer: {
@@ -50,6 +51,7 @@ const store = configureStore({
     chat: chatReducer,
     allProducts: allProductsReducer,
     wishlist: wishlistReducer,
+    search: searchReducer,
   },
   middleware: getDefaultMiddleware({
     immutableCheck: false,

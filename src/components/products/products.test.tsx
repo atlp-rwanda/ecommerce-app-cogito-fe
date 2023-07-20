@@ -39,6 +39,5 @@ describe('Products component', () => {
     expect(getByText('Filter')).toBeInTheDocument();
     expect(getByTestId('faFilter')).toBeInTheDocument();
     expect(getByTestId('faArrowsUpDown')).toBeInTheDocument();
-
   });
 });
