@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchProducts } from '../../action/ProductAction';
 interface fetchstate {
-  data: [];
+  data: any;
   loading: boolean;
   error: boolean;
 }
@@ -34,4 +34,3 @@ const fetchSlice = createSlice({
   },
 });
 export default fetchSlice.reducer;
-export const fetchSliceAction = fetchSlice.actions;

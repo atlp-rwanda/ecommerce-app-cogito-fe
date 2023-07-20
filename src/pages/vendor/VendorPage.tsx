@@ -27,7 +27,7 @@ export default function VendorPage() {
 
   const allProductstate = useSelector((state: RootState) => state.Allproducts.state);
   console.log('My Data Here::::::');
-  console.log(allProductstate.data);
+  console.log(allProductstate);
   const tableData: Item[] = Array.isArray(allProductstate.data) ? allProductstate.data : [];
   // const tableData = data.slice(indexOfFirstProduct, indexOfLastProduct);
 
@@ -102,9 +102,9 @@ export default function VendorPage() {
                   <td className="w-[10%] sm:w-10 text-start px-6 py-3">{item.quantity}</td>
                   <td className="w-[10%] sm:w-10 text-start px-6 py-3">{moment(item.expiredAt).format('MMM D,YYYY')}</td>
                   <td>
-                  <Link to={`/product/${item.id}`} className="p-2 text-sm w-full md:w-64 shadow-lg bg-green-700 text-slate-50 hover:bg-cyan-500">
-                  View
-                </Link>
+                    <Link to={`/product/${item.id}`} className="p-2 text-sm w-full md:w-64 shadow-lg bg-green-700 text-slate-50 hover:bg-cyan-500">
+                      View
+                    </Link>
                   </td>
                 </tr>
               ))}
