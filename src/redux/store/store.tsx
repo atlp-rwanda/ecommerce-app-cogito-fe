@@ -1,4 +1,5 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import cartReducer from '../reducers/cartSlice';
 import LoginReducer from '../reducers/loginSlice';
 import ResetPasswordSlice from '../reducers/resetPassword/resetPasswordSlice';
 import UpdatePasswordSlice from '../reducers/resetPassword/updatePassword';
@@ -27,6 +28,7 @@ import fetchSlice from '../reducers/Product/fetchSlice';
 
 const store = configureStore({
   reducer: {
+    cart: cartReducer, // Add the cart reducer
     login: LoginReducer,
     User: ResetPasswordSlice,
     Update: UpdatePasswordSlice,
@@ -58,6 +60,7 @@ const store = configureStore({
     serializableCheck: false,
   }),
 });
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export default store;

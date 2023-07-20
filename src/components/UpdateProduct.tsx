@@ -55,7 +55,7 @@ const UpdatePage: React.FC = () => {
     const files = event.target.files[0];
     setGalleryImages([...galleryImages, files]);
     console.log(files);
-    if(files){
+    if (files) {
       setAddedImages([...AddedImages, files]);
     }
   };
@@ -99,22 +99,20 @@ const UpdatePage: React.FC = () => {
       });
     }
   };
-    const handleImagePreview = (imageUrl: string) => {
-      console.log(`Previewing image: ${imageUrl}`);
-    };
-    const handleImageUpdate = (imageUrl: string | undefined) => {
-      // Handle image update logic
-      console.log(`Updating image: ${imageUrl}`);
-    };
-    const handleImageDelete = (imageUrl: any) => {
-      setGalleryImages((prevImages: any[]) => prevImages.filter((image: string | undefined) => image !== imageUrl));
-      if(productData.image.includes(imageUrl)){
-        setDeletedImages(
-          [...deletedImages, imageUrl]
-        );
-      }
-      console.log(deletedImages);
-    };
+  const handleImagePreview = (imageUrl: string) => {
+    console.log(`Previewing image: ${imageUrl}`);
+  };
+  const handleImageUpdate = (imageUrl: string | undefined) => {
+    // Handle image update logic
+    console.log(`Updating image: ${imageUrl}`);
+  };
+  const handleImageDelete = (imageUrl: any) => {
+    setGalleryImages((prevImages: any[]) => prevImages.filter((image: string | undefined) => image !== imageUrl));
+    if (productData.image.includes(imageUrl)) {
+      setDeletedImages([...deletedImages, imageUrl]);
+    }
+    console.log(deletedImages);
+  };
   return (
     <div className="flex flex-col bg-white-90 border rounded mx-auto my-10 p-4 max-w-md">
       <h2 className="text-2xl mb-4">Update Product</h2>
@@ -138,32 +136,28 @@ const UpdatePage: React.FC = () => {
         <div>
           <div>
             <label className="text-gray-500 block">Product Picture:</label>
-            {galleryImages &&(
-               <div className="image-gallery , bg-blue-100 grid grid-cols-4">
-               {galleryImages.map((imageUrl: any, index: React.Key | null | undefined) => (
-                 <div key={index} className="image-item border border-gray-500 p-1 ">
-                   {typeof imageUrl === 'string' ? (
-                    <img src={imageUrl} alt={`Image ${index}`} className="w-20 h-20" />
-                   ):(
-                    <img src={URL.createObjectURL(imageUrl)} alt={`Image ${index}`} className="w-20 h-20" />
-                   )}
-                   <div className="image-buttons grid grid-cols-3 gap-1/2 align-middle">
-                     <button onClick={() => handleImagePreview(imageUrl)}>
-                       <FontAwesomeIcon icon={faEye} />
-                     </button>
-                     <button onClick={() => handleImageUpdate(imageUrl)}>
-                       <FontAwesomeIcon icon={faEdit} />
-                     </button>
-                     <button onClick={() => handleImageDelete(imageUrl)}>
-                       <FontAwesomeIcon icon={faTrash} />
-                     </button>
-                   </div>
-                 </div>
-               ))}
-             </div>
+            {galleryImages && (
+              <div className="image-gallery , bg-blue-100 grid grid-cols-4">
+                {galleryImages.map((imageUrl: any, index: React.Key | null | undefined) => (
+                  <div key={index} className="image-item border border-gray-500 p-1 ">
+                    {typeof imageUrl === 'string' ? <img src={imageUrl} alt={`Image ${index}`} className="w-20 h-20" /> : <img src={URL.createObjectURL(imageUrl)} alt={`Image ${index}`} className="w-20 h-20" />}
+                    <div className="image-buttons grid grid-cols-3 gap-1/2 align-middle">
+                      <button onClick={() => handleImagePreview(imageUrl)}>
+                        <FontAwesomeIcon icon={faEye} />
+                      </button>
+                      <button onClick={() => handleImageUpdate(imageUrl)}>
+                        <FontAwesomeIcon icon={faEdit} />
+                      </button>
+                      <button onClick={() => handleImageDelete(imageUrl)}>
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
             )}
             <label className="file-input-label">
-              <input type="file" name="image" className="hidden" onChange={handleImage} accept="image/*"/>
+              <input type="file" name="image" className="hidden" onChange={handleImage} accept="image/*" />
               <span className="inline-block p-2 bg-blue-500 border-1 rounded my-1">Upload Image</span>
             </label>
           </div>

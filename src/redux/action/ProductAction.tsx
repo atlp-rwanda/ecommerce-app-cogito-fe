@@ -8,7 +8,6 @@ type Item = {
 type ProductData = {
   data: Item;
 };
-
 export const fetchProducts = createAsyncThunk('products/fetchProduct', async () => {
   try {
     const token = localStorage.getItem('token');
@@ -41,34 +40,33 @@ export const productRemove = createAsyncThunk('products/productRemove', async ({
   }
 });
 
-export const ViewProduct = createAsyncThunk('view/product', async({id}: any) => {
-    try{
-       const token = localStorage.getItem('token'
-       )
-       const config = {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-       }
-       const response = await URL.get(`/product/${id}`, config);
-       return response.data;
-    }catch(error: any){
-        throw error.response.data.message;
-    }
-})
-
-export const updateProduct = createAsyncThunk('edit/product', async({id, data}: any)=>{
-  try{
+export const ViewProduct = createAsyncThunk('view/product', async ({ id }: any) => {
+  try {
     const token = localStorage.getItem('token');
     const config = {
       headers: {
-          Authorization: `Bearer ${token}`
-      }
-     }
-     const response = await URL.put(`/product/${id}`, data, config);
-     console.log('my token',config)
-     return response.data;
-  }catch(error: any){
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await URL.get(`/product/${id}`, config);
+    return response.data;
+  } catch (error: any) {
     throw error.response.data.message;
-}
-}) 
+  }
+});
+
+export const updateProduct = createAsyncThunk('edit/product', async ({ id, data }: any) => {
+  try {
+    const token = localStorage.getItem('token');
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await URL.put(`/product/${id}`, data, config);
+    console.log('my token', config);
+    return response.data;
+  } catch (error: any) {
+    throw error.response.data.message;
+  }
+});

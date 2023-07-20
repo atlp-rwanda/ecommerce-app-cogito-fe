@@ -9,10 +9,6 @@ import TwoFactorAuth from './pages/TwoFactorAuth';
 import UpdatePassword from './pages/UpdatePassword';
 import ProfileView from './views/Profile';
 import EditProfileView from './views/editProfile';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import VendorPage from './pages/vendor/VendorPage';
-import UpdatePage from './components/UpdateProduct';
 import Users from '@/pages/Admin/Users';
 import RolePerms from './pages/Admin/RolePerms';
 import { useEffect } from 'react';
@@ -22,12 +18,17 @@ import { useSelector } from 'react-redux';
 import { RootState } from './redux/store/store';
 import ChatContainer from './pages/chat';
 import ChatIcon from './components/chatCards/ChatIcon';
-import ProductView from './pages/viewProduct';
 import ProductsPage from '../src/pages/products';
 import WishlistPage from '../src/pages/wishlist';
 import { Helmet } from 'react-helmet';
 import { LoginSuccess } from './utils/LoginSuccess';
 import ViewItems from './pages/SellerDashboard/viewItems';
+import CartPage from './components/CartPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import VendorPage from './pages/vendor/VendorPage';
+import UpdatePage from './components/UpdateProduct';
+import ProductView from './pages/viewProduct';
 
 const App: React.FC = () => {
   const { roles } = useSelector((state: RootState) => state.roles);
@@ -73,6 +74,7 @@ const App: React.FC = () => {
               <Route path="/search/products" element={<Navigate to="/products" />} />
               <Route path="/search/products/:product" element={<ProductsPage />} />
               <Route path="/viewItems" element={<ViewItems />} />
+              <Route path="/cart" element={<CartPage />} />
             </Routes>
           </Router>
           <ToastContainer />
