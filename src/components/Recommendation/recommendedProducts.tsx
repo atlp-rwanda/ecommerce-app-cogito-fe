@@ -152,8 +152,10 @@ const Products = ({ RecommendedProduct }: Props) => {
       </div>
     ));
   }
-
+  const roleId = localStorage.getItem('roleId');
   return (
+    <>
+    {roleId && parseInt(roleId) === 3 ? (
     <div className="text-center flex flex-col items-center w-[80%] m-auto lm:w-[70%] md:w-[80%] lg:w-[90%]">
       <p className="m-auto text-2xl font-bold mt-6">Recommended Products</p>
       <div className="flex flex-row md:relative md:left-48 md:pr-8">
@@ -190,6 +192,10 @@ const Products = ({ RecommendedProduct }: Props) => {
 
       <div className="flex flex-col md:grid md:grid-cols-2 md:gap-7 pb-5 lg:grid-cols-3">{renderedProducts}</div>
     </div>
+    ) : (
+      <div></div>
+    )}
+    </>
   );
 };
 
