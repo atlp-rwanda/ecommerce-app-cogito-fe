@@ -25,21 +25,21 @@ const ProductView = () => {
         <h1 className="text-2xl tracking-tight text-slate-900 font-bold my-8">Product Details</h1>
         <div className="flex flex-col md:flex-row -mx-4 w-[100%] ">
           <div className="md:flex-1 px-4 ">
-            <div x-data="{ image: 1 }" x-cloak>
+            <div x-data="{ image: 1 }" data-x-cloak>
               <div className="rounded-lg bg-gray-100 mb-4">
-                <div x-show="image === 1" className="h-50 md:h-64 rounded-lg bg-gray-100 mb-4 flex items-center justify-center py-8">
+                <div data-x-show="image === 1" className="h-50 md:h-64 rounded-lg bg-gray-100 mb-4 flex items-center justify-center py-8">
                   <img src={product.image[0]} alt="Product Image 1" className="max-h-full max-w-full" />
                 </div>
                 <div className="flex">
-                  <div x-show="image === 2" className="focus:outline-none w-full rounded-lg h-24 md:h-32 rounded-lg bg-gray-100 mb-4 flex items-center justify-center">
+                  <div data-x-show="image === 2" className="focus:outline-none w-full rounded-lg h-24 md:h-32 rounded-lg bg-gray-100 mb-4 flex items-center justify-center">
                     <img src={product.image[1]} alt="Product Image 2" className="max-h-full max-w-full" />
                   </div>
 
-                  <div x-show="image === 3" className=" focus:outline-none w-full rounded-lg h-24 md:h-32 rounded-lg bg-gray-100 mb-4 flex items-center justify-center">
+                  <div data-x-show="image === 3" className=" focus:outline-none w-full rounded-lg h-24 md:h-32 rounded-lg bg-gray-100 mb-4 flex items-center justify-center">
                     <img src={product.image[2]} alt="Product Image 3" className="max-h-full max-w-full" />
                   </div>
 
-                  <div x-show="image === 4" className="focus:outline-none w-full rounded-lg h-24 md:h-32 rounded-lg bg-gray-100 mb-4 flex items-center justify-center">
+                  <div data-x-show="image === 4" className="focus:outline-none w-full rounded-lg h-24 md:h-32 rounded-lg bg-gray-100 mb-4 flex items-center justify-center">
                     <img src={product.image[3]} alt="Product Image 4" className="max-h-full max-w-full" />
                   </div>
                 </div>

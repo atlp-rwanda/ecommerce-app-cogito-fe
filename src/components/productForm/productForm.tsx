@@ -2,7 +2,6 @@ import { useState, ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { addProduct } from '../../redux/action/AddAction';
-
 export const AddProductForm = ({ visible, onClose }: { visible: boolean; onClose: () => void }) => {
   const dispatch = useDispatch();
   const [uname, setName] = useState('');
@@ -139,16 +138,14 @@ export const AddProductForm = ({ visible, onClose }: { visible: boolean; onClose
   if (!visible) return null;
   return (
     <div id="container_form" onClick={handleOnClose} className="container_form bg-black/30  w-full fixed inset-0 backdrop-blur-sm flex justify-center items-center z-50">
-      <div className="add_product_form bg-white max-w-lg h-full px-10 py-5 rounded-xl m-2">
+      <div className="add_product_form bg-white max-w-lg h-[90%] px-10 py-5 rounded-xl m-2">
         <div className="form__header flex flex-col">
-          <i onClick={handleOnClose} id="cancel_btn" className="cancel_btn cursor-pointer material-symbols-rounded self-end mt-5">
-            Cancel
-          </i>
-          <p className="title font-bold text-center text-blue-400 mb-8 text-xl md:text-2xl lg:text-3xl xl:text-4xl">Add Product</p>
+          <i onClick={handleOnClose} id="cancel_btn" className="cancel_btn cursor-pointer material-symbols-rounded self-end text-2xl hover:text-green-700 font-sans font-bold">X</i>
+          <p className="title font-bold text-center text-green-700 mb-8 text-xl md:text-2xl lg:text-3xl xl:text-4xl">Add Product</p>
         </div>
         <form className="flex flex-col gap-5 font-light" encType="multipart/form-data">
           <input
-            className="focus:outline-none bg-blue-50  h-10 border border-black/10 rounded-lg outline-0 placeholder:font-light placeholder:text-gray-600/80 p-2 pl-4"
+            className="focus:outline-none bg-green-50  h-10 border border-black/10 rounded-lg outline-0 placeholder:font-light placeholder:text-gray-600/80 p-2 pl-4"
             type="text"
             onChange={handleName}
             // {...register('name')}
@@ -157,7 +154,7 @@ export const AddProductForm = ({ visible, onClose }: { visible: boolean; onClose
             id=""
           />
           <textarea
-            className="focus:outline-none bg-blue-50  h-10 border border-black/10 rounded-lg outline-0 placeholder:font-light placeholder:text-gray-600/80 p-2 pl-4"
+            className="focus:outline-none bg-green-50  h-10 border border-black/10 rounded-lg outline-0 placeholder:font-light placeholder:text-gray-600/80 p-2 pl-4"
             onChange={handleDescription}
             // {...register('description')}
             placeholder="Product Description"
@@ -165,7 +162,7 @@ export const AddProductForm = ({ visible, onClose }: { visible: boolean; onClose
             id=""
           />
           <input
-            className="focus:outline-none bg-blue-50  h-10 border border-black/10 rounded-lg outline-0 placeholder:font-light placeholder:text-gray-600/80 p-2 pl-4"
+            className="focus:outline-none bg-green-50  h-10 border border-black/10 rounded-lg outline-0 placeholder:font-light placeholder:text-gray-600/80 p-2 pl-4"
             type="file"
             multiple={true}
             // onchange="displaySelectedFiles(event)"
@@ -177,7 +174,7 @@ export const AddProductForm = ({ visible, onClose }: { visible: boolean; onClose
           />
           <div className="flex justify-between flex-wrap gap-5">
             <input
-              className="focus:outline-none bg-blue-50 h-10 border border-black/10 rounded-lg outline-0 placeholder:font-light placeholder:text-gray-600/80 p-2 pl-4"
+              className="focus:outline-none bg-green-50 h-10 border border-black/10 rounded-lg outline-0 placeholder:font-light placeholder:text-gray-600/80 p-2 pl-4"
               type="number"
               onChange={handlePrice}
               //   {...register('price')}
@@ -186,7 +183,7 @@ export const AddProductForm = ({ visible, onClose }: { visible: boolean; onClose
               id=""
             />
             <input
-              className="focus:outline-none bg-blue-50 h-10 border border-black/10 rounded-lg outline-0 placeholder:font-light placeholder:text-gray-600/80 p-2 pl-4"
+              className="focus:outline-none bg-green-50 h-10 border border-black/10 rounded-lg outline-0 placeholder:font-light placeholder:text-gray-600/80 p-2 pl-4"
               type="text"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleStock(e as any)}
               placeholder="In stock"
@@ -195,7 +192,7 @@ export const AddProductForm = ({ visible, onClose }: { visible: boolean; onClose
             />
           </div>
           <input
-            className="focus:outline-none bg-blue-50 h-10 border border-black/10 rounded-lg outline-0 placeholder:font-light placeholder:text-gray-600/80 p-2 pl-4"
+            className="focus:outline-none bg-green-50 h-10 border border-black/10 rounded-lg outline-0 placeholder:font-light placeholder:text-gray-600/80 p-2 pl-4"
             type="number"
             onChange={handleCategory_id}
             // {...register('Category_id')}
@@ -204,7 +201,7 @@ export const AddProductForm = ({ visible, onClose }: { visible: boolean; onClose
             id=""
           />
           <input
-            className="focus:outline-none bg-blue-50 h-10 border border-black/10 rounded-lg outline-0 placeholder:font-light placeholder:text-gray-600/80 p-2 pl-4"
+            className="focus:outline-none bg-green-50 h-10 border border-black/10 rounded-lg outline-0 placeholder:font-light placeholder:text-gray-600/80 p-2 pl-4"
             type="number"
             onChange={handleQuantity}
             // {...register('quantity')}
@@ -213,7 +210,7 @@ export const AddProductForm = ({ visible, onClose }: { visible: boolean; onClose
             id=""
           />
           <input
-            className="focus:outline-none bg-blue-50 h-10 border border-black/10 rounded-lg outline-0 placeholder:font-light placeholder:text-gray-600/80 p-2 pl-4"
+            className="focus:outline-none bg-green-50 h-10 border border-black/10 rounded-lg outline-0 placeholder:font-light placeholder:text-gray-600/80 p-2 pl-4"
             type="date"
             onChange={handleExpiredAt}
             // {...register('expiredAt')}
@@ -221,7 +218,7 @@ export const AddProductForm = ({ visible, onClose }: { visible: boolean; onClose
             name="ExpiredAt"
             id=""
           />
-          <button type="button" onClick={handleSubmit} className="text-white bg-cyan-700 w-32 py-2 px-2 rounded font-extralight self-center">
+          <button type="button" onClick={handleSubmit} className="text-white bg-green-700 w-32 py-2 px-2 rounded font-extralight self-center">
             <span className="mr-2 uppercase">{isLoading ? 'Loading ...' : 'Save'}</span>
           </button>
         </form>

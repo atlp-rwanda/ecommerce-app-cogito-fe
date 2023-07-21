@@ -20,13 +20,14 @@ export const productRemove = createAsyncThunk('products/productRemove', async (p
   try {
     // Get the token from localStorage
     const token = localStorage.getItem('token');
+    console.log('ID in Action', productId);
     const response = await URL.delete(`/product/${productId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
     return response.status;
-  } catch (error) {
+  } catch (error) { 
     return thunkAPI.rejectWithValue(error);
   }
 });

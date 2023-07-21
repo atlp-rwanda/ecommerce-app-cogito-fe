@@ -26,7 +26,7 @@ export default {
         ll: '1360px',
       },
       backgroundImage: {
-        'hero-bg': "url('./src/assets/images/heroBackground.jpg')",
+        'hero-bg': "url('https://res.cloudinary.com/dqwef212j/image/upload/v1690387564/heroBackground_rutqoj.jpg')",
       },
     },
   },

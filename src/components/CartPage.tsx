@@ -52,18 +52,19 @@ const CartPage: React.FC = () => {
     <div>
       <NavBar />
       <div className="container mx-auto">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold">My Cart</h2>
-          <button
-            className="flex items-center px-2 py-1 text-gray-700 rounded-full hover:text-gray-900 border border-gray-300"
+      <button
+            className="flex items-center mt-4 py-2 px-4 rounded-full hover:bg-green-700 border border-gray-300"
             onClick={() => {
               navigate('/products');
             }}
           >
             <span className="mr-1">&#8592;</span> Continue Shopping
           </button>
+        <div className="flex justify-between items-center my-8">
+          <h2 className="text-2xl font-bold">My Cart</h2>
+         
           <button
-            className="text-sm md:text-base text-[#EA3A5B] py-1.5 px-3 md:px-4 border-[1px] border-[#EA3A5B] rounded-lg opacity-80 border-opacity-80"
+            className="text-sm md:text-base text-[#EA3A5B] py-1.5 px-3 md:pl-4 md:mr-20 border-[1px] border-[#EA3A5B] rounded-lg opacity-80 border-opacity-80"
             onClick={() => {
               handleClearCart();
             }}
@@ -107,7 +108,7 @@ const CartPage: React.FC = () => {
       <div className='flex justify-center items-center mt-2'>
       <Link
         to="/checkoutPay"
-        className="w-full max-w-md py-2 text-center text-white transition-colors font-semibold duration-150 bg-blue-700 rounded-lg focus:shadow-outline hover:bg-indigo-800"
+        className="w-full max-w-md py-2 text-center text-white transition-colors font-semibold duration-150 bg-green-700 rounded-lg focus:shadow-outline hover:bg-green-900"
       >
         Checkout To Pay
       </Link>

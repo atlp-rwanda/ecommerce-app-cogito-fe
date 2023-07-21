@@ -73,7 +73,7 @@ function TwoFactorAuth() {
             theme: 'colored',
           });
           setTimeout(() => {
-            navigate('/');
+            navigate('/ViewItems');
           }, 1000);
         }
       }

@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import Sidebar from '../../components/Sidebar/sidebar';
 import { useSelector } from 'react-redux';
 import AddProductForm from '../../components/productForm/productForm';
-import Header from '../../components/Header/header';
 import { RootState } from '../../redux/store/store';
 import { fetchProducts } from '../../redux/action/ProductAction';
 import { useAppDispatch } from '../../redux/hooks/hooks';
@@ -26,20 +25,17 @@ export default function VendorPage() {
   }, [dispatch]);
 
   const allProductstate = useSelector((state: RootState) => state.Allproducts.state);
-  console.log('My Data Here::::::');
-  console.log(allProductstate);
   const tableData: Item[] = Array.isArray(allProductstate.data) ? allProductstate.data : [];
-  // const tableData = data.slice(indexOfFirstProduct, indexOfLastProduct);
 
   const [visible, showForm] = useState(false);
   const handleClose = () => showForm(false);
   return (
     <div className="products">
-      <Header />
       <Sidebar />
       <div className="  md:ml-52">
         <div className=" pt-10 flex flex-col items-center lg:mx-20">
           <div className="dashboard flex flex-col gap-8 flex-wrap w-full md:w-[90%]">
+          <h2 className="text-green-900 text-xl font-semibold pt-4">In Stock Products</h2>
             <button onClick={() => showForm(true)} className="p-2 text-sm w-full md:w-64 shadow-lg bg-cyan-700 text-slate-50 hover:bg-cyan-500">
               ADD NEW PRODUCT
             </button>

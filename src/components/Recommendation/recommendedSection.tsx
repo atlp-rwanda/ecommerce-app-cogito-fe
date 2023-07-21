@@ -11,9 +11,11 @@ import { Button } from '../Button';
 
 const RecommendProducts = () => {
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(getAllRecommendedProducts());
-  }, [dispatch]);
+  const roleId = localStorage.getItem('roleId');
+    useEffect(() => {
+      dispatch(getAllRecommendedProducts());
+    }, [dispatch]);
+
   const { data } = useSelector((state: RootState) => state.recommended);
 
   let renderedProducts;
@@ -43,11 +45,10 @@ const RecommendProducts = () => {
       </div>
     ));
   }
-
   return (
     <>
       <div>
-        {localStorage.getItem('token') ? (
+        {roleId && parseInt(roleId) === 3 ? (
           <div className="mx-8 my-4 p-5 flex flex-col">
             <p className="font-bold text-xl py-5">Recommended Products</p>
             <div className="flex flex-col">
