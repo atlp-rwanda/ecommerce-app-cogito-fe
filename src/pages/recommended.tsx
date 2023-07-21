@@ -1,11 +1,11 @@
-import checkLoggedIn from '../utils/authorise';
-import Wishlist from '../components/wishlist/wishlist';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 import NavBar from '../components/Nav/navBar';
 import Footer from '../components/Footer/footer';
+import checkLoggedIn from '../utils/authorise';
+import RecommendationPagination from '../components/Recommendation/RecommendationPagination';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
-const WishlistPage = () => {
+const Recommended = () => {
   const isUserLoggedIn = checkLoggedIn();
   const navigate = useNavigate();
 
@@ -21,10 +21,10 @@ const WishlistPage = () => {
   return (
     <>
       <NavBar />
-      <Wishlist />
+      <RecommendationPagination />
       <Footer />
     </>
   );
 };
 
-export default WishlistPage;
+export default Recommended;

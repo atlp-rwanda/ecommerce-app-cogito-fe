@@ -142,7 +142,7 @@ const NavBar = () => {
                                 className="category_link mb-2 cursor-pointer text-xl font-bold"
                                 onClick={() => {
                                   setCategoryDropdownOpen(false);
-                                  navigate(`/products/${category.id}`);
+                                  navigate(`/products/category/${category.id}`);
                                 }}
                               >
                                 {category.name}
@@ -229,11 +229,6 @@ const NavBar = () => {
                 </div>
                 <FontAwesomeIcon icon={faBars} onClick={handleMenuClick} className={`text-xl custom-md:text-xl md:hidden`} />
               </div>
-              <FontAwesomeIcon
-                icon={faBars}
-                onClick={() => setMenuClicked(true)} // Update handleMenuClick to setMenuClicked(true)
-                className={`text-xl custom-md:text-2xl md:hidden`}
-              />
             </div>
           </div>
         </>
@@ -255,7 +250,8 @@ const NavBar = () => {
                       key={category.id}
                       className={`category_link text-md font-semibold mb-2 cursor-pointer ${index === value.length - 1 ? 'mb-4' : ''}`}
                       onClick={() => {
-                        navigate(`/products/${category.id}`);
+                        navigate(`/products/category/${category.id}`);
+                        setMenuClicked(!menuClicked);
                       }}
                     >
                       {category.name}
