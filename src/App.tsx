@@ -30,6 +30,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import VendorPage from './pages/vendor/VendorPage';
 import UpdatePage from './components/UpdateProduct';
 import ProductView from './pages/viewProduct';
+import Payment from './pages/checkout/payment';
+import CheckoutComponent from './pages/checkout/checkoutPay'
+import OrderDetails from './pages/checkout/orderDetails';
 
 const App: React.FC = () => {
   const { roles } = useSelector((state: RootState) => state.roles);
@@ -77,6 +80,9 @@ const App: React.FC = () => {
               <Route path="/viewItems" element={<ViewItems />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/products/recommended" element={<RecommendedProducts />} />
+              <Route path="/checkoutPay" element={< CheckoutComponent />} />
+            <Route path="/checkout" element={< Payment />} />
+            <Route path="/orderStatus/:id" element={<OrderDetails />} />
             </Routes>
           </Router>
           <ToastContainer />
