@@ -1,11 +1,11 @@
 import { useCallback, useEffect} from 'react';
 import { useSelector } from 'react-redux';
-import DecodeToken from '@/utils/token';
-import { useAppDispatch } from '@/redux/hooks/hooks';
+import DecodeToken from '../../utils/token';
+import { useAppDispatch } from '../../redux/hooks/hooks';
 import { getOrderStatus } from '../../redux/action/checkout/getOrder';
-import { RootState } from '@/redux/store/store';
+import { RootState } from '../../redux/store/store';
 import moment from 'moment';
-import NavBar from '@/components/Nav/navBar';
+import NavBar from '../../components/Nav/navBar';
 import { Link, useParams } from 'react-router-dom';
 
 const OrderDetails = () => {
@@ -105,7 +105,7 @@ const formattedDate = moment(orderData.createdAt).format('YYYY-MM-DD HH:mm:ss');
   </div>
 </div>
 <div className="flex justify-center">
-      <Link to="/cart" className="text-blue-500 hover:underline font-semibold">
+      <Link to="/products" className="text-blue-500 hover:underline font-semibold">
         CONTINUE SHOPPING
       </Link>
     </div>

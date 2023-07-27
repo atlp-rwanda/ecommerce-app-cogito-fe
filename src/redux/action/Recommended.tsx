@@ -11,8 +11,12 @@ export const getAllRecommendedProducts = createAsyncThunk('products/recommended'
         },
       };
     const userDetails = DecodeToken();
-    const response = await URL.get(`/products/recommended/${userDetails.id}`, config );
-    return response.data;
+    const roleId = localStorage.getItem('roleId');
+    if(roleId && parseInt(roleId) === 3){
+      const response = await URL.get(`/products/recommended/${userDetails.id}`, config );
+      return response.data;
+    }
+   
   } catch (error) {
     return error;
   }

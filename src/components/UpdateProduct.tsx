@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store/store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+
 type ImageData = {
   name: string;
   description: string;
@@ -20,19 +21,29 @@ type ImageData = {
 const UpdatePage: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const UpdateProductState = useSelector((state: RootState) => state.viewProduct) || {
-    name: '',
-    description: '',
-    price: 0,
-    category_id: 0,
-    stock: ':',
-    quantity: 0,
-  };
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(ViewProduct({ id }));
   }, [dispatch, id]);
+  const UpdateProductState = useSelector((state: RootState) => state.viewProduct);
   const productData = UpdateProductState.state.data;
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    if (productData) {
+      setFormData({
+        name: productData.name || '',
+        description: productData.description || '',
+        price: productData.price || 0,
+        category_id: productData.category_id || 0,
+        stock: productData.stock || ':',
+        quantity: productData.quantity || 0,
+      });
+      setGalleryImages(productData.image || []);
+      if(UpdateProductState.state.loading === true){
+        setIsLoading(true);
+      }
+    }
+  }, [UpdateProductState.state.loading, productData]);
   const [formData, setFormData] = useState<ImageData>({
     name: productData?.name || '',
     description: productData?.description || '',
@@ -84,7 +95,6 @@ const UpdatePage: React.FC = () => {
         }
     try {
       await dispatch(updateProduct({ id, data: imageData }));
-      console.log('data 4', data);
     } catch (error: any) {
       if (error.response & error.response.data) {
         toast.error(error.response.data.message);
@@ -94,7 +104,7 @@ const UpdatePage: React.FC = () => {
     } finally {
       toast.success('Updated successfully', {
         onClose: () => {
-          navigate(`/product/${productData.id}`);
+          navigate(`/viewItems`);
         },
       });
     }
@@ -113,6 +123,10 @@ const UpdatePage: React.FC = () => {
     }
     console.log(deletedImages);
   };
+  const cancelUpdate = () => {
+    navigate(`/viewItems`);
+  };
+
   return (
     <div className="flex flex-col bg-white-90 border rounded mx-auto my-10 p-4 max-w-md">
       <h2 className="text-2xl mb-4">Update Product</h2>
@@ -137,7 +151,7 @@ const UpdatePage: React.FC = () => {
           <div>
             <label className="text-gray-500 block">Product Picture:</label>
             {galleryImages && (
-              <div className="image-gallery , bg-blue-100 grid grid-cols-4">
+              <div className="image-gallery , bg-green-100 grid grid-cols-4">
                 {galleryImages.map((imageUrl: any, index: React.Key | null | undefined) => (
                   <div key={index} className="image-item border border-gray-500 p-1 ">
                     {typeof imageUrl === 'string' ? <img src={imageUrl} alt={`Image ${index}`} className="w-20 h-20" /> : <img src={URL.createObjectURL(imageUrl)} alt={`Image ${index}`} className="w-20 h-20" />}
@@ -158,7 +172,7 @@ const UpdatePage: React.FC = () => {
             )}
             <label className="file-input-label">
               <input type="file" name="image" className="hidden" onChange={handleImage} accept="image/*" />
-              <span className="inline-block p-2 bg-blue-500 border-1 rounded my-1">Upload Image</span>
+              <span className="inline-block p-2 bg-green-700 border-1 rounded my-1">Upload Image</span>
             </label>
           </div>
         </div>
@@ -174,9 +188,15 @@ const UpdatePage: React.FC = () => {
           <label className="text-gray-500 block">Quantity:</label>
           <input type="number" name="quantity" className="rounded bg-gray-200 border border-gray-300 px-2 py-1 w-full" value={formData.quantity} onChange={handleChange} />
         </div>
-        <button type="submit" className="mx-auto block bg-blue-500 text-white px-4 py-2 rounded">
-          Update Product
+        <div className='flex flex-row justify-between'>
+        <button type="submit" className="mx-auto block bg-green-700 text-white px-4 py-2 rounded">
+          {isLoading ? 'Update Product' : ' Update Product'}
         </button>
+        <button className="mx-auto block bg-gray-100 text-black px-4 py-2 rounded"
+        onClick={() => cancelUpdate()}>
+          Cancel
+        </button>
+        </div>
       </form>
       <ToastContainer />
     </div>

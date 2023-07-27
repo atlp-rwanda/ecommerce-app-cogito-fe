@@ -38,7 +38,7 @@ describe('AddProductForm', () => {
       </Provider>,
     );
 
-    fireEvent.click(screen.getByText('Cancel'));
+    fireEvent.click(screen.getByText('X'));
 
     expect(onClose).toHaveBeenCalled();
   });

@@ -1,14 +1,14 @@
 import {useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '@/redux/hooks/hooks';
+import { useAppDispatch } from '../../redux/hooks/hooks';
 import { fetchUserCart, checkout } from '../../redux/action/checkout/checkout';
-import { RootState } from '@/redux/store/store';
-import DecodeToken from '@/utils/token';
+import { RootState } from '../../redux/store/store';
+import DecodeToken from '../../utils/token';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import NavBar from '@/components/Nav/navBar';
-import Footer from '@/components/footer';
+import NavBar from '../../components/Nav/navBar';
+import Footer from '../../components/footer';
 
 const CheckoutComponent = () => {
   const decodedToken = DecodeToken();

@@ -181,7 +181,7 @@ const NavBar = () => {
                             </div>
                             {profileClicked && (
                               <div className="dropdown-content flex flex-col absolute top-[14%] z-10 bg-[#f6f9fd] py-1 w-28">
-                                {localStorage.getItem('roleId') === '1' || '2' ? (
+                                {localStorage.getItem('roleId') === '1' || localStorage.getItem('roleId') === '2' ? (
                                   <Button
                                     onClick={() => {
                                       const roleId = localStorage.getItem('roleId');

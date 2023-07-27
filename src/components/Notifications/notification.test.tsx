@@ -1,5 +1,5 @@
 import { act, render, screen } from '@testing-library/react';
-import NotificationPane from '../Notifications/notification';
+import NotificationPane from './notification';
 import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
